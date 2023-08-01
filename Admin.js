@@ -77,6 +77,26 @@ document.getElementById("savecontact").addEventListener("click", function () {
   const carid = document.getElementById("CarID").value;
   const contactpicInput = document.getElementById("contactpic");
   const contactpicFile = contactpicInput.files[0]; // เลือกไฟล์ที่ผู้ใช้เลือก (แนบมา)
+  //เช็คว่ากรอกครบหรือยัง ไม่มีทะเบียนรถเพราะถ้าไม่มีรถไม่ต้องใส่
+  if (
+    !roomNumber ||
+    !guestName ||
+    !guestLastName ||
+    !guestCount ||
+    !phone ||
+    !dobdate ||
+    !idcard ||
+    !address ||
+    !contactdate ||
+    !checkin ||
+    !cartype ||
+    !contactpicFile
+  ) {
+    // แจ้งเตือนถ้าอยากให้มี popup เพิ่มทีหลัง
+    alert("กรุณากรอกข้อมูลให้ครบยกเว้นทะเบียนรถ.");
+    return;
+  }
+
 
   // ส่งไฟล์รูปภาพที่เลือกไปยัง Backend ผ่าน FormData
   const formData = new FormData();
