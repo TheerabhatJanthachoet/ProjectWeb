@@ -173,18 +173,17 @@
                       </div>
 
                       <div class="col-md-4">
-                        <label for="GuestFirstname" class="form-label"
-                          >ชื่อ</label
-                        >
+                        <label for="GuestFirstname" class="form-label">ชื่อ</label>
                         <input
                           type="text"
                           class="form-control"
                           id="GuestFirstname"
                           maxlength="50"
+                          placeholder="ชื่อจริง"
                           required
                         />
                       </div>
-
+                      
                       <div class="col-md-4">
                         <label for="Lastname" class="form-label">นามสกุล</label>
                         <input
@@ -192,33 +191,84 @@
                           class="form-control"
                           id="Lastname"
                           maxlength="50"
+                          placeholder="นามสกุล"
                           required
                         />
                       </div>
+                      
+                      <script>
+                        // Add input event listeners to the "GuestFirstname" and "Lastname" input fields
+                        document.getElementById("GuestFirstname").addEventListener("input", restrictSpecialCharacters);
+                        document.getElementById("Lastname").addEventListener("input", restrictSpecialCharacters);
+                      
+                        function restrictSpecialCharacters(event) {
+                          const input = event.target.value;
+                          const validInput = /^[a-zA-Zก-๙ ]*$/.test(input); // Use regex to check if the input contains only letters and spaces (including Thai characters)
+                      
+                          if (!validInput) {
+                            // If the input contains numbers or special characters, prevent the default behavior and set the input value to the valid characters only
+                            event.preventDefault();
+                            const validCharacters = input.replace(/[^a-zA-Zก-๙ ]/g, ''); // Remove any characters that are not letters or spaces
+                            event.target.value = validCharacters;
+                          }
+                        }
+                      </script>
 
                       <div class="col-md-3">
-                        <label for="Amount" class="form-label"
-                          >จำนวนผู้พัก</label
-                        >
+                        <label for="Amount" class="form-label">จำนวนผู้พัก</label>
                         <input
                           type="text"
                           class="form-control"
                           id="Amount"
+                          maxlength="1"
+                          placeholder="0"
                           required
                         />
                       </div>
 
+                      <script>
+                        // Add an input event listener to the "Amount" input field
+                        document.getElementById("Amount").addEventListener("input", function (event) {
+                          const input = event.target.value;
+                          const validNumber = /^[1-9]$/.test(input); // Use regex to check if the input is a number between 1 and 9
+
+                          if (!validNumber) {
+                            // If the input is not a valid number (1-9), prevent the default behavior and set the input value to the nearest valid value (either 1 or 9)
+                            event.preventDefault();
+                            event.target.value = Math.max(1, Math.min(9, parseInt(input))) || ''; // Use Math.min and Math.max to limit the value to the desired range
+                          }
+                        });
+                      </script>
+
                       <div class="col-md-4">
-                        <label for="Phone" class="form-label"
-                          >เบอร์โทรศัพท์</label
-                        >
+                        <label for="Phone" class="form-label">เบอร์โทรศัพท์</label>
                         <input
                           type="text"
                           class="form-control"
                           id="Phone"
+                          maxlength="10"
+                          placeholder="เบอร์โทรศัพท์"
                           required
                         />
                       </div>
+
+
+                      <script>
+                        // Add an input event listener to the "Phone" input field
+                        document.getElementById("Phone").addEventListener("input", restrictCharacters);
+
+                        function restrictCharacters(event) {
+                          const input = event.target.value;
+                          const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+
+                          if (!validInput) {
+                            // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                            event.preventDefault();
+                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            event.target.value = validCharacters;
+                          }
+                        }
+                      </script>
 
                       <div class="col-md-4">
                         <label for="DobDate" class="form-label">วันเกิด</label>
@@ -232,16 +282,33 @@
                       </div>
 
                       <div class="col-md-5">
-                        <label for="IDcard" class="form-label"
-                          >เลขบัตรประชาชน</label
-                        >
+                        <label for="IDcard" class="form-label">เลขบัตรประชาชน</label>
                         <input
                           type="text"
                           class="form-control"
                           id="IDcard"
+                          maxlength="13"
+                          placeholder="เลขบัตรประชาชน"
                           required
                         />
                       </div>
+                      
+                      <script>
+                        // Add an input event listener to the "IDcard" input field
+                        document.getElementById("IDcard").addEventListener("input", restrictCharacters);
+                      
+                        function restrictCharacters(event) {
+                          const input = event.target.value;
+                          const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+                      
+                          if (!validInput) {
+                            // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                            event.preventDefault();
+                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            event.target.value = validCharacters;
+                          }
+                        }
+                      </script>
 
                       <div class="col-md-12">
                         <label for="Address" class="form-label">ที่อยู่</label>
@@ -249,6 +316,7 @@
                           type="text"
                           class="form-control"
                           id="Address"
+                          placeholder="บ้านเลขที่ จังหวัด ตำบล อำเภอ"
                           required
                         />
                       </div>
@@ -282,15 +350,15 @@
                           >ประเภทยานพาหนะ</label
                         >
                         <select class="form-select" id="CarType">
+                          <option value="-">-</option>
                           <option value="รถยนต์">รถยนต์</option>
                           <option value="จักรยานยนต์">จักรยานยนต์</option>
-                          <option value="-">-</option>
                         </select>
                       </div>
 
                       <div class="col-md-4">
                         <label for="CarID" class="form-label">ทะเบียน</label>
-                        <input type="text" class="form-control" id="CarID" />
+                        <input type="text" class="form-control" id="CarID" maxlength="10" placeholder="ป้ายทะเบียน" />
                       </div>
 
                       <div class="mb-3">
@@ -350,6 +418,15 @@
 
                   <div class="modal-body">
                     <form class="row g-3">
+                      <div class="col-md-4">
+                        <label for="roomFloor" class="form-label">ชั้น</label>
+                        <select class="form-select" id="roomFloor">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                      </div>
+
                       <div class="col-md-4">
                         <label for="Roomcheckout" class="form-label">ห้อง</label>
                         <select class="form-select" id="Roomcheckout" required></select>
