@@ -2,6 +2,12 @@ var dataJson = {};
 var datacontactJson = {};
 
 //เลือกเฉพาะห้องที่ว่าง,ห้องแจ้งย้ายออก//
+
+function CheckoutRoomNumberOptions() {
+  const checkOutroomFloor = document.getElementById("checkoutFloor").value;
+  setdatacheckout(dataJson, checkOutroomFloor);
+}
+
 async function getRoom() {
   const res = await fetch("http://127.0.0.1:3000/room", {
     method: "GET",
@@ -28,7 +34,13 @@ function setRoom(data) {
   });
   getRoomNullfilter.firstChild.setAttribute("selected", true);
 
-  const roomnotNull = data.filter((data) => data.Status == "ไม่ว่าง");
+  
+}
+//จบเลือกเฉพาะห้องที่ว่าง,ห้องแจ้งย้ายออก//
+
+
+function setdatacheckout(data, checkOutroomFloor) {
+  const roomnotNull = data.filter((data) => data.RoomFloor == checkOutroomFloor && data.Status == "ไม่ว่าง");
 
   const getRoomnotNullfilter = document.getElementById("Roomcheckout");
   while (getRoomnotNullfilter.hasChildNodes()) {
@@ -45,7 +57,6 @@ function setRoom(data) {
   getRoomnotNullfilter.firstChild.setAttribute("selected", true);
 
 }
-//จบเลือกเฉพาะห้องที่ว่าง,ห้องแจ้งย้ายออก//
 
 getRoom();
 
@@ -144,7 +155,6 @@ function setContact(data) {
 
     
     row.innerHTML = `
-      <td class="text-center">${contact.ContactID}</td>
       <td class="text-center">${contact.RoomID}</td>
       <td class="text-center">${contact.GuestFirstname}</td>
       <td class="text-center">${contact.GuestLastname}</td>
