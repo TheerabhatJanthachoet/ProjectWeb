@@ -115,7 +115,6 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-center">เลขสัญญา</th>
                     <th class="text-center">ห้อง</th>
                     <th class="text-center">ชื่อ</th>
                     <th class="text-center">นามสกุล</th>
@@ -418,6 +417,20 @@
 
                   <div class="modal-body">
                     <form class="row g-3">
+
+                      <div class="col-md-4">
+                        <label for="checkoutFloor" class="form-label">ชั้น</label>
+                        <select
+                          class="form-select"
+                          id="checkoutFloor"
+                          onchange="CheckoutRoomNumberOptions()"
+                        >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                      </div>
+
                       <div class="col-md-4">
                         <label for="roomFloor" class="form-label">ชั้น</label>
                         <select class="form-select" id="roomFloor">
