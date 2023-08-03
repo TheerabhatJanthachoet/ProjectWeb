@@ -133,7 +133,7 @@ document.getElementById("savecontact").addEventListener("click", function () {
 
 //แสดงออกมาในตาราง//
 async function getcontact() {
-  const res = await fetch("http://127.0.0.1/getcontact", {
+  const res = await fetch("http://127.0.0.1/api/getcontact", {
     method: "GET",
   });
   const datacontact = await res.json();
