@@ -25,6 +25,7 @@ document.getElementById("saveButton").addEventListener("click", function () {
       status: status,
     }),
   });
+  location.reload()
 });
 //
 
