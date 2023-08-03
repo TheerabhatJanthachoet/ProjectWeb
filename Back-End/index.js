@@ -314,3 +314,5 @@ async function UpdateContact(roomNumber, checkout) {
     console.error("เกิดข้อผิดพลาดในการบันทึกข้อมูลสัญญา:", error);
   }
 }
+
+module.exports=app
