@@ -44,7 +44,7 @@ app.post("/checkoutcontact", (req, res) => {
   UpdateContact(checkOut.roomNumber,checkOut.checkout);
 });
 
-app.get("/Back-End/getcontact", async (req, res) => {
+app.get("/api/getcontact", async (req, res) => {
   const contacts = await getContact();
 
   res.json(JSON.stringify(contacts));
