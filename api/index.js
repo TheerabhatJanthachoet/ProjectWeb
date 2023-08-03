@@ -9,7 +9,7 @@ const path = require('path')
 const multer = require("multer"); // นำเข้าโมดูล multer เพื่อจัดการไฟล์ที่ถูกแนบมา
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "/public/uploads/"); // กำหนดตำแหน่งที่จะเก็บไฟล์รูปภาพที่แนบมา
+    cb(null, path.join(__dirname, 'public/uploads/'));// กำหนดตำแหน่งที่จะเก็บไฟล์รูปภาพที่แนบมา
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname); // กำหนดชื่อไฟล์ใหม่ที่จะถูกบันทึกเก็บ
