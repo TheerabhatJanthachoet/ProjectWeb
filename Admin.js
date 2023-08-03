@@ -116,7 +116,7 @@ document.getElementById("savecontact").addEventListener("click", function () {
   formData.append("filename", contactpicFile.name);
 
   // ส่งค่าข้อมูลที่ได้ไปยัง Backend ผ่าน API พร้อมกับรูปภาพ
-  fetch("/api/contact", {
+  fetch("http://20.212.12.36:3000/api/contact", {
     method: "POST",
     body: formData,
   })

@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, 'public/uploads/')); // กำหนดตำแหน่งที่จะเก็บไฟล์รูปภาพที่แนบมา
   },
-  filename: function (req, file, cb) {
+  filename: function (req, file, cb) { 
     cb(null, file.originalname); // กำหนดชื่อไฟล์ใหม่ที่จะถูกบันทึกเก็บ
   },
 });
