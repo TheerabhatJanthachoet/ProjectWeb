@@ -9,7 +9,9 @@ function CheckoutRoomNumberOptions() {
 }
 
 async function getRoom() {
-  const res = await fetch("http://20.212.12.36:3000/api/room", {
+  const url = new URL("http://20.212.12.36/api/room")
+  url.port = 3000 
+  const res = await fetch(url, {
     method: "GET",
   });
   const data = await res.json();
