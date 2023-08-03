@@ -1,3 +1,17 @@
 {
-    "rewrites": [{ "source": "/Back-End/(.*)", "destination": "/Back-End" }]
+    "version": 2,
+    "builds": [
+      {
+        "src": "/Back-End/index.js",
+        "use": "@now/node"
+      }
+    ],
+    "routes": [
+      {
+       
+        "src": "/Back-End/(.*)",
+       
+        "dest": "/Back-End/index.js"
+      }
+    ]
   }
