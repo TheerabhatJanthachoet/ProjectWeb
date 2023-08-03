@@ -9,7 +9,7 @@ function CheckoutRoomNumberOptions() {
 }
 
 async function getRoom() {
-  const res = await fetch("/api/room", {
+  const res = await fetch("http://20.212.12.36:3000/api/room", {
     method: "GET",
   });
   const data = await res.json();
@@ -133,7 +133,7 @@ document.getElementById("savecontact").addEventListener("click", function () {
 
 //แสดงออกมาในตาราง//
 async function getcontact() {
-  const res = await fetch("/api/getcontact", {
+  const res = await fetch("http://20.212.12.36:3000/api/getcontact", {
     method: "GET",
   });
   const datacontact = await res.json();
@@ -206,7 +206,7 @@ document.getElementById("Checkoutsave").addEventListener("click", function () {
   const roomNumber = document.getElementById("Roomcheckout").value;
   const checkout = document.getElementById("Checkout").value;
   
-  fetch("/api/checkoutcontact", {
+  fetch("http://20.212.12.36:3000/api/checkoutcontact", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({
