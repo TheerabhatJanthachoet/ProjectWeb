@@ -46,9 +46,10 @@ app.post("/api/checkoutcontact", (req, res) => {
 });
 
 app.get("/api/getcontact", async (req, res) => {
+  const test = __dirname
   const contacts = await getContact();
 
-  res.json(JSON.stringify(contacts));
+  res.json(JSON.stringify({name:test}));
 });
 
 app.post("/api/room", (req, res) => {
