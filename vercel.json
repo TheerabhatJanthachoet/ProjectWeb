@@ -1,0 +1,3 @@
+{
+    "rewrites": [{ "source": "/Back-End/(.*)", "destination": "/Back-End" }]
+  }
