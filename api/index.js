@@ -4,11 +4,13 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+const path = require('path')
+
 const multer = require("multer"); // นำเข้าโมดูล multer เพื่อจัดการไฟล์ที่ถูกแนบมา
 const storage = multer.diskStorage({
-  // destination: function (req, file, cb) {
-  //   cb(null, "/public/uploads/"); // กำหนดตำแหน่งที่จะเก็บไฟล์รูปภาพที่แนบมา
-  // },
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'public/uploads/')); // กำหนดตำแหน่งที่จะเก็บไฟล์รูปภาพที่แนบมา
+  },
   filename: function (req, file, cb) {
     cb(null, file.originalname); // กำหนดชื่อไฟล์ใหม่ที่จะถูกบันทึกเก็บ
   },
@@ -46,10 +48,9 @@ app.post("/api/checkoutcontact", (req, res) => {
 });
 
 app.get("/api/getcontact", async (req, res) => {
-  const test = __dirname
   const contacts = await getContact();
 
-  res.json(JSON.stringify({name:test}));
+  res.json(JSON.stringify(contacts));
 });
 
 app.post("/api/room", (req, res) => {
