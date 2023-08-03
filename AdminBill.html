@@ -36,6 +36,9 @@
                         <a href="AdminBill.html" class="nav-link">ออกบิล</a>
                     </li>
                     <li class="nav-item nav-link">
+                        <a href="AdminReport.html" class="nav-link">รายงาน</a>
+                    </li>
+                    <li class="nav-item nav-link">
                         <a href="Index.html" class="nav-link">ออกจากระบบ</a>
                     </li>
                     
@@ -60,56 +63,36 @@
                     </div>
                     <div class="row" >
                         <div class="col-md-12 col-lg-5 " >
-                            <button class="btn btn-danger btn-lg " data-bs-toggle="modal" data-bs-target="#Bill"type="submit" >ออกบิล</button>
+                            <button class="btn btn-danger btn-lg " data-bs-toggle="modal" data-bs-target="#Bill" type="submit" >ออกบิล</button>
+                            <button class="btn btn-success btn-lg " data-bs-toggle="modal" data-bs-target="#Billsave" type="submit">บันทึก</button>
+                            <!--
                             <button class="btn btn-success btn-lg " data-bs-toggle="modal" data-bs-target="#addcontract"type="submit">ตรวจสอบการชำระ</button>
+                            -->
                         </div>
                     </div>
 
                     <!-- Modal Add -->
-                        <div class="modal fade" id="addcontract" tabindex="-1" aria-labelledby="addcontractLabel" aria-hidden="true">
+                        <div class="modal fade" id="Billsave" tabindex="-1" aria-labelledby="addcontractLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
+                                    <!--
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="addcontractLabel">เพิ่มสัญญา</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    
+                                    -->
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="Billsave">บันทึก</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
                                     <div class="modal-body">
                                         <form class="row g-3">
-                                            <div class="col-md-3">
-                                            <label for="Room" class="form-label">ห้อง</label>
-                                                <select class="form-select" id="Room" required>
-                                                    <option value="1">101</option>
-                                                    <option value="2">102</option>
-                                                    <option value="3">103</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <label for="ID" class="form-label">ไอดี</label>
-                                                <input type="text" class="form-control" id="ID">
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <label for="Password" class="form-label">พาสเวิร์ด</label>
-                                                <input type="text" class="form-control" id="Password" required>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <label for="ComfirmPassword" class="form-label">ยืนยันพาสเวิร์ด</label>
-                                                <input type="text" class="form-control" id="ComfirmPassword" required>
-                                            </div> 
-
-                                            
-                                            
-                                            <div class="modal-footer">
+                                            <div class="col-md-9">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
                                                 <button type="submit" class="btn btn-success" >บันทึก</button>
-                                            </div>.
-
+                                            </div>
                                         </form>
-                                    
-                                            
                                     </div>
 
                                 </div>
@@ -119,7 +102,7 @@
 
                     <!-- Modal Out -->
                     <div class="modal fade" id="Bill" tabindex="-1" aria-labelledby="Bill" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="Bill">ออกบิล</h5>
@@ -129,30 +112,76 @@
                                 <div class="modal-body">
                                     <form class="row g-3">
                                         
-                                        <div class="col-md-4">
-                                            <label for="DateBill" class="form-label">รอบเดือน</label>
-                                            <input name="dates" type="date" class="form-control" id="DateBill" required>
-                                        </div>
-
                                         <div class="col-md-3">
-                                            <label for="Room" class="form-label">ห้อง</label>
-                                            <select class="form-select" id="Room" required>
-                                                <option value="1">101</option>
-                                                <option value="2">102</option>
-                                                <option value="3">103</option>
+                                            <label for="BillMonth" class="form-label">เดือน</label>
+                                            <select name="dates" class="form-select" id="BillMonth" required>
+                                                <option value="1">มกราคม</option>
+                                                <option value="2">กุมภาพันธ์</option>
+                                                <option value="3">มีนาคม</option>
+                                                <option value="4">เมษายน</option>
+                                                <option value="5">พฤษภาคม</option>
+                                                <option value="6">มิถุนายน</option>
+                                                <option value="7">กรกฎาคม</option>
+                                                <option value="8">สิงหาคม</option>
+                                                <option value="9">กันยายน</option>
+                                                <option value="10">ตุลาคม</option>
+                                                <option value="11">พฤศจิกายน</option>
+                                                <option value="12">ธันวาคม</option>
                                             </select>
                                         </div>
 
-                                        <div class="col-md-4">
-                                            <label for="ElecBill" class="form-label">ค่าไฟ</label>
-                                            <input type="text" class="form-control" id="ElecBill" placeholder="40691.00" required>
+                                        <div class="col-md-2">
+                                            <label for="BillYear" class="form-label">ปี</label>
+                                            <select name="dates" class="form-select" id="BillYear" required></select>
+                                            <script src="Year.js"></script>
                                         </div>
-                                        
-                                        
+
+                                        <div class="col-md-3">
+                                            <label for="WaterUnitPrice" class="form-label">ราคาค่าน้ำ/หน่วย</label>
+                                            <input type="text" class="form-control" id="WaterUnitPrice" placeholder="5" maxlength="5" />
+                                            <script>
+                                                // Add an input event listener to the "IDcard" input field
+                                                document.getElementById("WaterUnitPrice").addEventListener("input", restrictCharacters);
+                                              
+                                                function restrictCharacters(event) {
+                                                  const input = event.target.value;
+                                                  const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+                                              
+                                                  if (!validInput) {
+                                                    // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                                                    event.preventDefault();
+                                                    const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                                                    event.target.value = validCharacters;
+                                                  }
+                                                }
+                                              </script>
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            <label for="ElectricityUnitPrice" class="form-label">ราคาค่าไฟ/หน่วย</label>
+                                            <input type="text" class="form-control" id="ElectricityUnitPrice" placeholder="10" maxlength="5" />
+                                            <script>
+                                                // Add an input event listener to the "IDcard" input field
+                                                document.getElementById("ElectricityUnitPrice").addEventListener("input", restrictCharacters);
+                                              
+                                                function restrictCharacters(event) {
+                                                  const input = event.target.value;
+                                                  const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+                                              
+                                                  if (!validInput) {
+                                                    // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                                                    event.preventDefault();
+                                                    const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                                                    event.target.value = validCharacters;
+                                                  }
+                                                }
+                                              </script>
+                                        </div>
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                                            <button type="submit" class="btn btn-success" >บันทึก</button>
+                                            <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Billinformation">ต่อไป</button>
                                         </div>        
                                     </form>
        
@@ -163,57 +192,35 @@
                     </div>
                     <!-- Modal Out-->
 
+                    <!-- Modal Billinformation-->
+                    <div class="modal fade" id="Billinformation" tabindex="-1" aria-labelledby="Billinformation" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">ข้อมูลบิล</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Add your form fields and content here -->
+                                    <div class="mb-3">
+                                        <label for="BillAmount" class="form-label">จำนวนเงินบิล</label>
+                                        <input type="text" class="form-control" id="BillAmount" required />
+                                    </div>
+                                    <!-- Add more form fields and content as needed -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                                    <button type="button" class="btn btn-success">บันทึก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal Billinformation Out-->
+
                     <div class="table-responsive-sm">
                         <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>รอบบิล</th>
-                                    <th>ห้อง</th>
-                                    <th>สถานะ</th>
-                                    <th>ผู้เข้าพัก</th>
-                                    <th>เบอร์โทรศัพท์</th>
-                                    <th>ค่าห้อง</th>
-                                    <th>ค่าไฟ</th>
-                                    <th>ค่าน้ำ</th>
-                                    <th>อื่น</th>
-                                    <th>ยอดรวม</th>
-                                    <th>หลักฐานการชำระ</th>
-                                    
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <th scope="row">22/06/2566</th>
-                                    <td>101</td>
-                                    <td>ยังไม่ชำระ</td>
-                                    <td>ธีรภัทร์</td>
-                                    <td>0927017337</td>
-                                    <td>1800</td>
-                                    <td>700</td>
-                                    <td>150</td>
-                                    <td>20</td>
-                                    <td>2670</td>
-                                    <td></td>
-
-                                </tr>
-                                
-                                <tr>
-                                    <th scope="row">22/06/2566</th>
-                                    <td>102</td>
-                                    <td>ชำระแล้ว</td>
-                                    <td>วศิน</td>
-                                    <td>0863219650</td>
-                                    <td>1800</td>
-                                    <td>1000</td>
-                                    <td>150</td>
-                                    <td>20</td>
-                                    <td>2970</td>
-                                    <td>102220666.jpg</td>                                
-                                </tr>
-                                
-                                
-                            </tbody>
+                            
                         </table>
                       </div>   
                     
