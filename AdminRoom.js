@@ -11,7 +11,7 @@ document.getElementById("saveButton").addEventListener("click", function () {
   const guestCount = document.getElementById("guestCount").value;
   const status = document.getElementById("status").value;
 
-  fetch("http://127.0.0.1:3000/room", {
+  fetch("/api/room", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({
@@ -57,7 +57,7 @@ document
   });
 
 async function getRoom() {
-  const res = await fetch("http://127.0.0.1:3000/room", {
+  const res = await fetch("/api/room", {
     method: "GET",
   });
   const data = await res.json();
@@ -116,7 +116,7 @@ getRoom();
 
 
 async function senddata(data){
-  const response =  await fetch("http://127.0.0.1:3000/editroom", {
+  const response =  await fetch("/api/editroom", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({

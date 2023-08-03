@@ -9,7 +9,7 @@ function CheckoutRoomNumberOptions() {
 }
 
 async function getRoom() {
-  const res = await fetch("http://127.0.0.1:3000/room", {
+  const res = await fetch("/api/room", {
     method: "GET",
   });
   const data = await res.json();
@@ -116,7 +116,7 @@ document.getElementById("savecontact").addEventListener("click", function () {
   formData.append("filename", contactpicFile.name);
 
   // ส่งค่าข้อมูลที่ได้ไปยัง Backend ผ่าน API พร้อมกับรูปภาพ
-  fetch("http://127.0.0.1:3000/contact", {
+  fetch("/api/contact", {
     method: "POST",
     body: formData,
   })
@@ -133,7 +133,7 @@ document.getElementById("savecontact").addEventListener("click", function () {
 
 //แสดงออกมาในตาราง//
 async function getcontact() {
-  const res = await fetch("api/getcontact", {
+  const res = await fetch("/api/getcontact", {
     method: "GET",
   });
   const datacontact = await res.json();

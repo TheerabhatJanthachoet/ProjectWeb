@@ -18,7 +18,7 @@ const upload = multer({ storage: storage });
 app.use(cors());
 app.use(express.json());
 
-app.post("/contact", upload.single("contactpic"), (req, res) => {
+app.post("/api/contact", upload.single("contactpic"), (req, res) => {
   const contact = req.body;
   // เรียกใช้ฟังก์ชัน addContact โดยแนบชื่อไฟล์รูปภาพที่อยู่ใน req.file.filename ที่เป็นส่วนของ multer
   addContact(
@@ -38,7 +38,7 @@ app.post("/contact", upload.single("contactpic"), (req, res) => {
   );
 });
 
-app.post("/checkoutcontact", (req, res) => {
+app.post("/api/checkoutcontact", (req, res) => {
   const checkOut = req.body;
   console.log(checkOut)
   UpdateContact(checkOut.roomNumber,checkOut.checkout);
@@ -50,7 +50,7 @@ app.get("/api/getcontact", async (req, res) => {
   res.json(JSON.stringify(contacts));
 });
 
-app.post("/room", (req, res) => {
+app.post("/api/room", (req, res) => {
   const data = req.body;
   addRoom(
     data.roomNumber,
@@ -64,7 +64,7 @@ app.post("/room", (req, res) => {
   );
 });
 
-app.post("/editroom", async (req, res) => {
+app.post("/api/editroom", async (req, res) => {
   const data = req.body;
   console.log(data);
   await updateRoom(
@@ -79,7 +79,7 @@ app.post("/editroom", async (req, res) => {
   res.json({ message: "success" });
 });
 
-app.get("/room", async (req, res) => {
+app.get("/api/room", async (req, res) => {
   const rooms = await getRoom();
 
   res.json(JSON.stringify(rooms));
@@ -226,7 +226,7 @@ async function addContact(
     await sql.connect(config);
 
     const contactID = uuidv4();
-    const fullfilename = "Back-End/uploads/" + filename;
+    const fullfilename = "api/uploads/" + filename;
 
     const query1 = `
     INSERT INTO Contact (ContactID, RoomID, GuestFirstname, GuestLastname, GuestCount, GuestTel, Guestdob, IDCard, GuestAddress, ContactDate, CheckIn, VehicleType, VehicleRegis, ContactPicture)
