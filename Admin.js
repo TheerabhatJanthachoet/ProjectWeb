@@ -190,7 +190,7 @@ function setContact(data) {
       <td class="text-center">${CheckOutdateformat}</td>
       <td class="text-center">${contact.VehicleType}</td>
       <td class="text-center">${contact.VehicleRegis}</td>
-      <td class="text-center"><a href="${"http://20.212.12.36:3000/"+contact.ContactPicture}">${contact.ContactPicture.split("/")[2]}</a></td>    
+      <td class="text-center"><a href="${"http://20.212.12.36:3000/"+contact.ContactPicture}">${contact.ContactPicture.split("/")[1]}</a></td>    
       
       `;
     // เพิ่มแถวลงในตาราง
