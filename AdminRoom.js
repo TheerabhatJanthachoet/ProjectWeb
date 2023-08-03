@@ -58,7 +58,7 @@ document
   });
 
 async function getRoom() {
-  const res = await fetch("/api/room", {
+  const res = await fetch("http://20.212.12.36:3000/api/room", {
     method: "GET",
   });
   const data = await res.json();
@@ -117,7 +117,7 @@ getRoom();
 
 
 async function senddata(data){
-  const response =  await fetch("/api/editroom", {
+  const response =  await fetch("http://20.212.12.36:3000/api/editroom", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({
