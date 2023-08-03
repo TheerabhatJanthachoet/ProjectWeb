@@ -229,7 +229,7 @@ async function addContact(
     await sql.connect(config);
 
     const contactID = uuidv4();
-    const fullfilename = "api/uploads/" + filename;
+    const fullfilename = "uploads/" + filename;
 
     const query1 = `
     INSERT INTO Contact (ContactID, RoomID, GuestFirstname, GuestLastname, GuestCount, GuestTel, Guestdob, IDCard, GuestAddress, ContactDate, CheckIn, VehicleType, VehicleRegis, ContactPicture)
