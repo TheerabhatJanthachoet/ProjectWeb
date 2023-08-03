@@ -7,7 +7,7 @@ const port = 3000;
 const multer = require("multer"); // นำเข้าโมดูล multer เพื่อจัดการไฟล์ที่ถูกแนบมา
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "/uploads/"); // กำหนดตำแหน่งที่จะเก็บไฟล์รูปภาพที่แนบมา
+    cb(null, "../public/uploads/"); // กำหนดตำแหน่งที่จะเก็บไฟล์รูปภาพที่แนบมา
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname); // กำหนดชื่อไฟล์ใหม่ที่จะถูกบันทึกเก็บ
@@ -17,6 +17,7 @@ const upload = multer({ storage: storage });
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"))
 
 app.post("/api/contact", upload.single("contactpic"), (req, res) => {
   const contact = req.body;

@@ -206,7 +206,7 @@ document.getElementById("Checkoutsave").addEventListener("click", function () {
   const roomNumber = document.getElementById("Roomcheckout").value;
   const checkout = document.getElementById("Checkout").value;
   
-  fetch("http://127.0.0.1:3000/checkoutcontact", {
+  fetch("/api/checkoutcontact", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({
