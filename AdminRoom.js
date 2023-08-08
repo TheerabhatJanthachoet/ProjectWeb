@@ -11,7 +11,7 @@ document.getElementById("saveButton").addEventListener("click", async function (
   const guestCount = document.getElementById("guestCount").value;
   const status = document.getElementById("status").value;
 
-  await fetch("/api/room", {
+  const response2 = await fetch("/api/room", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({
@@ -25,6 +25,7 @@ document.getElementById("saveButton").addEventListener("click", async function (
       status: status,
     }),
   });
+  const json2 = await response2.json()
   location.reload()
 });
 //
