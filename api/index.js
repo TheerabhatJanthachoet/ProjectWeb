@@ -53,9 +53,9 @@ app.get("/api/getcontact", async (req, res) => {
   res.json(JSON.stringify(contacts));
 });
 
-app.post("/api/room", (req, res) => {
+app.post("/api/room", async(req, res) => {
   const data = req.body;
-  addRoom(
+  await addRoom(
     data.roomNumber,
     data.roomFloor,
     data.roomType,

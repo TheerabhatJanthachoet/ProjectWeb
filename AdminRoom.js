@@ -1,7 +1,7 @@
 var dataJson = {};
 
 // เพิ่มห้อง
-document.getElementById("saveButton").addEventListener("click", function () {
+document.getElementById("saveButton").addEventListener("click", async function () {
   const roomNumber = document.getElementById("roomNumber").value;
   const roomFloor = document.getElementById("roomFloor").value;
   const roomType = document.getElementById("roomType").value;
@@ -11,7 +11,7 @@ document.getElementById("saveButton").addEventListener("click", function () {
   const guestCount = document.getElementById("guestCount").value;
   const status = document.getElementById("status").value;
 
-  fetch("/api/room", {
+  await fetch("/api/room", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({
