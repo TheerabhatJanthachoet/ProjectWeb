@@ -11,23 +11,40 @@ document.getElementById("saveButton").addEventListener("click", async function (
   const guestCount = document.getElementById("guestCount").value;
   const status = document.getElementById("status").value;
 
-  const response2 = await fetch("/api/room", {
+  const dataadd = {
+    roomNumber: roomNumber,
+    roomFloor: roomFloor,
+    roomType: roomType,
+    price: price,
+    guestName: guestName,
+    guestLastName: guestLastName,
+    guestCount: guestCount,
+    status: status,
+  }
+
+  sendroom(dataadd)
+});
+
+async function sendroom(dataadd){
+  const response2 =  await fetch("http://20.212.12.36:3000/api/room", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({
-      roomNumber: roomNumber,
-      roomFloor: roomFloor,
-      roomType: roomType,
-      price: price,
-      guestName: guestName,
-      guestLastName: guestLastName,
-      guestCount: guestCount,
-      status: status,
-    }),
-  });
-  const json2 = await response2.json()
+      roomNumber: dataadd.roomNumber,
+      roomFloor:  dataadd.roomFloor,
+      roomType:  dataadd.roomType,
+      price:  dataadd.price,
+      guestName:  dataadd.guestName,
+      guestLastName:  dataadd.guestLastName,
+      guestCount:  dataadd.guestCount,
+      status:  dataadd.status,
+      }),
+    });
+  const json = await response2.json()  
   location.reload()
-});
+}
+
+
 //
 
 // แก้ไขห้อง
