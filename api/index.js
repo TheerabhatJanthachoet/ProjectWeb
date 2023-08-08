@@ -65,7 +65,7 @@ app.post("/api/room", async(req, res) => {
     data.guestCount,
     data.status
   );
-  res.status(201).json({ message: "เพิ่มข้อมูลห้องพักเรียบร้อยแล้ว" });
+  res.json({ message: "success" });
 });
 
 app.post("/api/editroom", async (req, res) => {
