@@ -130,6 +130,7 @@ document.getElementById("savecontact").addEventListener("click", function () {
     .catch((error) => {
       console.error("เกิดข้อผิดพลาดในการบันทึกข้อมูลสัญญา:", error);
     });
+  location.reload()
 });
 //จบเพิ่มสัญญา//
 
@@ -216,5 +217,6 @@ document.getElementById("Checkoutsave").addEventListener("click", function () {
       checkout: checkout
     }),
   });
+  location.reload()
 });
 //จบเพิ่มสัญญา//
