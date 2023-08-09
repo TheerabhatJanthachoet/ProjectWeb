@@ -127,14 +127,6 @@ async function sendcontact(formData){
     method: "POST",
     body: formData,
   })
-    .then((response) => response.json())
-    .then((data) => {
-      // กระทำอื่นๆ หลังจากบันทึกสัญญาสำเร็จ
-      console.log("บันทึกข้อมูลสัญญาเรียบร้อยแล้ว");
-    })
-    .catch((error) => {
-      console.error("เกิดข้อผิดพลาดในการบันทึกข้อมูลสัญญา:", error);
-    });
   const json = await responsecontact.json()  
   location.reload()
 }
