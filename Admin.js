@@ -117,8 +117,13 @@ document.getElementById("savecontact").addEventListener("click", function () {
   formData.append("contactpic", contactpicFile); // แนบไฟล์รูปภาพ
   formData.append("filename", contactpicFile.name);
 
+  sendcontact(formData)
+});
+
+async function sendcontact(formData){
+
   // ส่งค่าข้อมูลที่ได้ไปยัง Backend ผ่าน API พร้อมกับรูปภาพ
-  fetch("http://20.212.12.36:3000/api/contact", {
+  const responsecontact =  await fetch("http://20.212.12.36:3000/api/contact", {
     method: "POST",
     body: formData,
   })
@@ -130,8 +135,10 @@ document.getElementById("savecontact").addEventListener("click", function () {
     .catch((error) => {
       console.error("เกิดข้อผิดพลาดในการบันทึกข้อมูลสัญญา:", error);
     });
+  const json = await responsecontact.json()  
   location.reload()
-});
+}
+  
 //จบเพิ่มสัญญา//
 
 //แสดงออกมาในตาราง//
@@ -208,15 +215,24 @@ document.getElementById("Checkoutsave").addEventListener("click", function () {
   // ดึงค่าข้อมูลที่กรอกในฟอร์มใน Modal มาเก็บในตัวแปร
   const roomNumber = document.getElementById("Roomcheckout").value;
   const checkout = document.getElementById("Checkout").value;
-  
-  fetch("http://20.212.12.36:3000/api/checkoutcontact", {
+
+  const checkoutdata = {
+    roomNumber: roomNumber,
+    checkout: checkout
+  }
+  sendcheckout(checkoutdata)
+});
+
+async function sendcheckout(checkoutdata){
+  const responsecheckout =  await fetch("http://20.212.12.36:3000/api/checkoutcontact", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({
-      roomNumber: roomNumber,
-      checkout: checkout
+      roomNumber: checkoutdata.roomNumber,
+      checkout: checkoutdata.checkout
     }),
   });
+  const json = await responsecheckout.json()
   location.reload()
-});
+}
 //จบเพิ่มสัญญา//

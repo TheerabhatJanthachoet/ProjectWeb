@@ -21,10 +21,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"))
 
-app.post("/api/contact", upload.single("contactpic"), (req, res) => {
+app.post("/api/contact", upload.single("contactpic"), async(req, res) => {
   const contact = req.body;
   // เรียกใช้ฟังก์ชัน addContact โดยแนบชื่อไฟล์รูปภาพที่อยู่ใน req.file.filename ที่เป็นส่วนของ multer
-  addContact(
+  await addContact(
     contact.roomNumber,
     contact.guestName,
     contact.guestLastName,
@@ -39,12 +39,14 @@ app.post("/api/contact", upload.single("contactpic"), (req, res) => {
     contact.carid,
     contact.filename
   );
+  res.json({ message: "success" });
 });
 
-app.post("/api/checkoutcontact", (req, res) => {
+app.post("/api/checkoutcontact", async(req, res) => {
   const checkOut = req.body;
   console.log(checkOut)
-  UpdateContact(checkOut.roomNumber,checkOut.checkout);
+  await UpdateContact(checkOut.roomNumber,checkOut.checkout);
+  res.json({ message: "success" });
 });
 
 app.get("/api/getcontact", async (req, res) => {
