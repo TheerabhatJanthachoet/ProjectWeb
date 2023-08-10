@@ -6,7 +6,7 @@ var datacontactJson = {};
 
 function SelectRoomfloorOption() {
   const checkOutroomFloor = document.getElementById("Floor").value;
-
+  setdatacheckout(dataJson, checkOutroomFloor);
 }
 
 async function getRoom() {
@@ -17,27 +17,26 @@ async function getRoom() {
   });
   const data = await res.json();
   dataJson = JSON.parse(data);
-  setRoom(dataJson);
+  
 }
+function setdatacheckout(data, checkOutroomFloor) {
+  const roomnotNull = data.filter((data) => data.RoomFloor == checkOutroomFloor && data.Status == "ไม่ว่าง");
 
-function setRoom(data) {
-  const roomNull = data.filter((data) => data.Status == "ไม่ว่าง");
-
-  const getRoomNullfilter = document.getElementById("RoomNumber");
-  while (getRoomNullfilter.hasChildNodes()) {
-    getRoomNullfilter.removeChild(getRoomNullfilter.firstChild);
+  const getRoomnotNullfilter = document.getElementById("RoomNumber");
+  while (getRoomnotNullfilter.hasChildNodes()) {
+    getRoomnotNullfilter.removeChild(getRoomnotNullfilter.firstChild);
   }
-  roomNull.map((room) => {
+  roomnotNull.map((roomout) => {
     // สร้างตัวเลือก
 
     const row = document.createElement("option");
-    row.value = room.RoomID;
-    row.innerText = room.RoomID;
-    getRoomNullfilter.appendChild(row);
+    row.value = roomout.RoomID;
+    row.innerText = roomout.RoomID;
+    getRoomnotNullfilter.appendChild(row);
   });
-  getRoomNullfilter.firstChild.setAttribute("selected", true);
+  getRoomnotNullfilter.firstChild.setAttribute("selected", true);
 
-  
 }
 
 
+getRoom();
