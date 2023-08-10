@@ -49,183 +49,272 @@
     <!-- จบเมนู -->
     
     
-    <section id="Home" class="vh-100" style="background-color: #ff8c00;">
+    <section id="Home" class="vh-100" style="background-color: #ff8c00">
         <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col col-xxl-12 h-75 " style="border-radius: 1rem; background-color: white;">
-                    <div class="row" >
-                        <div class="col-md-12 col-lg-5 " >
-                            <form class="d-flex p-2">
-                                <input class="form-control me-2" type="search" placeholder="*เลขห้อง*" aria-label="Search">
-                                <button class="btn btn-outline-warning" type="submit">ค้นหา</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-md-12 col-lg-5 " >
-                            <button class="btn btn-danger btn-lg " data-bs-toggle="modal" data-bs-target="#Bill" type="submit" >ออกบิล</button>
-                            <button class="btn btn-success btn-lg " data-bs-toggle="modal" data-bs-target="#Billsave" type="submit">บันทึก</button>
-                            <!--
-                            <button class="btn btn-success btn-lg " data-bs-toggle="modal" data-bs-target="#addcontract"type="submit">ตรวจสอบการชำระ</button>
-                            -->
-                        </div>
-                    </div>
-
-                    <!-- Modal Add -->
-                        <div class="modal fade" id="Billsave" tabindex="-1" aria-labelledby="addcontractLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <!--
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="addcontractLabel">เพิ่มสัญญา</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    -->
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="Billsave">บันทึก</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <form class="row g-3">
-                                            <div class="col-md-9">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                                                <button type="submit" class="btn btn-success" >บันทึก</button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    <!-- Modal Add-->
-
-                    <!-- Modal Out -->
-                    <div class="modal fade" id="Bill" tabindex="-1" aria-labelledby="Bill" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="Bill">ออกบิล</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                
-                                <div class="modal-body">
-                                    <form class="row g-3">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xxl-12 h-75" style="border-radius: 1rem; background-color: white">
+              <div class="h-100 text-nowrap pt-5">
+                <div class="container">
+                    <div>
+                        <form class="row g-3">
                                         
-                                        <div class="col-md-3">
-                                            <label for="BillMonth" class="form-label">เดือน</label>
-                                            <select name="dates" class="form-select" id="BillMonth" required>
-                                                <option value="1">มกราคม</option>
-                                                <option value="2">กุมภาพันธ์</option>
-                                                <option value="3">มีนาคม</option>
-                                                <option value="4">เมษายน</option>
-                                                <option value="5">พฤษภาคม</option>
-                                                <option value="6">มิถุนายน</option>
-                                                <option value="7">กรกฎาคม</option>
-                                                <option value="8">สิงหาคม</option>
-                                                <option value="9">กันยายน</option>
-                                                <option value="10">ตุลาคม</option>
-                                                <option value="11">พฤศจิกายน</option>
-                                                <option value="12">ธันวาคม</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <label for="BillYear" class="form-label">ปี</label>
-                                            <select name="dates" class="form-select" id="BillYear" required></select>
-                                            <script src="Year.js"></script>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <label for="WaterUnitPrice" class="form-label">ราคาค่าน้ำ/หน่วย</label>
-                                            <input type="text" class="form-control" id="WaterUnitPrice" placeholder="5" maxlength="5" />
-                                            <script>
-                                                // Add an input event listener to the "IDcard" input field
-                                                document.getElementById("WaterUnitPrice").addEventListener("input", restrictCharacters);
-                                              
-                                                function restrictCharacters(event) {
-                                                  const input = event.target.value;
-                                                  const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                                              
-                                                  if (!validInput) {
-                                                    // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
-                                                    event.preventDefault();
-                                                    const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
-                                                    event.target.value = validCharacters;
-                                                  }
-                                                }
-                                              </script>
-                                        </div>
-
-
-                                        <div class="col-md-3">
-                                            <label for="ElectricityUnitPrice" class="form-label">ราคาค่าไฟ/หน่วย</label>
-                                            <input type="text" class="form-control" id="ElectricityUnitPrice" placeholder="10" maxlength="5" />
-                                            <script>
-                                                // Add an input event listener to the "IDcard" input field
-                                                document.getElementById("ElectricityUnitPrice").addEventListener("input", restrictCharacters);
-                                              
-                                                function restrictCharacters(event) {
-                                                  const input = event.target.value;
-                                                  const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                                              
-                                                  if (!validInput) {
-                                                    // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
-                                                    event.preventDefault();
-                                                    const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
-                                                    event.target.value = validCharacters;
-                                                  }
-                                                }
-                                              </script>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                                            <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Billinformation">ต่อไป</button>
-                                        </div>        
-                                    </form>
-       
-                                </div>
-
+                            <div class="col-md-3">
+                                <label for="BillMonth" class="form-label">เดือน</label>
+                                <select name="dates" class="form-select" id="BillMonth"required>
+                                    <option value="1">มกราคม</option>
+                                    <option value="2">กุมภาพันธ์</option>
+                                    <option value="3">มีนาคม</option>
+                                    <option value="4">เมษายน</option>
+                                    <option value="5">พฤษภาคม</option>
+                                    <option value="6">มิถุนายน</option>
+                                    <option value="7">กรกฎาคม</option>
+                                    <option value="8">สิงหาคม</option>
+                                    <option value="9">กันยายน</option>
+                                    <option value="10">ตุลาคม</option>
+                                    <option value="11">พฤศจิกายน</option>
+                                    <option value="12">ธันวาคม</option>
+                                </select>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Modal Out-->
-
-                    <!-- Modal Billinformation-->
-                    <div class="modal fade" id="Billinformation" tabindex="-1" aria-labelledby="Billinformation" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">ข้อมูลบิล</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Add your form fields and content here -->
-                                    <div class="mb-3">
-                                        <label for="BillAmount" class="form-label">จำนวนเงินบิล</label>
-                                        <input type="text" class="form-control" id="BillAmount" required />
-                                    </div>
-                                    <!-- Add more form fields and content as needed -->
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                                    <button type="button" class="btn btn-success">บันทึก</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     
-                    <!-- Modal Billinformation Out-->
-
-                    <div class="table-responsive-sm">
-                        <table class="table">
+                            <div class="col-md-2">
+                                <label for="BillYear" class="form-label">ปี</label>
+                                <select name="dates" class="form-select" id="BillYear" required></select>
+                                <script src="Year.js"></script>
+                            </div>
+                    
+                            <div class="col-md-3">
+                                <label for="WaterUnitPrice" class="form-label">ค่าน้ำ/หน่วย</label>
+                                <input type="text" class="form-control" id="WaterUnitPrice" placeholder="5" maxlength="5"/>
+                                <script>
+                                    // Add an input event listener to the "IDcard" input field
+                                    document.getElementById("WaterUnitPrice").addEventListener("input", restrictCharacters);
+                                  
+                                    function restrictCharacters(event) {
+                                      const input = event.target.value;
+                                      const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+                                  
+                                      if (!validInput) {
+                                        // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                                        event.preventDefault();
+                                        const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                                        event.target.value = validCharacters;
+                                      }
+                                    }
+                                  </script>
+                            </div>
+                    
+                    
+                            <div class="col-md-3">
+                                <label for="ElectricityUnitPrice" class="form-label">ค่าไฟ/หน่วย</label>
+                                <input type="text" class="form-control" id="ElectricityUnitPrice" placeholder="10" maxlength="5"/>
+                                <script>
+                                    // Add an input event listener to the "IDcard" input field
+                                    document.getElementById("ElectricityUnitPrice").addEventListener("input", restrictCharacters);
+                                  
+                                    function restrictCharacters(event) {
+                                      const input = event.target.value;
+                                      const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+                                  
+                                      if (!validInput) {
+                                        // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                                        event.preventDefault();
+                                        const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                                        event.target.value = validCharacters;
+                                      }
+                                    }
+                                  </script>
+                            </div>
+                    
+                            <br>
                             
-                        </table>
-                      </div>   
+                            <div class="row">
                     
+                                <div class="row col-md-12">
+
+                                    <div class="col-md-2">
+                                        <label for="Floor" class="form-label">ชั้น</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-select" id="Floor" required onchange="SelectRoomfloorOption()">
+                                            <option value="0"></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </div>
+                                    
+                    
+                                    <div class="col-md-2">
+                                        <label for="RoomNumber" class="form-label">เลขห้อง</label>
+                                    </div>
+                                    
+                                    <div class="col-md-2">
+                                        <select class="form-select" id="RoomNumber" required></select>
+                                    </div>
+                    
+                                    <div class="col-md-2">
+                                        <label for="GuestFirstname" class="form-label">ชื่อ</label>
+                                    </div>
+                    
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="GuestFirstname" placeholder="ชื่อจริง">
+                                    </div>
+                                    
+                                    <div class="col-md-2">
+                                        <label for="GuestLastname" class="form-label">นามสกุล</label>
+                                    </div>
+                    
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="GuestLastname" placeholder="นามสกุล">
+                                    </div>
+                    
+                                </div>
+                            
+                            </div>
+                            <br>
+                    
+                            <div class="row">
+                                <div class="row col-md-12">
+
+                                    <div class="col-md-2"></div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label">หน่วยเดิม</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">ราคาต่อหน่วย</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">ระบุหน่วย น้ำ/ไฟ</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label class="form-label">จำนวนเงิน</label>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                            <br>
+                            
+                            <div class="row">
+                                <div class="row col-md-12">
+                    
+                                    <div class="col-md-2">
+                                        <label class="form-label">ค่าน้ำ</label>
+                                    </div>
+                    
+                                    <div class="col-md-3">
+                                        <label>หน่วยเดิมดึงจากdb</label>
+                                    </div>
+                    
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="WaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย">
+                                    </div>
+                    
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="WaterUnit" placeholder="หน่วยใหม่">
+                                    </div>
+                    
+                                    <div class="col-md-1">
+                                        <label class="form-label">200 บาท</label>
+                                    </div>
+                    
+                                </div>
+                            </div>
+                            
+                    
+                            <div class="row">
+                                <div class="row col-md-12">
+                    
+                                    <div class="col-md-2">
+                                        <label class="form-label">ค่าไฟ</label>
+                                    </div>
+                    
+                                    <div class="col-md-3">
+                                        <label>หน่วยเดิมดึงจากdb</label>
+                                    </div>
+                    
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="ElectricityPriceperUnit" placeholder="ค่าน้ำต่อหน่วย">
+                                    </div>
+                    
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="ElectricityUnit" placeholder="หน่วยใหม่">
+                                    </div>
+                    
+                                    <div class="col-md-1">
+                                        <label class="form-label">50 บาท</label>
+                                    </div>
+                    
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="row col-md-12">
+                                    <div class="col-md-2">
+                                        <label class="form-label">ค่าเช่าห้อง</label>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                    
+                                    <div class="col-md-3"></div>
+
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="RoomPrice" placeholder="1800">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label class="form-label">1800 บาท</label>
+                                    </div>
+                    
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="row col-md-12">
+                                    <div class="col-md-2">
+                                        <label class="form-label">ค่าอื่นๆ</label>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                    
+                                    <div class="col-md-3"></div>
+
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="RoomPrice" placeholder="0">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label class="form-label">0 บาท</label>
+                                    </div>
+                    
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="row col-md-12">
+                                    <div class="col-md-2">
+                                        
+                                    </div>
+                                    <div class="col-md-3"></div>
+                    
+                                    <div class="col-md-3"></div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label">รวมทั้งสิ้น</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label class="form-label">0 บาท</label>
+                                    </div>
+                    
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                                <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Billinformation">ต่อไป</button>
+                            </div>        
+                        </form>
+                    </div>
                 </div>
+
             </div>
+          </div>
         </div>
       </section>
 

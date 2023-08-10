@@ -1,30 +1,43 @@
 var dataJson = {};
+var datacontactJson = {};
 
-// Get a reference to the form element
-const billForm = document.querySelector(".modal-body form");
 
-// Add a submit event listener to the form
-billForm.addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevent the form from submitting
+//เลือกเฉพาะห้องที่ว่าง,ห้องแจ้งย้ายออก//
 
-  // Get the input values
-  const selectedMonth = document.getElementById("BillMonth").value;
-  const selectedYear = document.getElementById("BillYear").value;
-  const waterUnitPrice = document.getElementById("WaterUnitPrice").value;
-  const electricityUnitPrice = document.getElementById("ElectricityUnitPrice").value;
+function SelectRoomfloorOption() {
+  const checkOutroomFloor = document.getElementById("Floor").value;
 
-  // Store the input values in an object
-  const billInfo = {
-    month: selectedMonth,
-    year: selectedYear,
-    waterPrice: waterUnitPrice,
-    electricityPrice: electricityUnitPrice,
-  };
+}
 
-  // You can now use the 'billInfo' object for further processing or display
-  console.log("User input:", billInfo);
+async function getRoom() {
+  const url = new URL("http://20.212.12.36/api/room")
+  url.port = 3000 
+  const res = await fetch(url, {
+    method: "GET",
+  });
+  const data = await res.json();
+  dataJson = JSON.parse(data);
+  setRoom(dataJson);
+}
 
-  // Optional: Trigger the modal transition to the next step
-  const billInfoModal = new bootstrap.Modal(document.getElementById("Billinfomation"));
-  billInfoModal.show();
-});
+function setRoom(data) {
+  const roomNull = data.filter((data) => data.Status == "ไม่ว่าง");
+
+  const getRoomNullfilter = document.getElementById("RoomNumber");
+  while (getRoomNullfilter.hasChildNodes()) {
+    getRoomNullfilter.removeChild(getRoomNullfilter.firstChild);
+  }
+  roomNull.map((room) => {
+    // สร้างตัวเลือก
+
+    const row = document.createElement("option");
+    row.value = room.RoomID;
+    row.innerText = room.RoomID;
+    getRoomNullfilter.appendChild(row);
+  });
+  getRoomNullfilter.firstChild.setAttribute("selected", true);
+
+  
+}
+
+
