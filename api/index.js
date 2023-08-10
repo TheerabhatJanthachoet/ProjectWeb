@@ -72,7 +72,7 @@ app.post("/api/room", async(req, res) => {
 
 app.post("/api/editroom", async (req, res) => {
   const data = req.body;
-  console.log(data);
+  
   await updateRoom(
     data.roomNumber,
     data.roomType,
@@ -89,6 +89,14 @@ app.get("/api/room", async (req, res) => {
   const rooms = await getRoom();
 
   res.json(JSON.stringify(rooms));
+});
+
+app.post("/api/addBill", async(req, res) => {
+  const bill = req.body;
+
+  await addBill(bill)
+
+  res.json(JSON.stringify(bill));
 });
 
 app.listen(port, () => {
@@ -321,4 +329,45 @@ async function UpdateContact(roomNumber, checkout) {
   }
 }
 
+async function addBill(bill){
+  try {
+    await sql.connect(config);
+    const BillID = uuidv4();
+    const query = `
+        INSERT INTO UnitPrice (UnitID, BillMonth, BillYear, OldElecUnit, NowElecUnit, ElectricPriceperUnti, ElectricitytotalPrice, WaterUnit,WaterPrice,Watertotalprice,Other,TotalPrice,ContactID,RoomID)
+        VALUES ('${BillID}', 
+        '${bill.month}', 
+        '${bill.year}', 
+        '${bill.oldelec}', 
+        '${bill.nowelec}', 
+        '${bill.elecpiceper}', 
+        '${bill.electotal}',
+        '${bill.waterunit }',
+        '${bill.waterprice}', 
+        '${bill.watertotal}', 
+        '${bill.other}',
+        '${bill.total}',
+        '${bill.ContactID}',
+        '${bill.roomid}'   
+        )
+        `;
+    await sql.query(query);
+
+    const query2 = `
+        UPDATE Rooms SET 
+        ElecUnit = '${bill.nowelec}'
+        WHERE RoomID = '${bill.roomid}'`;
+
+    await sql.query(query2);
+    console.log("บันทึกข้อมูลบิลเรียบร้อยแล้ว");
+
+    // ปิดการเชื่อมต่อ
+    sql.close();
+  } catch (error) {
+    console.error("เกิดข้อผิดพลาดในการบันทึกบิล:", error);
+  }
+
+
+
+}
 module.exports=app

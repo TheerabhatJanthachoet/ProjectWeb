@@ -148,7 +148,7 @@ function setContact(data) {
 
   data.map((contact) => {
     // สร้างแถวของตาราง
-
+    console.log(contact.Guestdob)
     const row = document.createElement("tr");
     const dobdate = new Date(contact.Guestdob);
     const dobdateformat = dobdate.toLocaleString("en-GB", {
