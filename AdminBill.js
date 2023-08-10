@@ -183,6 +183,7 @@ document.getElementById("saveBill")
         waterprice : WaterPriceperUnit.value,
         watertotal : parseFloat(totalwater.innerText.replace(",","")),
         other : parseFloat(totalmore.innerText.replace(",","")),
+        total : parseFloat(totalfinal.innerText.replace(",","")),
         ContactID : contactid,
         roomid : room
       }
