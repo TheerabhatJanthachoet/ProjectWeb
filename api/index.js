@@ -338,25 +338,25 @@ async function addBill(bill){
         VALUES ('${BillID}', 
         '${bill.month}', 
         '${bill.year}', 
-        '${bill.parseFloat(oldelec)}', 
-        '${bill.parseFloat(nowelec)}', 
-        '${bill.parseFloat(elecpiceper)}', 
-        '${bill.parseFloat(electotal)}',
-        '${bill.parseInt(waterunit) }',
-        '${bill.parseFloat(waterprice)}', 
-        '${bill.parseFloat(watertotal)}', 
-        '${bill.parseFloat(other)}',
-        '${bill.parseFloat(total)}',
+        '${parseFloat(bill.oldelec)}', 
+        '${parseFloat(bill.nowelec)}', 
+        '${parseFloat(bill.elecpiceper)}', 
+        '${parseFloat(bill.electotal)}',
+        '${parseInt(bill.waterunit) }',
+        '${parseFloat(bill.waterprice)}', 
+        '${parseFloat(bill.watertotal)}', 
+        '${parseFloat(bill.other)}',
+        '${parseFloat(bill.total)}',
         '${bill.ContactID}',
-        '${bill.parseInt(roomid)}'   
+        '${parseInt(bill.roomid)}'   
         )
         `;
     await sql.query(query);
 
     const query2 = `
         UPDATE Rooms SET 
-        ElecUnit = '${bill.nowelec}'
-        WHERE RoomID = '${bill.roomid}'`;
+        ElecUnit = '${parseFloat(bill.nowelec)}'
+        WHERE RoomID = '${parseInt(bill.roomid)}'`;
 
     await sql.query(query2);
     console.log("บันทึกข้อมูลบิลเรียบร้อยแล้ว");
