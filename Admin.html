@@ -28,7 +28,7 @@
 
     <!-- เมนู -->
     <nav
-      class="navbar navbar-expand-sm navbar-light fixed-top shadow p-3 mb-5 bg-body rounded"
+      class="navbar navbar-expand-sm navbar-light fixed-top shadow p-3 bg-body rounded"
       style="background-color: white"
     >
       <div class="container-fluid">
@@ -66,7 +66,7 @@
               <a href="AdminReport.html" class="nav-link">รายงาน</a>
             </li>
             <li class="nav-item nav-link">
-              <a href="Index.html" class="nav-link">ออกจากระบบ</a>
+              <a href="/" class="nav-link">ออกจากระบบ</a>
             </li>
           </ul>
         </div>
@@ -74,73 +74,74 @@
     </nav>
     <!-- จบเมนู -->
 
-    <section id="Home" class="vh-100" style="background-color: #ff8c00">
+    <section id="Home" class="vh-100" style="background-color: #ff8c00 ;margin-top: 100px;">
       <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col col-xxl-12 h-75" style="border-radius: 1rem; background-color: white">
-            <div class="h-25">
-            <div class="row h-50">
-              <div class="col-md-12 col-lg-5">
-                <form class="d-flex p-2">
-                  <input class="form-control me-2"
-                    type="search"
-                    placeholder="*เลขสัญญา*"
-                    aria-label="Search"
-                  />
-                  <button class="btn btn-outline-warning" type="submit">
-                    ค้นหา
+        <div class="row d-flex justify-content-center h-100">
+          <div class="" >
+            <div style="border-radius: 1rem; background-color: white" class="d-flex flex-column gap-2 p-4">
+              <div class="" >
+              <div class="row h-50">
+                <div class="col-md-12 col-lg-5">
+                  <form class="d-flex p-2">
+                    <input class="form-control me-2"
+                      type="search"
+                      placeholder="*เลขสัญญา*"
+                      aria-label="Search"
+                    />
+                    <button class="btn btn-outline-warning" type="submit">
+                      ค้นหา
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <div class="row h-50">
+                <div class="col-md-12 col-lg-5">
+                  <button
+                    class="btn btn-danger btn-lg"
+                    data-bs-toggle="modal"
+                    data-bs-target="#checkoutcontract"
+                    type="submit"
+                  >
+                    แจ้งย้ายออก
                   </button>
-                </form>
+                  <button
+                    class="btn btn-success btn-lg"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addcontract"
+                    type="submit"
+                  >
+                    เพิ่มสัญญา
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="row h-50">
-              <div class="col-md-12 col-lg-5">
-                <button
-                  class="btn btn-danger btn-lg"
-                  data-bs-toggle="modal"
-                  data-bs-target="#checkoutcontract"
-                  type="submit"
-                >
-                  แจ้งย้ายออก
-                </button>
-                <button
-                  class="btn btn-success btn-lg"
-                  data-bs-toggle="modal"
-                  data-bs-target="#addcontract"
-                  type="submit"
-                >
-                  เพิ่มสัญญา
-                </button>
               </div>
-            </div>
-            </div>
-            <div class="table-responsive h-75 overflow-auto text-nowrap">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="text-center">ห้อง</th>
-                    <th class="text-center">ชื่อ</th>
-                    <th class="text-center">นามสกุล</th>
-                    <th class="text-center">จำนวนผู้เข้าพัก</th>
-                    <th class="text-center">เบอร์โทร</th>
-                    <th class="text-center">ว/ด/ป เกิด</th>
-                    <th class="text-center">เลขบัตรประชาชน</th>
-                    <th class="text-center">ที่อยู่</th>
-                    <th class="text-center">วันที่ทำสัญญา</th>
-                    <th class="text-center">เช็คอิน</th>
-                    <th class="text-center">เช็คเอาท์</th>
-                    <th class="text-center">ยานพหนะ</th>
-                    <th class="text-center">ทะเบียน</th>
-                    <th class="text-center">ใบสัญญา</th>
-                  </tr>
-                </thead>
+              <div class="table-responsive overflow-auto text-nowrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center">ห้อง</th>
+                      <th class="text-center">ชื่อ</th>
+                      <th class="text-center">นามสกุล</th>
+                      <th class="text-center">จำนวนผู้เข้าพัก</th>
+                      <th class="text-center">เบอร์โทร</th>
+                      <th class="text-center">ว/ด/ป เกิด</th>
+                      <th class="text-center">เลขบัตรประชาชน</th>
+                      <th class="text-center">ที่อยู่</th>
+                      <th class="text-center">วันที่ทำสัญญา</th>
+                      <th class="text-center">เช็คอิน</th>
+                      <th class="text-center">เช็คเอาท์</th>
+                      <th class="text-center">ยานพหนะ</th>
+                      <th class="text-center">ทะเบียน</th>
+                      <th class="text-center">ใบสัญญา</th>
+                    </tr>
+                  </thead>
 
-                <tbody id="tableList">
-                    
-                </tbody>
-              </table>
+                  <tbody id="tableList">
+                      
+                  </tbody>
+                </table>
+              </div>
             </div>
-            
             <!-- Modal Add -->
             <div
               class="modal fade"
