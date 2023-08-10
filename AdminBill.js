@@ -198,12 +198,12 @@ async function senddata(data){
 
   console.log(dataJson)
 
-  // const response = await fetch("http://20.212.12.36:3000/api/addBill", {
-  //   method: "POST",
-  //   body: JSON.stringify(data)
+  const response = await fetch("http://20.212.12.36:3000/api/addBill", {
+    method: "POST",
+    body: JSON.stringify(data)
 
-  // })
-  // const json = await response.json()  
+  })
+  const json = await response.json()  
   
 }
 

@@ -338,17 +338,17 @@ async function addBill(bill){
         VALUES ('${BillID}', 
         '${bill.month}', 
         '${bill.year}', 
-        '${bill.oldelec}', 
-        '${bill.nowelec}', 
-        '${bill.elecpiceper}', 
-        '${bill.electotal}',
-        '${bill.waterunit }',
-        '${bill.waterprice}', 
-        '${bill.watertotal}', 
-        '${bill.other}',
-        '${bill.total}',
+        '${bill.parseFloat(oldelec)}', 
+        '${bill.parseFloat(nowelec)}', 
+        '${bill.parseFloat(elecpiceper)}', 
+        '${bill.parseFloat(electotal)}',
+        '${bill.parseInt(waterunit) }',
+        '${bill.parseFloat(waterprice)}', 
+        '${bill.parseFloat(watertotal)}', 
+        '${bill.parseFloat(other)}',
+        '${bill.parseFloat(total)}',
         '${bill.ContactID}',
-        '${bill.roomid}'   
+        '${bill.parseInt(roomid)}'   
         )
         `;
     await sql.query(query);
