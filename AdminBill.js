@@ -170,6 +170,7 @@ document.getElementById("saveBill")
     
     
     const roomnotNull = dataJson.filter((dataJson) => dataJson.RoomID == room)[0];
+   
     const contactid = roomnotNull.ContactID
     
     const data = {
@@ -196,15 +197,15 @@ document.getElementById("saveBill")
 
 async function senddata(data){
 
-  console.log(dataJson)
-
-  const response = await fetch("http://20.212.12.36:3000/api/addBill", {
+  const response = await fetch("http://20.212.12.36/api/addBill", {
+    headers : { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify(data)
-
+   
   })
+  console.log(JSON.stringify(data))
   const json = await response.json()  
-  
+  alert("บันทึกบิลเรียบร้อย")
 }
 
 
