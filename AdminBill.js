@@ -61,9 +61,9 @@ function setName() {
   
   const GuestFirstname = document.getElementById("GuestFirstname");
   const GuestLastname = document.getElementById("GuestLastname");
-  const waterUnit = document.getElementById("WaterUnit")
+  const waterUnit = document.getElementById("WaterUnit");
   const RoomPrice = document.getElementById("RoomPrice");
-
+  const elecold = document.getElementById("ElectricityPastUnit");
   if (!roomnotNull){
       GuestFirstname.value = ''
       GuestLastname.value = ''
@@ -75,9 +75,10 @@ function setName() {
   GuestLastname.value = roomnotNull.LNameGuest
   RoomPrice.value = roomnotNull.RoomPrice
   waterUnit.value = roomnotNull.RoomCount
+  elecold.value = roomnotNull.ElecUnit
   
   ElectricityUnit.value = ""
-  ElectricityPastUnit.value = ""
+  
   OtherPrice.value = 0
   calPrice()
 }

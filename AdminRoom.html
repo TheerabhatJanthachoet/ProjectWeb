@@ -79,414 +79,413 @@
     <section id="Home" class="vh-100" style="background-color: #ff8c00 ;margin-top: 100px;">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center h-100">
-          <div
-            class="col col-xxl-12 h-75"
-            style="border-radius: 1rem; background-color: white"
-          >
-            <div class="row">
-              <div class="col-md-12 col-lg-5">
-                <form class="d-flex p-2">
-                  <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="*เลขห้อง*"
-                    aria-label="Search"
-                  />
-                  <button class="btn btn-outline-warning" type="submit">
-                    ค้นหา
+          <div class="col col-xxl-12 h-75" >
+            <div class="d-flex flex-column p-4 gap-1" style="border-radius: 1rem; background-color: white">
+              <div class="row">
+                <div class="col-md-12 col-lg-5">
+                  <form class="d-flex p-2">
+                    <input
+                      class="form-control me-2"
+                      type="search"
+                      placeholder="*เลขห้อง*"
+                      aria-label="Search"
+                    />
+                    <button class="btn btn-outline-warning" type="submit">
+                      ค้นหา
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 col-lg-5">
+                  <button
+                    type="button"
+                    class="btn btn-success btn-lg"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addRoomModal"
+                  >
+                    เพิ่มห้องพัก
                   </button>
-                </form>
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-lg"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editRoomModal"
+                  >
+                    เพิ่ม/แก้ไขข้อมูลห้องพัก
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-12 col-lg-5">
-                <button
-                  type="button"
-                  class="btn btn-success btn-lg"
-                  data-bs-toggle="modal"
-                  data-bs-target="#addRoomModal"
-                >
-                  เพิ่มห้องพัก
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary btn-lg"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editRoomModal"
-                >
-                  เพิ่ม/แก้ไขข้อมูลห้องพัก
-                </button>
-              </div>
-            </div>
-
-            <!-- Modal Add -->
-            <div
-              class="modal fade"
-              id="addRoomModal"
-              tabindex="-1"
-              aria-labelledby="addRoomModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="addRoomModalLabel">
-                      เพิ่มห้องพัก
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="mb-3">
-                      <label for="roomNumber" class="form-label">เลขห้อง</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="roomNumber"
-                        placeholder="101-112, 201-212, 301-312"
-                        maxlength="3"
-                        required
-                      />
+              <!-- Modal Add -->
+              <div
+                class="modal fade"
+                id="addRoomModal"
+                tabindex="-1"
+                aria-labelledby="addRoomModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addRoomModalLabel">
+                        เพิ่มห้องพัก
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
                     </div>
-                    
-                    <script>
-                      // Add an input event listener to the "roomNumber" input field
-                      document.getElementById("roomNumber").addEventListener("input", restrictCharacters);
-                    
-                      function restrictCharacters(event) {
-                        const input = event.target.value;
-                        const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                    
-                        if (!validInput) {
-                          // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
-                          event.preventDefault();
-                          const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
-                          event.target.value = validCharacters;
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="roomNumber" class="form-label">เลขห้อง</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="roomNumber"
+                          placeholder="101-112, 201-212, 301-312"
+                          maxlength="3"
+                          required
+                        />
+                      </div>
+                      
+                      <script>
+                        // Add an input event listener to the "roomNumber" input field
+                        document.getElementById("roomNumber").addEventListener("input", restrictCharacters);
+                      
+                        function restrictCharacters(event) {
+                          const input = event.target.value;
+                          const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+                      
+                          if (!validInput) {
+                            // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                            event.preventDefault();
+                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            event.target.value = validCharacters;
+                          }
                         }
-                      }
-                    </script>
+                      </script>
 
-                    <div class="mb-3">
-                      <label for="roomFloor" class="form-label">ชั้น</label>
-                      <select class="form-select" id="roomFloor">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                      </select>
+                      <div class="mb-3">
+                        <label for="roomFloor" class="form-label">ชั้น</label>
+                        <select class="form-select" id="roomFloor">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="roomType" class="form-label"
+                          >ประเภทห้อง</label
+                        >
+                        <select class="form-select" id="roomType">
+                          <option value="พัดลม">พัดลม</option>
+                          <option value="แอร์">แอร์</option>
+                        </select>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="price" class="form-label">ราคา</label>
+                        <input type="text" class="form-control" id="price" placeholder="1800" maxlength="4" />
+                      </div>
+
+                      <script>
+                        // Add an input event listener to the "roomNumber" input field
+                        document.getElementById("price").addEventListener("input", restrictCharacters);
+                      
+                        function restrictCharacters(event) {
+                          const input = event.target.value;
+                          const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+                      
+                          if (!validInput) {
+                            // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                            event.preventDefault();
+                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            event.target.value = validCharacters;
+                          }
+                        }
+                      </script>
+
+                      <div class="mb-3">
+                        <label for="guestName" class="form-label">ชื่อผู้พัก</label>
+                        <input type="text" class="form-control" id="guestName" placeholder="ชื่อจริง" maxlength="50" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="guestLastName" class="form-label">นามสกุล</label>
+                        <input type="text" class="form-control" id="guestLastName" placeholder="นามสกุล" maxlength="50" />
+                      </div>
+
+                      <script>
+                        // Add input event listeners to the "guestName" and "guestLastName" input fields
+                        document.getElementById("guestName").addEventListener("input", restrictCharacters);
+                        document.getElementById("guestLastName").addEventListener("input", restrictCharacters);
+
+                        function restrictCharacters(event) {
+                          const input = event.target.value;
+                          const validInput = /^[a-zA-Zก-๙ ]*$/.test(input); // Use regex to check if the input contains only Thai characters or English letters
+
+                          if (!validInput) {
+                            // If the input contains numbers or special characters, prevent the default behavior and set the input value to the valid characters only
+                            event.preventDefault();
+                            const validCharacters = input.replace(/[^a-zA-Zก-๙ ]/g, ''); // Remove any characters that are not Thai characters or English letters
+                            event.target.value = validCharacters;
+                          }
+                        }
+                      </script>
+
+                      <div class="mb-3">
+                        <label for="guestCount" class="form-label"
+                          >จำนวนผู้เช่า</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="guestCount"
+                          placeholder="0"
+                          maxlength="1"
+                          required
+                        />
+                      </div>
+
+                      <script>
+                        // Add an input event listener to the "roomNumber" input field
+                        document.getElementById("guestCount").addEventListener("input", restrictCharacters);
+                      
+                        function restrictCharacters(event) {
+                          const input = event.target.value;
+                          const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+                      
+                          if (!validInput) {
+                            // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                            event.preventDefault();
+                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            event.target.value = validCharacters;
+                          }
+                        }
+                      </script>
+
+                      <div class="mb-3">
+                        <label for="status" class="form-label">สถานะ</label>
+                        <select class="form-select" id="status">
+                          <option value="ว่าง">ว่าง</option>
+                          <option value="ไม่ว่าง">ไม่ว่าง</option>
+                          <option value="ปรับปรุง">ปรับปรุง</option>
+                        </select>
+                      </div>
                     </div>
-
-                    <div class="mb-3">
-                      <label for="roomType" class="form-label"
-                        >ประเภทห้อง</label
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
                       >
-                      <select class="form-select" id="roomType">
-                        <option value="พัดลม">พัดลม</option>
-                        <option value="แอร์">แอร์</option>
-                      </select>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="price" class="form-label">ราคา</label>
-                      <input type="text" class="form-control" id="price" placeholder="1800" maxlength="4" />
-                    </div>
-
-                    <script>
-                      // Add an input event listener to the "roomNumber" input field
-                      document.getElementById("price").addEventListener("input", restrictCharacters);
-                    
-                      function restrictCharacters(event) {
-                        const input = event.target.value;
-                        const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                    
-                        if (!validInput) {
-                          // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
-                          event.preventDefault();
-                          const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
-                          event.target.value = validCharacters;
-                        }
-                      }
-                    </script>
-
-                    <div class="mb-3">
-                      <label for="guestName" class="form-label">ชื่อผู้พัก</label>
-                      <input type="text" class="form-control" id="guestName" placeholder="ชื่อจริง" maxlength="50" />
-                    </div>
-                    <div class="mb-3">
-                      <label for="guestLastName" class="form-label">นามสกุล</label>
-                      <input type="text" class="form-control" id="guestLastName" placeholder="นามสกุล" maxlength="50" />
-                    </div>
-
-                    <script>
-                      // Add input event listeners to the "guestName" and "guestLastName" input fields
-                      document.getElementById("guestName").addEventListener("input", restrictCharacters);
-                      document.getElementById("guestLastName").addEventListener("input", restrictCharacters);
-
-                      function restrictCharacters(event) {
-                        const input = event.target.value;
-                        const validInput = /^[a-zA-Zก-๙ ]*$/.test(input); // Use regex to check if the input contains only Thai characters or English letters
-
-                        if (!validInput) {
-                          // If the input contains numbers or special characters, prevent the default behavior and set the input value to the valid characters only
-                          event.preventDefault();
-                          const validCharacters = input.replace(/[^a-zA-Zก-๙ ]/g, ''); // Remove any characters that are not Thai characters or English letters
-                          event.target.value = validCharacters;
-                        }
-                      }
-                    </script>
-
-                    <div class="mb-3">
-                      <label for="guestCount" class="form-label"
-                        >จำนวนผู้เช่า</label
+                        ปิด
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="saveButton"
+                        onclick="addRoom()"
                       >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="guestCount"
-                        placeholder="0"
-                        maxlength="1"
-                        required
-                      />
+                        บันทึก
+                      </button>
                     </div>
-
-                    <script>
-                      // Add an input event listener to the "roomNumber" input field
-                      document.getElementById("guestCount").addEventListener("input", restrictCharacters);
-                    
-                      function restrictCharacters(event) {
-                        const input = event.target.value;
-                        const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                    
-                        if (!validInput) {
-                          // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
-                          event.preventDefault();
-                          const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
-                          event.target.value = validCharacters;
-                        }
-                      }
-                    </script>
-
-                    <div class="mb-3">
-                      <label for="status" class="form-label">สถานะ</label>
-                      <select class="form-select" id="status">
-                        <option value="ว่าง">ว่าง</option>
-                        <option value="ไม่ว่าง">ไม่ว่าง</option>
-                        <option value="ปรับปรุง">ปรับปรุง</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      ปิด
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      id="saveButton"
-                      onclick="addRoom()"
-                    >
-                      บันทึก
-                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- END Modal Add -->
+              <!-- END Modal Add -->
 
-            <!-- Modal Edit -->
-            <div
-              class="modal fade"
-              id="editRoomModal"
-              tabindex="-1"
-              aria-labelledby="editRoomModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editRoomModalLabel">
-                      แก้ไขข้อมูลห้องพัก
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <!-- แก้ไขเนื้อหาภายใน Modal ตามที่ต้องการ -->
-                    <div class="mb-3">
-                      <label for="editroomFloor" class="form-label">ชั้น</label>
-                      <select
-                        class="form-select"
-                        id="editroomFloor"
-                        onchange="updateRoomNumberOptions()"
-                      >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                      </select>
+              <!-- Modal Edit -->
+              <div
+                class="modal fade"
+                id="editRoomModal"
+                tabindex="-1"
+                aria-labelledby="editRoomModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editRoomModalLabel">
+                        แก้ไขข้อมูลห้องพัก
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
                     </div>
+                    <div class="modal-body">
+                      <!-- แก้ไขเนื้อหาภายใน Modal ตามที่ต้องการ -->
+                      <div class="mb-3">
+                        <label for="editroomFloor" class="form-label">ชั้น</label>
+                        <select
+                          class="form-select"
+                          id="editroomFloor"
+                          onchange="updateRoomNumberOptions()"
+                        >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                      </div>
 
-                    <div class="mb-3">
-                      <label for="editroomNumber" class="form-label"
-                        >เลขห้อง</label
-                      >
-                      <select class="form-select" id="editroomNumber">
-                        <!-- ตัวเลือกของเลขห้องจะถูกอัปเดตโดย JavaScript -->
-                      </select>
-                    </div>
+                      <div class="mb-3">
+                        <label for="editroomNumber" class="form-label"
+                          >เลขห้อง</label
+                        >
+                        <select class="form-select" id="editroomNumber">
+                          <!-- ตัวเลือกของเลขห้องจะถูกอัปเดตโดย JavaScript -->
+                        </select>
+                      </div>
 
-                    <div class="mb-3">
-                      <label for="editroomType" class="form-label"
-                        >ประเภทห้อง</label
-                      >
-                      <select class="form-select" id="editroomType">
-                        <option value="พัดลม">พัดลม</option>
-                        <option value="แอร์">แอร์</option>
-                      </select>
-                    </div>
+                      <div class="mb-3">
+                        <label for="editroomType" class="form-label"
+                          >ประเภทห้อง</label
+                        >
+                        <select class="form-select" id="editroomType">
+                          <option value="พัดลม">พัดลม</option>
+                          <option value="แอร์">แอร์</option>
+                        </select>
+                      </div>
 
-                    <div class="mb-3">
-                      <label for="editprice" class="form-label">ราคา</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="editprice"
-                        value="1800"
-                      />
-                    </div>
+                      <div class="mb-3">
+                        <label for="editprice" class="form-label">ราคา</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="editprice"
+                          value="1800"
+                        />
+                      </div>
 
-                    <div class="mb-3">
-                      <label for="editguestName" class="form-label"
-                        >ชื่อผู้พัก</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="editguestName"
-                        placeholder="ชื่อจริง"
-                        maxlength="50"
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label for="editguestLastName" class="form-label"
-                        >นามสกุล</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="editguestLastName"
-                        placeholder="นามสกุล"
-                        maxlength="50"
-                      />
-                    </div>
+                      <div class="mb-3">
+                        <label for="editguestName" class="form-label"
+                          >ชื่อผู้พัก</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="editguestName"
+                          placeholder="ชื่อจริง"
+                          maxlength="50"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="editguestLastName" class="form-label"
+                          >นามสกุล</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="editguestLastName"
+                          placeholder="นามสกุล"
+                          maxlength="50"
+                        />
+                      </div>
 
-                    <script>
-                      // Add input event listeners to the "guestName" and "guestLastName" input fields
-                      document.getElementById("editguestName").addEventListener("input", restrictCharacters);
-                      document.getElementById("editguestLastName").addEventListener("input", restrictCharacters);
+                      <script>
+                        // Add input event listeners to the "guestName" and "guestLastName" input fields
+                        document.getElementById("editguestName").addEventListener("input", restrictCharacters);
+                        document.getElementById("editguestLastName").addEventListener("input", restrictCharacters);
 
-                      function restrictCharacters(event) {
-                        const input = event.target.value;
-                        const validInput = /^[a-zA-Zก-๙ ]*$/.test(input); // Use regex to check if the input contains only Thai characters or English letters
+                        function restrictCharacters(event) {
+                          const input = event.target.value;
+                          const validInput = /^[a-zA-Zก-๙ ]*$/.test(input); // Use regex to check if the input contains only Thai characters or English letters
 
-                        if (!validInput) {
-                          // If the input contains numbers or special characters, prevent the default behavior and set the input value to the valid characters only
-                          event.preventDefault();
-                          const validCharacters = input.replace(/[^a-zA-Zก-๙ ]/g, ''); // Remove any characters that are not Thai characters or English letters
-                          event.target.value = validCharacters;
+                          if (!validInput) {
+                            // If the input contains numbers or special characters, prevent the default behavior and set the input value to the valid characters only
+                            event.preventDefault();
+                            const validCharacters = input.replace(/[^a-zA-Zก-๙ ]/g, ''); // Remove any characters that are not Thai characters or English letters
+                            event.target.value = validCharacters;
+                          }
                         }
-                      }
-                    </script>
+                      </script>
 
-                    <div class="mb-3">
-                      <label for="editguestCount" class="form-label"
-                        >จำนวนผู้เช่า</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="editguestCount"
-                        placeholder="0"
-                        maxlength="1"
-                        required
-                      />
-                    </div>
+                      <div class="mb-3">
+                        <label for="editguestCount" class="form-label"
+                          >จำนวนผู้เช่า</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="editguestCount"
+                          placeholder="0"
+                          maxlength="1"
+                          required
+                        />
+                      </div>
 
-                    <script>
-                      // Add an input event listener to the "roomNumber" input field
-                      document.getElementById("editguestCount").addEventListener("input", restrictCharacters);
-                    
-                      function restrictCharacters(event) {
-                        const input = event.target.value;
-                        const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                    
-                        if (!validInput) {
-                          // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
-                          event.preventDefault();
-                          const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
-                          event.target.value = validCharacters;
+                      <script>
+                        // Add an input event listener to the "roomNumber" input field
+                        document.getElementById("editguestCount").addEventListener("input", restrictCharacters);
+                      
+                        function restrictCharacters(event) {
+                          const input = event.target.value;
+                          const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
+                      
+                          if (!validInput) {
+                            // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
+                            event.preventDefault();
+                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            event.target.value = validCharacters;
+                          }
                         }
-                      }
-                    </script>
+                      </script>
 
-                    <div class="mb-3">
-                      <label for="editstatus" class="form-label">สถานะ</label>
-                      <select class="form-select" id="editstatus">
-                        <option value="ว่าง">ว่าง</option>
-                        <option value="ไม่ว่าง">ไม่ว่าง</option>
-                        <option value="ปรับปรุง">ปรับปรุง</option>
-                      </select>
+                      <div class="mb-3">
+                        <label for="editstatus" class="form-label">สถานะ</label>
+                        <select class="form-select" id="editstatus">
+                          <option value="ว่าง">ว่าง</option>
+                          <option value="ไม่ว่าง">ไม่ว่าง</option>
+                          <option value="ปรับปรุง">ปรับปรุง</option>
+                        </select>
+                      </div>
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      ปิด
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      id="editButton"
-                    >
-                      บันทึก
-                    </button>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        ปิด
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="editButton"
+                      >
+                        บันทึก
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- END Modal Edit -->
+              <!-- END Modal Edit -->
 
-            <table id="roomList" class="table">
-              <thead>
-                <tr>
-                  <th>เลขห้อง</th>
-                  <th>ชั้น</th>
-                  <th>ประเภทห้อง</th>
-                  <th>ราคา</th>
-                  <th>ชื่อผู้เช่า</th>
-                  <th>นามสกุลผู้เช่า</th>
-                  <th>จำนวนผู้เช่า</th>
-                  <th>สถานะ</th>
-                </tr>
-              </thead>
-              <tbody id="tableList">
-                <!-- แถวของตาราง -->
-              </tbody>
-            </table>
+              <table id="roomList" class="table">
+                <thead>
+                  <tr>
+                    <th>เลขห้อง</th>
+                    <th>ชั้น</th>
+                    <th>ประเภทห้อง</th>
+                    <th>ราคา</th>
+                    <th>ชื่อผู้เช่า</th>
+                    <th>นามสกุลผู้เช่า</th>
+                    <th>จำนวนผู้เช่า</th>
+                    <th>สถานะ</th>
+                  </tr>
+                </thead>
+                <tbody id="tableList">
+                  <!-- แถวของตาราง -->
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
