@@ -93,7 +93,7 @@ app.get("/api/room", async (req, res) => {
 
 app.post("/api/addBill", async(req, res) => {
   const bill = req.body;
-
+  
   await addBill(bill)
 
   res.json(JSON.stringify(bill));

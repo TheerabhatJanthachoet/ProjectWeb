@@ -189,7 +189,6 @@ document.getElementById("saveBill")
         ContactID : contactid,
         roomid : room
       }
-      
     senddata(data)
     
     
