@@ -293,14 +293,16 @@
 
                                         <div class="col-md-2">
                                             <label for="editBillYear" class="form-label">ปี</label>
-                                            <select name="dates" class="form-select" id="editBillYear" required></select>
+                                            <select name="dates" class="form-select" id="editBillYear" required onchange="SelectBillYear()">
+                                                
+                                             </select>
                                             
                                         </div>
 
                                         <div class="col-md-2">
                                             <label for="editBillMonth" class="form-label">เดือน</label>
-                                            <select name="months" class="form-select" id="editBillMonth"required>
-                                                
+                                            <select name="months" class="form-select" id="editBillMonth" required>
+                                                <option value=""></option>
                                             </select>
                                         </div>
                                 

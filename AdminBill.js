@@ -1,4 +1,5 @@
 var dataJson = {};
+var billJson = {};
 var datacontactJson = {};
 var calwater = 0
 var calelec = 0
@@ -13,6 +14,8 @@ function SelectRoomfloorOption() {
   setName()
   calPrice()
 }
+
+
 // Get ห้อง
 async function getRoom() {
   const url = new URL("http://20.212.12.36/api/room")
@@ -32,10 +35,12 @@ async function getBill() {
   const res = await fetch(url, {
     method: "GET",
   });
-  const data = await res.json();
-  dataJson = JSON.parse(data);
-
+  const bill = await res.json();
+  billJson = JSON.parse(bill);
+  setdatabillcheck(billJson);
 }
+
+
 
 // function setdata(data) {
 //   const guestName = document.getElementById("GuestFirstname").room.NameGuest;
@@ -63,8 +68,6 @@ function setdatacheck(data, checkFloor) {
   if (getRoomnotNullfilter.hasChildNodes()){
     getRoomnotNullfilter.firstChild.setAttribute("selected", true);
   }
-  
-  
 }
 
 function setName() {
@@ -97,7 +100,107 @@ function setName() {
   calPrice()
 }
 
+function setdatabillcheck(data) {
+  const edityear = data;
+  
+  const getBillYear = document.getElementById("editBillYear");
+ 
+
+
+  while (getBillYear.hasChildNodes()) {
+    getBillYear.removeChild(getBillYear.firstChild);
+  }
+  edityear.map((year) => {
+    // สร้างตัวเลือก
+    // GuestFirstname.appendChild(roomout)
+    const row = document.createElement("option");
+    row.value = year.BillYear;
+    row.innerText = year.BillYear;
+    getBillYear.appendChild(row);
+  });
+  if (getBillYear.hasChildNodes()){
+    getBillYear.firstChild.setAttribute("selected", true);
+  }
+    
+  // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
+  const selectElement = document.getElementById("editBillYear");
+
+  // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
+  const uniqueValues = [];
+
+  // วิธีการกรอง
+  for (let i = 0; i < selectElement.options.length; i++) {
+      const optionValue = selectElement.options[i].value;
+
+      // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+      if (uniqueValues.indexOf(optionValue) === -1) {
+          uniqueValues.push(optionValue);
+      }
+  }
+
+  // ลบตัวเลือกทั้งหมดใน select
+  selectElement.innerHTML = "";
+
+  // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
+  uniqueValues.forEach(value => {
+      const optionElement = document.createElement("option");
+      optionElement.value = value;
+      optionElement.textContent = value;
+      selectElement.appendChild(optionElement);
+  });
+}
+
+function SetMonthYear(data, year) {
+
+  
+  const editmonth = document.getElementById("editBillMonth").value;
+  const month = billJson.filter((billJson) => billJson.year == year)[0];
+  
+  while (editmonth.hasChildNodes()) {
+    editmonth.removeChild(editmonth.firstChild);
+  }
+  month.map((month) => {
+    // สร้างตัวเลือก
+    // GuestFirstname.appendChild(roomout)
+    const row = document.createElement("option");
+    row.value = month.BillMonth;
+    row.innerText = month.BillMonth;
+    editmonth.appendChild(row);
+  });
+  if (editmonth.hasChildNodes()){
+    editmonth.firstChild.setAttribute("selected", true);
+  }
+    
+  // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
+  const selectElement = document.getElementById("editBillMonth");
+
+  // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
+  const uniqueValues = [];
+
+  // วิธีการกรอง
+  for (let i = 0; i < selectElement.options.length; i++) {
+      const optionValue = selectElement.options[i].value;
+
+      // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+      if (uniqueValues.indexOf(optionValue) === -1) {
+          uniqueValues.push(optionValue);
+      }
+  }
+
+  // ลบตัวเลือกทั้งหมดใน select
+  selectElement.innerHTML = "";
+
+  // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
+  uniqueValues.forEach(value => {
+      const optionElement = document.createElement("option");
+      optionElement.value = value;
+      optionElement.textContent = value;
+      selectElement.appendChild(optionElement);
+  });
+}
+
 getRoom();
+getBill();
 
 //คำนวนค่าน้ำค่าไฟ
 
@@ -223,3 +326,7 @@ async function senddata(data){
 }
 
 
+function SelectBillYear() {
+  const getBillYear = document.getElementById("editBillYear").value;
+  SetMonthYear(billJson, getBillYear);
+}
