@@ -150,7 +150,7 @@ async function senddata(data){
         guestName: data.guestName,
         guestLastName: data.guestLastName,
         guestCount: data.guestCount,
-        electricityUnit: dataadd.electricityUnit,
+        electricityUnit: data.electricityUnit,
         status: data.status,
       }),
     });
