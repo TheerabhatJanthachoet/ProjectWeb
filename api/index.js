@@ -258,7 +258,6 @@ async function getBill() {
 async function editBill(bill) {
   try {
     await sql.connect(config);
-
     const query = `
     UPDATE Bill
     SET 
@@ -273,7 +272,7 @@ async function editBill(bill) {
         Watertotalprice = '${parseFloat(bill.watertotal)}', 
         Other = '${parseFloat(bill.other)}',
         TotalPrice = '${parseFloat(bill.total)}'
-        WHERE UnitID = '${bill.checkUUID}'    
+        WHERE UnitID = '${bill.billID}'    
         `;
     await sql.query(query);
 
@@ -293,7 +292,7 @@ async function editBill(bill) {
 }
 //เพิ่มสัญญา + แก้ไขข้อมูลห้อง//
 
-const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4,validate:uuidValidate} = require("uuid");
 const fs = require("fs");
 
 async function addContact(

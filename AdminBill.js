@@ -563,7 +563,9 @@ document.getElementById("saveeditBill").addEventListener("click", function () {
       bill.RoomID == room && bill.BillYear == year && bill.BillMonth == month
   );
 
-  const checkUUID = checkfilter.UnitID;
+  const checkUUID = checkfilter[0].UnitID;
+
+
 
   const data = {
     month: month,
@@ -579,7 +581,7 @@ document.getElementById("saveeditBill").addEventListener("click", function () {
     total: parseFloat(totalfinal2.innerText.replace(",", "")),
     ContactID: contactid,
     roomid: room,
-    bilID: checkUUID
+    billID: checkUUID
   };
 
   sendedit(data);
@@ -587,7 +589,7 @@ document.getElementById("saveeditBill").addEventListener("click", function () {
 });
 
 async function sendedit(data) {
-  const response = await fetch("http://20.187.73.118:3000/api/editBill", {
+  const response = await fetch("http://localhost:3000/api/editBill", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify(data),
