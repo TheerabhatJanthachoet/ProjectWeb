@@ -340,7 +340,7 @@ async function addBill(bill){
     await sql.connect(config);
     const BillID = uuidv4();
     const query = `
-        INSERT INTO UnitPrice (UnitID, BillMonth, BillYear, OldElecUnit, NowElecUnit, ElectricPriceperUnti, ElectricitytotalPrice, WaterUnit,WaterPrice,Watertotalprice,Other,TotalPrice,ContactID,RoomID)
+        INSERT INTO UnitPrice (UnitID, BillMonth, BillYear, OldElecUnit, NowElecUnit, ElectricPriceperUnti, ElectricitytotalPrice, WaterUnit,WaterPrice,Watertotalprice,Other,TotalPrice, Billstatus,ContactID,RoomID)
         VALUES ('${BillID}', 
         '${bill.month}', 
         '${bill.year}', 
@@ -353,6 +353,7 @@ async function addBill(bill){
         '${parseFloat(bill.watertotal)}', 
         '${parseFloat(bill.other)}',
         '${parseFloat(bill.total)}',
+        'ยังไม่ชำระ',
         '${bill.ContactID}',
         '${parseInt(bill.roomid)}'   
         )

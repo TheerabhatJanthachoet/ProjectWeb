@@ -69,6 +69,8 @@ function setName() {
       GuestLastname.value = ''
       RoomPrice.value = ''
       waterUnit.value = ""
+      elecold.value = ''
+
       return
   }
   GuestFirstname.value = roomnotNull.NameGuest

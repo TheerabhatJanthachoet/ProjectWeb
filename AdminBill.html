@@ -61,18 +61,18 @@
                                 <div class="col-md-3">
                                     <label for="BillMonth" class="form-label">เดือน</label>
                                     <select name="dates" class="form-select" id="BillMonth"required>
-                                        <option value="1">มกราคม</option>
-                                        <option value="2">กุมภาพันธ์</option>
-                                        <option value="3">มีนาคม</option>
-                                        <option value="4">เมษายน</option>
-                                        <option value="5">พฤษภาคม</option>
-                                        <option value="6">มิถุนายน</option>
-                                        <option value="7">กรกฎาคม</option>
-                                        <option value="8">สิงหาคม</option>
-                                        <option value="9">กันยายน</option>
-                                        <option value="10">ตุลาคม</option>
-                                        <option value="11">พฤศจิกายน</option>
-                                        <option value="12">ธันวาคม</option>
+                                        <option value="มกราคม">มกราคม</option>
+                                        <option value="กุมภาพันธ์">กุมภาพันธ์</option>
+                                        <option value="มีนาคม">มีนาคม</option>
+                                        <option value="เมษายน">เมษายน</option>
+                                        <option value="พฤษภาคม">พฤษภาคม</option>
+                                        <option value="มิถุนายน">มิถุนายน</option>
+                                        <option value="กรกฎาคม">กรกฎาคม</option>
+                                        <option value="สิงหาคม">สิงหาคม</option>
+                                        <option value="กันยายน">กันยายน</option>
+                                        <option value="ตุลาคม">ตุลาคม</option>
+                                        <option value="พฤศจิกายน">พฤศจิกายน</option>
+                                        <option value="ธันวาคม">ธันวาคม</option>
                                     </select>
                                 </div>
                         
@@ -82,55 +82,13 @@
                                     <script src="Year.js"></script>
                                 </div>
                         
-                                <!-- <div class="col-md-3">
-                                    <label for="WaterUnitPrice" class="form-label">ค่าน้ำ/หน่วย</label>
-                                    <input type="text" class="form-control" id="WaterUnitPrice" placeholder="5" maxlength="5"/>
-                                    <script>
-                                        // Add an input event listener to the "IDcard" input field
-                                        document.getElementById("WaterUnitPrice").addEventListener("input", restrictCharacters);
-                                    
-                                        function restrictCharacters(event) {
-                                        const input = event.target.value;
-                                        const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                                    
-                                        if (!validInput) {
-                                            // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
-                                            event.preventDefault();
-                                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
-                                            event.target.value = validCharacters;
-                                        }
-                                        }
-                                    </script>
-                                </div> -->
-                        
-                        
-                                <!-- <div class="col-md-3">
-                                    <label for="ElectricityUnitPrice" class="form-label">ค่าไฟ/หน่วย</label>
-                                    <input type="text" class="form-control" id="ElectricityUnitPrice" placeholder="10" maxlength="5"/>
-                                    <script>
-                                        // Add an input event listener to the "IDcard" input field
-                                        document.getElementById("ElectricityUnitPrice").addEventListener("input", restrictCharacters);
-                                    
-                                        function restrictCharacters(event) {
-                                        const input = event.target.value;
-                                        const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                                    
-                                        if (!validInput) {
-                                            // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
-                                            event.preventDefault();
-                                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
-                                            event.target.value = validCharacters;
-                                        }
-                                        }
-                                    </script>
-                                </div> -->
                             </div>
                             <br>
                             
                             <div class="row">
                                 <div class="row col-md-12">
 
-                                    <div class="col-md-1">
+                                    <div class="col-md-1 pt-2" style="text-align: right;">
                                         <label for="Floor" class="form-label">ชั้น</label>
                                     </div>
                                     <div class="col-md-1">
@@ -143,28 +101,28 @@
                                     </div>
                                     
                     
-                                    <div class="col-md-1">
+                                    <div class="col-md-1 pt-2" style="text-align: right;">
                                         <label for="RoomNumber" class="form-label">เลขห้อง</label>
                                     </div>
                                     
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <select class="form-select" id="RoomNumber" required onchange="setName()" ></select>
                                     </div>
                     
-                                    <div class="col-md-1">
+                                    <div class="col-md-1 pt-2" style="text-align: right;">
                                         <label for="GuestFirstname" class="form-label">ชื่อ</label>
                                     </div>
                     
                                     <div class="col-md-2">
-                                        <input type="text" class="form-control" id="GuestFirstname" placeholder="ชื่อจริง">
+                                        <input type="text" class="form-control" id="GuestFirstname" placeholder="ชื่อจริง" disabled>
                                     </div>
                                     
-                                    <div class="col-md-1">
+                                    <div class="col-md-1 pt-2" style="text-align: right;">
                                         <label for="GuestLastname" class="form-label">นามสกุล</label>
                                     </div>
                     
                                     <div class="col-md-2">
-                                        <input type="text" class="form-control" id="GuestLastname" placeholder="นามสกุล">
+                                        <input type="text" class="form-control" id="GuestLastname" placeholder="นามสกุล" disabled>
                                     </div>
                     
                                 </div>
@@ -177,16 +135,16 @@
 
                                     <div class="col-md-2"></div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-3" style="text-align: right;">
                                         <label class="form-label">หน่วยเดิม</label>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3" style="text-align: right;">
                                         <label class="form-label">ราคาต่อหน่วย/คน</label>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3" style="text-align: right;">
                                         <label class="form-label">ระบุหน่วย น้ำ/ไฟ (ล่าสุด)</label>
                                     </div>
-                                    <div class="col-md-1">
+                                    <div class="col-md-1" style="text-align: right;">
                                         <label class="form-label">จำนวนเงิน(บาท)</label>
                                     </div>
                                 </div>
@@ -196,23 +154,23 @@
                             <div class="row">
                                 <div class="row col-md-12 " oninput="calPrice()">
                     
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 pt-2" style="text-align: center;">
                                         <label class="form-label">ค่าไฟ</label>
                                     </div>
                     
                                     <div class="col-md-3">
-                                        <input type="text " class="form-control" id="ElectricityPastUnit" placeholder="0" disabled>
+                                        <input type="text " class="form-control" id="ElectricityPastUnit" placeholder="0" disabled style="text-align: right;">
                                     </div>
                     
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="ElectricityPriceperUnit" placeholder="ค่าไฟต่อหน่วย">
+                                        <input type="text" class="form-control" id="ElectricityPriceperUnit" placeholder="ค่าไฟต่อหน่วย" style="text-align: right;">
                                     </div>
                     
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="ElectricityUnit" placeholder="หน่วยใหม่">
+                                        <input type="text" class="form-control" id="ElectricityUnit" placeholder="หน่วยใหม่" style="text-align: right;">
                                     </div>
                     
-                                    <div class="col-md-1">
+                                    <div class="col-md-1" style="text-align: right;">
                                         <label class="form-label" id="totalElec">0</label>
                                     </div>
                     
@@ -222,7 +180,7 @@
                             <div class="row">
                                 <div class="row col-md-12" oninput="calPrice()">
                     
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 pt-2" style="text-align: center;">
                                         <label class="form-label">ค่าน้ำ</label>
                                     </div>
                     
@@ -231,14 +189,14 @@
                                     </div>
                     
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="WaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย">
+                                        <input type="text" class="form-control" id="WaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย" style="text-align: right;">
                                     </div>
                     
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="WaterUnit" placeholder="หน่วยใหม่">
+                                        <input type="text" class="form-control" id="WaterUnit" placeholder="หน่วยใหม่" style="text-align: right;">
                                     </div>
                     
-                                    <div class="col-md-1">
+                                    <div class="col-md-1" style="text-align: right;">
                                         <label class="form-label" id="totalwater">0</label>
                                     </div>
                     
@@ -249,7 +207,7 @@
 
                             <div class="row">
                                 <div class="row col-md-12" oninput="calPrice()">
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 pt-2" style="text-align: center;">
                                         <label class="form-label">ค่าเช่าห้อง</label>
                                     </div>
                                     <div class="col-md-3"></div>
@@ -257,9 +215,9 @@
                                     <div class="col-md-3"></div>
 
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="RoomPrice" placeholder="0" disabled>
+                                        <input type="text" class="form-control" id="RoomPrice" placeholder="0" disabled style="text-align: right;">
                                     </div>
-                                    <div class="col-md-1">
+                                    <div class="col-md-1" style="text-align: right;">
                                         <label class="form-label" id="totalroom">0</label>
                                     </div>
                     
@@ -268,7 +226,7 @@
 
                             <div class="row">
                                 <div class="row col-md-12" oninput="calPrice()">
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 pt-2" style="text-align: center;">
                                         <label class="form-label">ค่าอื่นๆ</label>
                                     </div>
                                     <div class="col-md-3"></div>
@@ -276,9 +234,9 @@
                                     <div class="col-md-3"></div>
 
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="OtherPrice" value=0>
+                                        <input type="text" class="form-control" id="OtherPrice" value=0 style="text-align: right;">
                                     </div>
-                                    <div class="col-md-1">
+                                    <div class="col-md-1" style="text-align: right;">
                                         <label class="form-label" id="totalmore">0</label>
                                     </div>
                     
@@ -294,10 +252,10 @@
                     
                                     <div class="col-md-3"></div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-3" style="text-align: right;">
                                         <label class="form-label">รวมทั้งสิ้น</label>
                                     </div>
-                                    <div class="col-md-1">
+                                    <div class="col-md-1" style="text-align: right;">
                                         <label class="form-label" id="totalfinal">0</label>
                                     </div>
                     
@@ -305,12 +263,249 @@
                             </div>
                             
                             <div class="d-flex justify-content-end gap-2">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  data-bs-toggle="modal" data-bs-target="#editbill">แก้ไขบิล/สถานะ</button>
+                                
                                 <button type="button" class="btn btn-success" id ="saveBill">บันทึก</button>
-                            </div>        
+                            </div>    
                         </form>
+                        
                     </div>
                 </div>
+                <!-- Modal Add -->
+                <div class="modal fade modal-xl" id="editbill" tabindex="-1" aria-labelledby="editbillModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h5 class="modal-title" id="editbillModal">
+                                    เพิ่มห้องพัก
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                            </div>
+
+                            <div class="modal-body">
+                                <form class="d-flex flex-column gap-1">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="BillMonth" class="form-label">เดือน</label>
+                                            <select name="dates" class="form-select" id="BillMonth"required>
+                                                <option value="มกราคม">มกราคม</option>
+                                                <option value="กุมภาพันธ์">กุมภาพันธ์</option>
+                                                <option value="มีนาคม">มีนาคม</option>
+                                                <option value="เมษายน">เมษายน</option>
+                                                <option value="พฤษภาคม">พฤษภาคม</option>
+                                                <option value="มิถุนายน">มิถุนายน</option>
+                                                <option value="กรกฎาคม">กรกฎาคม</option>
+                                                <option value="สิงหาคม">สิงหาคม</option>
+                                                <option value="กันยายน">กันยายน</option>
+                                                <option value="ตุลาคม">ตุลาคม</option>
+                                                <option value="พฤศจิกายน">พฤศจิกายน</option>
+                                                <option value="ธันวาคม">ธันวาคม</option>
+                                            </select>
+                                        </div>
+                                
+                                        <div class="col-md-2">
+                                            <label for="BillYear" class="form-label">ปี</label>
+                                            <select name="dates" class="form-select" id="BillYear" required></select>
+                                            <script src="Year.js"></script>
+                                        </div>
+                                
+                                    </div>
+                                    <br>
+                                    
+                                    <div class="row">
+                                        <div class="row col-md-12">
+        
+                                            <div class="col-md-1 pt-2" style="text-align: right;">
+                                                <label for="Floor" class="form-label">ชั้น</label>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <select class="form-select" id="Floor" required onchange="SelectRoomfloorOption()">
+                                                    <option value="0"></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                            </div>
+                                            
+                            
+                                            <div class="col-md-1 pt-2" style="text-align: right;">
+                                                <label for="RoomNumber" class="form-label">เลขห้อง</label>
+                                            </div>
+                                            
+                                            <div class="col-md-1">
+                                                <select class="form-select" id="RoomNumber" required onchange="setName()" ></select>
+                                            </div>
+                            
+                                            <div class="col-md-1 pt-2" style="text-align: right;">
+                                                <label for="GuestFirstname" class="form-label">ชื่อ</label>
+                                            </div>
+                            
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="GuestFirstname" placeholder="ชื่อจริง" disabled>
+                                            </div>
+                                            
+                                            <div class="col-md-1 pt-2" style="text-align: right;">
+                                                <label for="GuestLastname" class="form-label">นามสกุล</label>
+                                            </div>
+                            
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="GuestLastname" placeholder="นามสกุล" disabled>
+                                            </div>
+                            
+                                        </div>
+                                    
+                                    </div>
+                                    <br>
+                            
+                                    <div class="row">
+                                        <div class="row col-md-12">
+        
+                                            <div class="col-md-2"></div>
+        
+                                            <div class="col-md-3" style="text-align: right;">
+                                                <label class="form-label">หน่วยเดิม</label>
+                                            </div>
+                                            <div class="col-md-3" style="text-align: right;">
+                                                <label class="form-label">ราคาต่อหน่วย/คน</label>
+                                            </div>
+                                            <div class="col-md-3" style="text-align: right;">
+                                                <label class="form-label">ระบุหน่วย น้ำ/ไฟ (ล่าสุด)</label>
+                                            </div>
+                                            <div class="col-md-1" style="text-align: right;">
+                                                <label class="form-label">จำนวนเงิน(บาท)</label>
+                                            </div>
+                                        </div>
+                            
+                                    </div>
+                            
+                                    <div class="row">
+                                        <div class="row col-md-12 " oninput="calPrice()">
+                            
+                                            <div class="col-md-2 pt-2" style="text-align: center;">
+                                                <label class="form-label">ค่าไฟ</label>
+                                            </div>
+                            
+                                            <div class="col-md-3">
+                                                <input type="text " class="form-control" id="ElectricityPastUnit" placeholder="0" disabled style="text-align: right;">
+                                            </div>
+                            
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="ElectricityPriceperUnit" placeholder="ค่าไฟต่อหน่วย" style="text-align: right;">
+                                            </div>
+                            
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="ElectricityUnit" placeholder="หน่วยใหม่" style="text-align: right;">
+                                            </div>
+                            
+                                            <div class="col-md-1" style="text-align: right;">
+                                                <label class="form-label" id="totalElec">0</label>
+                                            </div>
+                            
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="row col-md-12" oninput="calPrice()">
+                            
+                                            <div class="col-md-2 pt-2" style="text-align: center;">
+                                                <label class="form-label">ค่าน้ำ</label>
+                                            </div>
+                            
+                                            <div class="col-md-3">
+                                                
+                                            </div>
+                            
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="WaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย" style="text-align: right;">
+                                            </div>
+                            
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="WaterUnit" placeholder="หน่วยใหม่" style="text-align: right;">
+                                            </div>
+                            
+                                            <div class="col-md-1" style="text-align: right;">
+                                                <label class="form-label" id="totalwater">0</label>
+                                            </div>
+                            
+                                        </div>
+                                    </div>
+                                    
+                            
+        
+                                    <div class="row">
+                                        <div class="row col-md-12" oninput="calPrice()">
+                                            <div class="col-md-2 pt-2" style="text-align: center;">
+                                                <label class="form-label">ค่าเช่าห้อง</label>
+                                            </div>
+                                            <div class="col-md-3"></div>
+                            
+                                            <div class="col-md-3"></div>
+        
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="RoomPrice" placeholder="0" disabled style="text-align: right;">
+                                            </div>
+                                            <div class="col-md-1" style="text-align: right;">
+                                                <label class="form-label" id="totalroom">0</label>
+                                            </div>
+                            
+                                        </div>
+                                    </div>
+        
+                                    <div class="row">
+                                        <div class="row col-md-12" oninput="calPrice()">
+                                            <div class="col-md-2 pt-2" style="text-align: center;">
+                                                <label class="form-label">ค่าอื่นๆ</label>
+                                            </div>
+                                            <div class="col-md-3"></div>
+                            
+                                            <div class="col-md-3"></div>
+        
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="OtherPrice" value=0 style="text-align: right;">
+                                            </div>
+                                            <div class="col-md-1" style="text-align: right;">
+                                                <label class="form-label" id="totalmore">0</label>
+                                            </div>
+                            
+                                        </div>
+                                    </div>
+        
+                                    <div class="row">
+                                        <div class="row col-md-12">
+                                            <div class="col-md-2">
+                                                
+                                            </div>
+                                            <div class="col-md-3"></div>
+                            
+                                            <div class="col-md-3"></div>
+        
+                                            <div class="col-md-3" style="text-align: right;">
+                                                <label class="form-label">รวมทั้งสิ้น</label>
+                                            </div>
+                                            <div class="col-md-1" style="text-align: right;">
+                                                <label class="form-label" id="totalfinal">0</label>
+                                            </div>
+                            
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  data-bs-toggle="modal" data-bs-target="#editbill">แก้ไขบิล</button>
+                                        
+                                        <button type="button" class="btn btn-success" id ="saveBill">บันทึก</button>
+                                    </div>    
+                                </form>
+                                
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- END Modal Add -->
 
             </div>
           </div>
