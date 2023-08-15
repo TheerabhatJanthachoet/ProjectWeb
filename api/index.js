@@ -4,12 +4,12 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const path = require('path')
+const path = require("path");
 
 const multer = require("multer"); // นำเข้าโมดูล multer เพื่อจัดการไฟล์ที่ถูกแนบมา
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'public/uploads/'));// กำหนดตำแหน่งที่จะเก็บไฟล์รูปภาพที่แนบมา
+    cb(null, path.join(__dirname, "public/uploads/")); // กำหนดตำแหน่งที่จะเก็บไฟล์รูปภาพที่แนบมา
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname); // กำหนดชื่อไฟล์ใหม่ที่จะถูกบันทึกเก็บ
@@ -19,9 +19,9 @@ const upload = multer({ storage: storage });
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"))
+app.use(express.static("public"));
 
-app.post("/api/contact", upload.single("contactpic"), async(req, res) => {
+app.post("/api/contact", upload.single("contactpic"), async (req, res) => {
   const contact = req.body;
   // เรียกใช้ฟังก์ชัน addContact โดยแนบชื่อไฟล์รูปภาพที่อยู่ใน req.file.filename ที่เป็นส่วนของ multer
   await addContact(
@@ -42,10 +42,10 @@ app.post("/api/contact", upload.single("contactpic"), async(req, res) => {
   res.json({ message: "success" });
 });
 
-app.post("/api/checkoutcontact", async(req, res) => {
+app.post("/api/checkoutcontact", async (req, res) => {
   const checkOut = req.body;
-  console.log(checkOut)
-  await UpdateContact(checkOut.roomNumber,checkOut.checkout);
+  console.log(checkOut);
+  await UpdateContact(checkOut.roomNumber, checkOut.checkout);
   res.json({ message: "success" });
 });
 
@@ -55,7 +55,7 @@ app.get("/api/getcontact", async (req, res) => {
   res.json(JSON.stringify(contacts));
 });
 
-app.post("/api/room", async(req, res) => {
+app.post("/api/room", async (req, res) => {
   const data = req.body;
   await addRoom(
     data.roomNumber,
@@ -73,7 +73,7 @@ app.post("/api/room", async(req, res) => {
 
 app.post("/api/editroom", async (req, res) => {
   const data = req.body;
-  
+
   await updateRoom(
     data.roomNumber,
     data.roomType,
@@ -93,10 +93,18 @@ app.get("/api/room", async (req, res) => {
   res.json(JSON.stringify(rooms));
 });
 
-app.post("/api/addBill", async(req, res) => {
+app.post("/api/addBill", async (req, res) => {
   const bill = req.body;
-  
-  await addBill(bill)
+
+  await addBill(bill);
+
+  res.json(JSON.stringify(bill));
+});
+
+app.post("/api/editBill", async (req, res) => {
+  const bill = req.body;
+
+  await editBill(bill);
 
   res.json(JSON.stringify(bill));
 });
@@ -247,6 +255,43 @@ async function getBill() {
   }
 }
 
+async function editBill(bill) {
+  try {
+    await sql.connect(config);
+
+    const query = `
+    UPDATE Bill
+    SET 
+        BillMonth = '${bill.month}', 
+        BillYear = '${bill.year}', 
+        OldElecUnit = '${parseFloat(bill.oldelec)}', 
+        NowElecUnit = '${parseFloat(bill.nowelec)}', 
+        ElectricPriceperUnit = '${parseFloat(bill.elecpiceper)}', 
+        ElectricitytotalPrice = '${parseFloat(bill.electotal)}',
+        WaterUnit = '${parseFloat(bill.waterunit)}',
+        WaterPrice = '${parseFloat(bill.waterprice)}', 
+        Watertotalprice = '${parseFloat(bill.watertotal)}', 
+        Other = '${parseFloat(bill.other)}',
+        TotalPrice = '${parseFloat(bill.total)}',
+        WHERE
+        UnitID = '${bill.checkUUID}'    
+        `;
+    await sql.query(query);
+
+    const query2 = `
+        UPDATE Rooms SET 
+        ElecUnit = '${parseFloat(bill.nowelec)}'
+        WHERE RoomID = '${parseInt(bill.roomid)}'`;
+
+    await sql.query(query2);
+    console.log("บันทึกข้อมูลบิลเรียบร้อยแล้ว");
+
+    // ปิดการเชื่อมต่อ
+    sql.close();
+  } catch (error) {
+    console.error("เกิดข้อผิดพลาดในการบันทึกบิล:", error);
+  }
+}
 //เพิ่มสัญญา + แก้ไขข้อมูลห้อง//
 
 const { v4: uuidv4 } = require("uuid");
@@ -324,10 +369,7 @@ async function getContact() {
 
 async function UpdateContact(roomNumber, checkout) {
   try {
-    
-
     await sql.connect(config);
-
 
     const query1 = `
     UPDATE Contact
@@ -350,7 +392,6 @@ async function UpdateContact(roomNumber, checkout) {
 
     await sql.query(query2);
 
-
     console.log("บันทึกข้อมูลสัญญาเรียบร้อยแล้ว");
 
     // ปิดการเชื่อมต่อ
@@ -360,7 +401,7 @@ async function UpdateContact(roomNumber, checkout) {
   }
 }
 
-async function addBill(bill){
+async function addBill(bill) {
   try {
     await sql.connect(config);
     const BillID = uuidv4();
@@ -373,7 +414,7 @@ async function addBill(bill){
         '${parseFloat(bill.nowelec)}', 
         '${parseFloat(bill.elecpiceper)}', 
         '${parseFloat(bill.electotal)}',
-        '${parseInt(bill.waterunit) }',
+        '${parseInt(bill.waterunit)}',
         '${parseFloat(bill.waterprice)}', 
         '${parseFloat(bill.watertotal)}', 
         '${parseFloat(bill.other)}',
@@ -398,8 +439,5 @@ async function addBill(bill){
   } catch (error) {
     console.error("เกิดข้อผิดพลาดในการบันทึกบิล:", error);
   }
-
-
-
 }
-module.exports=app
+module.exports = app;
