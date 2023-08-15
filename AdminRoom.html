@@ -251,9 +251,24 @@
                         />
                       </div>
 
+                      <div class="mb-3">
+                        <label for="electricityUnit" class="form-label"
+                          >หน่วยไฟ</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="electricityUnit"
+                          placeholder="0"
+                          maxlength="2"
+                          required
+                        />
+                      </div>
+
                       <script>
                         // Add an input event listener to the "roomNumber" input field
                         document.getElementById("guestCount").addEventListener("input", restrictCharacters);
+                        document.getElementById("electricityUnit").addEventListener("input", restrictCharacters);
                       
                         function restrictCharacters(event) {
                           const input = event.target.value;
@@ -421,10 +436,25 @@
                         />
                       </div>
 
+                      <div class="mb-3">
+                        <label for="editelectricityUnit" class="form-label"
+                          >หน่วยไฟ</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="editelectricityUnit"
+                          placeholder="0"
+                          maxlength="2"
+                          required
+                        />
+                      </div>
+
                       <script>
                         // Add an input event listener to the "roomNumber" input field
                         document.getElementById("editguestCount").addEventListener("input", restrictCharacters);
-                      
+                        document.getElementById("editelectricityUnit").addEventListener("input", restrictCharacters);
+
                         function restrictCharacters(event) {
                           const input = event.target.value;
                           const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers

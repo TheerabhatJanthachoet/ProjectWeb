@@ -65,6 +65,7 @@ app.post("/api/room", async(req, res) => {
     data.guestName,
     data.guestLastName,
     data.guestCount,
+    data.electricityUnit,
     data.status
   );
   res.json({ message: "success" });
@@ -80,6 +81,7 @@ app.post("/api/editroom", async (req, res) => {
     data.guestName,
     data.guestLastName,
     data.guestCount,
+    data.electricityUnit,
     data.status
   );
   res.json({ message: "success" });
@@ -136,13 +138,14 @@ async function addRoom(
   guestName,
   guestLastName,
   guestCount,
+  electricityUnit,
   status
 ) {
   try {
     await sql.connect(config);
 
     const query = `
-        INSERT INTO Rooms (RoomID, RoomFloor, RoomType, RoomPrice, NameGuest, LNameGuest, RoomCount, Status)
+        INSERT INTO Rooms (RoomID, RoomFloor, RoomType, RoomPrice, NameGuest, LNameGuest, RoomCount, ElecUnit, Status)
         VALUES ('${parseInt(roomNumber)}', 
         '${parseInt(roomFloor)}', 
         '${roomType}', 
@@ -150,6 +153,7 @@ async function addRoom(
         '${guestName}', 
         '${guestLastName}', 
         '${parseInt(guestCount)}',
+        '${parseFloat(electricityUnit)}',
         '${status}')
         `;
 
@@ -171,6 +175,7 @@ async function updateRoom(
   guestName,
   guestLastName,
   guestCount,
+  electricityUnit,
   status
 ) {
   try {
@@ -183,6 +188,7 @@ async function updateRoom(
         NameGuest = '${guestName}',
         LNameGuest = '${guestLastName}',
         RoomCount = '${parseInt(guestCount)}',
+        ElecUnit = '${parseFloat(electricityUnit)}',
         Status = '${status}'
         WHERE RoomID = '${parseInt(roomNumber)}'`;
 

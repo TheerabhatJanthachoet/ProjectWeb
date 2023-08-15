@@ -9,6 +9,7 @@ document.getElementById("saveButton").addEventListener("click", async function (
   const guestName = document.getElementById("guestName").value;
   const guestLastName = document.getElementById("guestLastName").value;
   const guestCount = document.getElementById("guestCount").value;
+  const electricityUnit = document.getElementById("electricityUnit").value;
   const status = document.getElementById("status").value;
 
   const dataadd = {
@@ -19,6 +20,7 @@ document.getElementById("saveButton").addEventListener("click", async function (
     guestName: guestName,
     guestLastName: guestLastName,
     guestCount: guestCount,
+    electricityUnit: electricityUnit,
     status: status,
   }
 
@@ -37,6 +39,7 @@ async function sendroom(dataadd){
       guestName:  dataadd.guestName,
       guestLastName:  dataadd.guestLastName,
       guestCount:  dataadd.guestCount,
+      electricityUnit: dataadd.electricityUnit,
       status:  dataadd.status,
       }),
     });
@@ -57,6 +60,7 @@ document
     const guestName = document.getElementById("editguestName").value;
     const guestLastName = document.getElementById("editguestLastName").value;
     const guestCount = document.getElementById("editguestCount").value;
+    const electricityUnit = document.getElementById("editelectricityUnit").value;
     const status = document.getElementById("editstatus").value;
 
     
@@ -67,6 +71,7 @@ document
         guestName: guestName,
         guestLastName: guestLastName,
         guestCount: guestCount,
+        electricityUnit: electricityUnit,
         status: status,
       }
     
@@ -145,6 +150,7 @@ async function senddata(data){
         guestName: data.guestName,
         guestLastName: data.guestLastName,
         guestCount: data.guestCount,
+        electricityUnit: dataadd.electricityUnit,
         status: data.status,
       }),
     });
