@@ -14,6 +14,16 @@ function SelectRoomfloorOption() {
   setName()
   calPrice()
 }
+//
+
+//เลือกเฉพาะของปีนั้น
+
+function SelectYearOption() {
+  const checkyear = document.getElementById("editBillYear").value;
+  
+  setdatabill(billJson, checkyear);
+  
+}
 
 
 // Get ห้อง
@@ -99,7 +109,11 @@ function setName() {
   OtherPrice.value = 0
   calPrice()
 }
+//
 
+//แก้ไขบิล 
+
+//ปี
 function setdatabillcheck(data) {
   const edityear = data;
   
@@ -148,56 +162,58 @@ function setdatabillcheck(data) {
       optionElement.textContent = value;
       selectElement.appendChild(optionElement);
   });
+  SelectYearOption()
 }
 
-function SetMonthYear(data, year) {
-
+function setdatabill(data, checkyear){
+  const monthdata = data.filter((data) => data.BillYear == checkyear);
   
-  const editmonth = document.getElementById("editBillMonth").value;
-  const month = billJson.filter((billJson) => billJson.year == year)[0];
-  
-  while (editmonth.hasChildNodes()) {
-    editmonth.removeChild(editmonth.firstChild);
+  const getRoomnotNullfilter = document.getElementById("editBillMonth");
+ 
+  while (getRoomnotNullfilter.hasChildNodes()) {
+    getRoomnotNullfilter.removeChild(getRoomnotNullfilter.firstChild);
   }
-  month.map((month) => {
+  monthdata.map((month) => {
     // สร้างตัวเลือก
-    // GuestFirstname.appendChild(roomout)
+    // GuestFirstname.appendChild(month)
     const row = document.createElement("option");
     row.value = month.BillMonth;
     row.innerText = month.BillMonth;
-    editmonth.appendChild(row);
+    getRoomnotNullfilter.appendChild(row);
   });
-  if (editmonth.hasChildNodes()){
-    editmonth.firstChild.setAttribute("selected", true);
+  if (getRoomnotNullfilter.hasChildNodes()){
+    getRoomnotNullfilter.firstChild.setAttribute("selected", true);
   }
-    
-  // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
-  const selectElement = document.getElementById("editBillMonth");
+   // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
+   const selectElement = document.getElementById("editBillMonth");
 
-  // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
-  const uniqueValues = [];
+   // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
+   const uniqueValues = [];
+ 
+   // วิธีการกรอง
+   for (let i = 0; i < selectElement.options.length; i++) {
+       const optionValue = selectElement.options[i].value;
+ 
+       // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+       if (uniqueValues.indexOf(optionValue) === -1) {
+           uniqueValues.push(optionValue);
+       }
+   }
+ 
+   // ลบตัวเลือกทั้งหมดใน select
+   selectElement.innerHTML = "";
+ 
+   // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
+   uniqueValues.forEach(value => {
+       const optionElement = document.createElement("option");
+       optionElement.value = value;
+       optionElement.textContent = value;
+       selectElement.appendChild(optionElement);
+   });
 
-  // วิธีการกรอง
-  for (let i = 0; i < selectElement.options.length; i++) {
-      const optionValue = selectElement.options[i].value;
-
-      // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
-      if (uniqueValues.indexOf(optionValue) === -1) {
-          uniqueValues.push(optionValue);
-      }
-  }
-
-  // ลบตัวเลือกทั้งหมดใน select
-  selectElement.innerHTML = "";
-
-  // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
-  uniqueValues.forEach(value => {
-      const optionElement = document.createElement("option");
-      optionElement.value = value;
-      optionElement.textContent = value;
-      selectElement.appendChild(optionElement);
-  });
+   
 }
+//
 
 getRoom();
 getBill();
@@ -326,7 +342,3 @@ async function senddata(data){
 }
 
 
-function SelectBillYear() {
-  const getBillYear = document.getElementById("editBillYear").value;
-  SetMonthYear(billJson, getBillYear);
-}

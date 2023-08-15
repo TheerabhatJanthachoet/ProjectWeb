@@ -138,7 +138,7 @@
 
                                     <div class="col-md-2"></div>
 
-                                    <div class="col-md-3" style="text-align: right;">
+                                    <div class="col-md-2" style="text-align: right;">
                                         <label class="form-label">หน่วยเดิม</label>
                                     </div>
                                     <div class="col-md-3" style="text-align: right;">
@@ -147,7 +147,7 @@
                                     <div class="col-md-3" style="text-align: right;">
                                         <label class="form-label">ระบุหน่วย น้ำ/ไฟ (ล่าสุด)</label>
                                     </div>
-                                    <div class="col-md-1" style="text-align: right;">
+                                    <div class="col-md-2" style="text-align: right;">
                                         <label class="form-label">จำนวนเงิน(บาท)</label>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@
                             <div class="row">
                                 <div class="row col-md-12 " oninput="calPrice()">
                     
-                                    <div class="col-md-2 pt-2" style="text-align: center;">
+                                    <div class="col-md-1 pt-2" style="text-align: center;">
                                         <label class="form-label">ค่าไฟ</label>
                                     </div>
                     
@@ -173,7 +173,7 @@
                                         <input type="text" class="form-control" id="ElectricityUnit" placeholder="หน่วยใหม่" style="text-align: right;">
                                     </div>
                     
-                                    <div class="col-md-1" style="text-align: right;">
+                                    <div class="col-md-2" style="text-align: right;">
                                         <label class="form-label" id="totalElec">0</label>
                                     </div>
                     
@@ -183,7 +183,7 @@
                             <div class="row">
                                 <div class="row col-md-12" oninput="calPrice()">
                     
-                                    <div class="col-md-2 pt-2" style="text-align: center;">
+                                    <div class="col-md-1 pt-2" style="text-align: center;">
                                         <label class="form-label">ค่าน้ำ</label>
                                     </div>
                     
@@ -199,7 +199,7 @@
                                         <input type="text" class="form-control" id="WaterUnit" placeholder="หน่วยใหม่" style="text-align: right;" disabled>
                                     </div>
                     
-                                    <div class="col-md-1" style="text-align: right;">
+                                    <div class="col-md-2" style="text-align: right;">
                                         <label class="form-label" id="totalwater">0</label>
                                     </div>
                     
@@ -210,7 +210,7 @@
 
                             <div class="row">
                                 <div class="row col-md-12" oninput="calPrice()">
-                                    <div class="col-md-2 pt-2" style="text-align: center;">
+                                    <div class="col-md-1 pt-2" style="text-align: center;">
                                         <label class="form-label">ค่าเช่าห้อง</label>
                                     </div>
                                     <div class="col-md-3"></div>
@@ -220,7 +220,7 @@
                                     <div class="col-md-3">
                                         <input type="text" class="form-control" id="RoomPrice" placeholder="0" disabled style="text-align: right;">
                                     </div>
-                                    <div class="col-md-1" style="text-align: right;">
+                                    <div class="col-md-2" style="text-align: right;">
                                         <label class="form-label" id="totalroom">0</label>
                                     </div>
                     
@@ -229,7 +229,7 @@
 
                             <div class="row">
                                 <div class="row col-md-12" oninput="calPrice()">
-                                    <div class="col-md-2 pt-2" style="text-align: center;">
+                                    <div class="col-md-1 pt-2" style="text-align: center;">
                                         <label class="form-label">ค่าอื่นๆ</label>
                                     </div>
                                     <div class="col-md-3"></div>
@@ -239,7 +239,7 @@
                                     <div class="col-md-3">
                                         <input type="text" class="form-control" id="OtherPrice" value=0 style="text-align: right;">
                                     </div>
-                                    <div class="col-md-1" style="text-align: right;">
+                                    <div class="col-md-2" style="text-align: right;">
                                         <label class="form-label" id="totalmore">0</label>
                                     </div>
                     
@@ -293,8 +293,8 @@
 
                                         <div class="col-md-2">
                                             <label for="editBillYear" class="form-label">ปี</label>
-                                            <select name="dates" class="form-select" id="editBillYear" required onchange="SelectBillYear()">
-                                                
+                                            <select name="dates" class="form-select" id="editBillYear" required onchange="SelectYearOption()">
+                                                <option value=""></option>                                                
                                              </select>
                                             
                                         </div>
