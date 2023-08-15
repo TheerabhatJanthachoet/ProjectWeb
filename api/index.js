@@ -101,6 +101,12 @@ app.post("/api/addBill", async(req, res) => {
   res.json(JSON.stringify(bill));
 });
 
+app.get("/api/getbill", async (req, res) => {
+  const bills = await getBill();
+
+  res.json(JSON.stringify(bills));
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
@@ -215,6 +221,25 @@ async function getRoom() {
     return rooms;
   } catch (error) {
     console.error("เกิดข้อผิดพลาดในการดึงข้อมูลห้องพัก:", error);
+  } finally {
+    if (sql) {
+      sql.close();
+    }
+  }
+}
+
+async function getBill() {
+  try {
+    await sql.connect(config);
+
+    const query = "SELECT * FROM UnitPrice";
+
+    const result = await sql.query(query);
+    const bills = result.recordset;
+
+    return bills;
+  } catch (error) {
+    console.error("เกิดข้อผิดพลาดในการดึงข้อมูลบิล:", error);
   } finally {
     if (sql) {
       sql.close();

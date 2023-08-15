@@ -57,10 +57,17 @@
                 <div class="container p-4" style="border-radius: 1rem; background-color: white">
                     <div>
                         <form class="d-flex flex-column gap-1">
-                            <div class="row">
-                                <div class="col-md-3">
+                            <div class="row justify-content-center">
+
+                                <div class="col-md-2">
+                                    <label for="BillYear" class="form-label">ปี</label>
+                                    <select name="dates" class="form-select" id="BillYear" required></select>
+                                    <script src="Year.js"></script>
+                                </div>
+                                
+                                <div class="col-md-2">
                                     <label for="BillMonth" class="form-label">เดือน</label>
-                                    <select name="dates" class="form-select" id="BillMonth"required>
+                                    <select name="months" class="form-select" id="BillMonth"required>
                                         <option value="มกราคม">มกราคม</option>
                                         <option value="กุมภาพันธ์">กุมภาพันธ์</option>
                                         <option value="มีนาคม">มีนาคม</option>
@@ -76,11 +83,7 @@
                                     </select>
                                 </div>
                         
-                                <div class="col-md-2">
-                                    <label for="BillYear" class="form-label">ปี</label>
-                                    <select name="dates" class="form-select" id="BillYear" required></select>
-                                    <script src="Year.js"></script>
-                                </div>
+                                
                         
                             </div>
                             <br>
@@ -139,7 +142,7 @@
                                         <label class="form-label">หน่วยเดิม</label>
                                     </div>
                                     <div class="col-md-3" style="text-align: right;">
-                                        <label class="form-label">ราคาต่อหน่วย/คน</label>
+                                        <label class="form-label">ราคาต่อหน่วย</label>
                                     </div>
                                     <div class="col-md-3" style="text-align: right;">
                                         <label class="form-label">ระบุหน่วย น้ำ/ไฟ (ล่าสุด)</label>
@@ -193,7 +196,7 @@
                                     </div>
                     
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="WaterUnit" placeholder="หน่วยใหม่" style="text-align: right;">
+                                        <input type="text" class="form-control" id="WaterUnit" placeholder="หน่วยใหม่" style="text-align: right;" disabled>
                                     </div>
                     
                                     <div class="col-md-1" style="text-align: right;">
@@ -263,8 +266,8 @@
                             </div>
                             
                             <div class="d-flex justify-content-end gap-2">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  data-bs-toggle="modal" data-bs-target="#editbill">แก้ไขบิล/สถานะ</button>
-                                
+                                <button type="button" class="btn btn-warning">สถานะ</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editbill">แก้ไขบิล</button>
                                 <button type="button" class="btn btn-success" id ="saveBill">บันทึก</button>
                             </div>    
                         </form>
@@ -278,7 +281,7 @@
                             <div class="modal-header">
 
                                 <h5 class="modal-title" id="editbillModal">
-                                    เพิ่มห้องพัก
+                                    แก้ไขบิล
                                 </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -286,30 +289,22 @@
 
                             <div class="modal-body">
                                 <form class="d-flex flex-column gap-1">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <label for="BillMonth" class="form-label">เดือน</label>
-                                            <select name="dates" class="form-select" id="BillMonth"required>
-                                                <option value="มกราคม">มกราคม</option>
-                                                <option value="กุมภาพันธ์">กุมภาพันธ์</option>
-                                                <option value="มีนาคม">มีนาคม</option>
-                                                <option value="เมษายน">เมษายน</option>
-                                                <option value="พฤษภาคม">พฤษภาคม</option>
-                                                <option value="มิถุนายน">มิถุนายน</option>
-                                                <option value="กรกฎาคม">กรกฎาคม</option>
-                                                <option value="สิงหาคม">สิงหาคม</option>
-                                                <option value="กันยายน">กันยายน</option>
-                                                <option value="ตุลาคม">ตุลาคม</option>
-                                                <option value="พฤศจิกายน">พฤศจิกายน</option>
-                                                <option value="ธันวาคม">ธันวาคม</option>
+                                    <div class="row justify-content-center">
+
+                                        <div class="col-md-2">
+                                            <label for="editBillYear" class="form-label">ปี</label>
+                                            <select name="dates" class="form-select" id="editBillYear" required></select>
+                                            
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label for="editBillMonth" class="form-label">เดือน</label>
+                                            <select name="months" class="form-select" id="editBillMonth"required>
+                                                
                                             </select>
                                         </div>
                                 
-                                        <div class="col-md-2">
-                                            <label for="BillYear" class="form-label">ปี</label>
-                                            <select name="dates" class="form-select" id="BillYear" required></select>
-                                            <script src="Year.js"></script>
-                                        </div>
+                                        
                                 
                                     </div>
                                     <br>
@@ -331,27 +326,27 @@
                                             
                             
                                             <div class="col-md-1 pt-2" style="text-align: right;">
-                                                <label for="RoomNumber" class="form-label">เลขห้อง</label>
+                                                <label for="editRoomNumber" class="form-label">เลขห้อง</label>
                                             </div>
                                             
                                             <div class="col-md-1">
-                                                <select class="form-select" id="RoomNumber" required onchange="setName()" ></select>
+                                                <select class="form-select" id="editRoomNumber" required onchange="setName()" ></select>
                                             </div>
                             
                                             <div class="col-md-1 pt-2" style="text-align: right;">
-                                                <label for="GuestFirstname" class="form-label">ชื่อ</label>
+                                                <label for="editGuestFirstname" class="form-label">ชื่อ</label>
                                             </div>
                             
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="GuestFirstname" placeholder="ชื่อจริง" disabled>
+                                                <input type="text" class="form-control" id="editGuestFirstname" placeholder="ชื่อจริง" disabled>
                                             </div>
                                             
                                             <div class="col-md-1 pt-2" style="text-align: right;">
-                                                <label for="GuestLastname" class="form-label">นามสกุล</label>
+                                                <label for="editGuestLastname" class="form-label">นามสกุล</label>
                                             </div>
                             
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="GuestLastname" placeholder="นามสกุล" disabled>
+                                                <input type="text" class="form-control" id="editGuestLastname" placeholder="นามสกุล" disabled>
                                             </div>
                             
                                         </div>
@@ -368,7 +363,7 @@
                                                 <label class="form-label">หน่วยเดิม</label>
                                             </div>
                                             <div class="col-md-3" style="text-align: right;">
-                                                <label class="form-label">ราคาต่อหน่วย/คน</label>
+                                                <label class="form-label">ราคาต่อหน่วย</label>
                                             </div>
                                             <div class="col-md-3" style="text-align: right;">
                                                 <label class="form-label">ระบุหน่วย น้ำ/ไฟ (ล่าสุด)</label>
@@ -388,19 +383,19 @@
                                             </div>
                             
                                             <div class="col-md-3">
-                                                <input type="text " class="form-control" id="ElectricityPastUnit" placeholder="0" disabled style="text-align: right;">
+                                                <input type="text " class="form-control" id="editElectricityPastUnit" placeholder="0" disabled style="text-align: right;">
                                             </div>
                             
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="ElectricityPriceperUnit" placeholder="ค่าไฟต่อหน่วย" style="text-align: right;">
+                                                <input type="text" class="form-control" id="editElectricityPriceperUnit" placeholder="ค่าไฟต่อหน่วย" style="text-align: right;">
                                             </div>
                             
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="ElectricityUnit" placeholder="หน่วยใหม่" style="text-align: right;">
+                                                <input type="text" class="form-control" id="editElectricityUnit" placeholder="หน่วยใหม่" style="text-align: right;">
                                             </div>
                             
                                             <div class="col-md-1" style="text-align: right;">
-                                                <label class="form-label" id="totalElec">0</label>
+                                                <label class="form-label" id="edittotalElec">0</label>
                                             </div>
                             
                                         </div>
@@ -418,15 +413,15 @@
                                             </div>
                             
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="WaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย" style="text-align: right;">
+                                                <input type="text" class="form-control" id="editWaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย" style="text-align: right;">
                                             </div>
                             
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="WaterUnit" placeholder="หน่วยใหม่" style="text-align: right;">
+                                                <input type="text" class="form-control" id="editWaterUnit" placeholder="หน่วยใหม่" style="text-align: right;" disabled>
                                             </div>
                             
                                             <div class="col-md-1" style="text-align: right;">
-                                                <label class="form-label" id="totalwater">0</label>
+                                                <label class="form-label" id="edittotalwater">0</label>
                                             </div>
                             
                                         </div>
@@ -444,10 +439,10 @@
                                             <div class="col-md-3"></div>
         
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="RoomPrice" placeholder="0" disabled style="text-align: right;">
+                                                <input type="text" class="form-control" id="editRoomPrice" placeholder="0" disabled style="text-align: right;">
                                             </div>
                                             <div class="col-md-1" style="text-align: right;">
-                                                <label class="form-label" id="totalroom">0</label>
+                                                <label class="form-label" id="edittotalroom">0</label>
                                             </div>
                             
                                         </div>
@@ -463,10 +458,10 @@
                                             <div class="col-md-3"></div>
         
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="OtherPrice" value=0 style="text-align: right;">
+                                                <input type="text" class="form-control" id="editOtherPrice" value=0 style="text-align: right;">
                                             </div>
                                             <div class="col-md-1" style="text-align: right;">
-                                                <label class="form-label" id="totalmore">0</label>
+                                                <label class="form-label" id="edittotalmore">0</label>
                                             </div>
                             
                                         </div>
@@ -485,17 +480,19 @@
                                                 <label class="form-label">รวมทั้งสิ้น</label>
                                             </div>
                                             <div class="col-md-1" style="text-align: right;">
-                                                <label class="form-label" id="totalfinal">0</label>
+                                                <label class="form-label" id="edittotalfinal">0</label>
                                             </div>
                             
                                         </div>
                                     </div>
-                                    
-                                    <div class="d-flex justify-content-end gap-2">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  data-bs-toggle="modal" data-bs-target="#editbill">แก้ไขบิล</button>
-                                        
-                                        <button type="button" class="btn btn-success" id ="saveBill">บันทึก</button>
-                                    </div>    
+
+                                    <div class="modal-footer">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                                            
+                                            <button type="button" class="btn btn-success" id ="saveBill">บันทึก</button>
+                                        </div>    
+                                    </div>
                                 </form>
                                 
                             </div>
