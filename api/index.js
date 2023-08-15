@@ -272,9 +272,8 @@ async function editBill(bill) {
         WaterPrice = '${parseFloat(bill.waterprice)}', 
         Watertotalprice = '${parseFloat(bill.watertotal)}', 
         Other = '${parseFloat(bill.other)}',
-        TotalPrice = '${parseFloat(bill.total)}',
-        WHERE
-        UnitID = '${bill.checkUUID}'    
+        TotalPrice = '${parseFloat(bill.total)}'
+        WHERE UnitID = '${bill.checkUUID}'    
         `;
     await sql.query(query);
 
