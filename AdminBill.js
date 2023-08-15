@@ -501,7 +501,7 @@ document.getElementById("saveBill")
 
 async function senddata(data){
 
-  const response = await fetch("http://20.212.12.36:3000/api/addBill", {
+  const response = await fetch("http://20.187.73.118:3000/api/addBill", {
     headers : { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify(data)

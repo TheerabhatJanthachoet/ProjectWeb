@@ -123,7 +123,7 @@ document.getElementById("savecontact").addEventListener("click", function () {
 async function sendcontact(formData){
 
   // ส่งค่าข้อมูลที่ได้ไปยัง Backend ผ่าน API พร้อมกับรูปภาพ
-  const responsecontact =  await fetch("http://20.212.12.36:3000/api/contact", {
+  const responsecontact =  await fetch("http://20.187.73.118:3000/api/contact", {
     method: "POST",
     body: formData,
   })
@@ -135,7 +135,7 @@ async function sendcontact(formData){
 
 //แสดงออกมาในตาราง//
 async function getcontact() {
-  const res = await fetch("http://20.212.12.36:3000/api/getcontact", {
+  const res = await fetch("http://20.187.73.118:3000/api/getcontact", {
     method: "GET",
   });
   const datacontact = await res.json();
@@ -190,7 +190,7 @@ function setContact(data) {
       <td class="text-center">${CheckOutdateformat}</td>
       <td class="text-center">${contact.VehicleType}</td>
       <td class="text-center">${contact.VehicleRegis}</td>
-      <td class="text-center"><a href="${"http://20.212.12.36:3000/"+contact.ContactPicture}">${contact.ContactPicture.split("/")[1]}</a></td>    
+      <td class="text-center"><a href="${"http://20.187.73.118:3000/"+contact.ContactPicture}">${contact.ContactPicture.split("/")[1]}</a></td>    
       
       `;
     // เพิ่มแถวลงในตาราง
@@ -216,7 +216,7 @@ document.getElementById("Checkoutsave").addEventListener("click", function () {
 });
 
 async function sendcheckout(checkoutdata){
-  const responsecheckout =  await fetch("http://20.212.12.36:3000/api/checkoutcontact", {
+  const responsecheckout =  await fetch("http://20.187.73.118:3000/api/checkoutcontact", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({

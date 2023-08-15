@@ -28,7 +28,7 @@ document.getElementById("saveButton").addEventListener("click", async function (
 });
 
 async function sendroom(dataadd){
-  const response2 =  await fetch("http://20.212.12.36:3000/api/room", {
+  const response2 =  await fetch("http://20.187.73.118:3000/api/room", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({
@@ -81,7 +81,7 @@ document
   });
 
 async function getRoom() {
-  const res = await fetch("http://20.212.12.36:3000/api/room", {
+  const res = await fetch("http://20.187.73.118:3000/api/room", {
     method: "GET",
   });
   const data = await res.json();
@@ -140,7 +140,7 @@ getRoom();
 
 
 async function senddata(data){
-  const response =  await fetch("http://20.212.12.36:3000/api/editroom", {
+  const response =  await fetch("http://20.187.73.118:3000/api/editroom", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({
