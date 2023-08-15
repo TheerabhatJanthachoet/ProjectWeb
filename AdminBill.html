@@ -318,7 +318,7 @@
                                                 <label for="Floor" class="form-label">ชั้น</label>
                                             </div>
                                             <div class="col-md-1">
-                                                <select class="form-select" id="Floor" required onchange="SelectRoomfloorOption()">
+                                                <select class="form-select" id="editFloor" required onchange="setroomeditbill()">
                                                     <option value="0"></option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -328,11 +328,11 @@
                                             
                             
                                             <div class="col-md-1 pt-2" style="text-align: right;">
-                                                <label for="editRoomNumber" class="form-label">เลขห้อง</label>
+                                                <label for="editRoomNumber" class="form-label" >เลขห้อง</label>
                                             </div>
                                             
                                             <div class="col-md-1">
-                                                <select class="form-select" id="editRoomNumber" required onchange="setName()" ></select>
+                                                <select class="form-select" id="editRoomNumber" required onchange="setdataedit()" ></select>
                                             </div>
                             
                                             <div class="col-md-1 pt-2" style="text-align: right;">
@@ -378,7 +378,7 @@
                                     </div>
                             
                                     <div class="row">
-                                        <div class="row col-md-12 " oninput="calPrice()">
+                                        <div class="row col-md-12 " oninput="calPriceedit()">
                             
                                             <div class="col-md-2 pt-2" style="text-align: center;">
                                                 <label class="form-label">ค่าไฟ</label>
@@ -404,7 +404,7 @@
                                     </div>
                                     
                                     <div class="row">
-                                        <div class="row col-md-12" oninput="calPrice()">
+                                        <div class="row col-md-12" oninput="calPriceedit()">
                             
                                             <div class="col-md-2 pt-2" style="text-align: center;">
                                                 <label class="form-label">ค่าน้ำ</label>
@@ -432,7 +432,7 @@
                             
         
                                     <div class="row">
-                                        <div class="row col-md-12" oninput="calPrice()">
+                                        <div class="row col-md-12" oninput="calPriceedit()">
                                             <div class="col-md-2 pt-2" style="text-align: center;">
                                                 <label class="form-label">ค่าเช่าห้อง</label>
                                             </div>
@@ -451,7 +451,7 @@
                                     </div>
         
                                     <div class="row">
-                                        <div class="row col-md-12" oninput="calPrice()">
+                                        <div class="row col-md-12" oninput="calPriceedit()">
                                             <div class="col-md-2 pt-2" style="text-align: center;">
                                                 <label class="form-label">ค่าอื่นๆ</label>
                                             </div>
