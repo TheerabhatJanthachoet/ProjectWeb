@@ -113,8 +113,8 @@ app.listen(port, () => {
 
 // 1. สร้างการเชื่อมต่อกับฐานข้อมูล SQL ใน Azure
 const config = {
-  server: "wasinweb.database.windows.net",
-  database: "WasinWebThai",
+  server: "wasinserver.database.windows.net",
+  database: "wasinwebthai",
   authentication: {
     type: "default",
     options: {
@@ -232,7 +232,7 @@ async function getBill() {
   try {
     await sql.connect(config);
 
-    const query = "SELECT * FROM UnitPrice";
+    const query = "SELECT * FROM Bill";
 
     const result = await sql.query(query);
     const bills = result.recordset;
@@ -365,7 +365,7 @@ async function addBill(bill){
     await sql.connect(config);
     const BillID = uuidv4();
     const query = `
-        INSERT INTO UnitPrice (UnitID, BillMonth, BillYear, OldElecUnit, NowElecUnit, ElectricPriceperUnit, ElectricitytotalPrice, WaterUnit,WaterPrice,Watertotalprice,Other,TotalPrice, Billstatus,ContactID,RoomID)
+        INSERT INTO Bill (UnitID, BillMonth, BillYear, OldElecUnit, NowElecUnit, ElectricPriceperUnit, ElectricitytotalPrice, WaterUnit,WaterPrice,Watertotalprice,Other,TotalPrice, Billstatus,ContactID,RoomID)
         VALUES ('${BillID}', 
         '${bill.month}', 
         '${bill.year}', 
