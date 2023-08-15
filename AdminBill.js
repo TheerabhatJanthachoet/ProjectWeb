@@ -30,7 +30,7 @@ function SelectYearOption() {
 
 // Get ห้อง
 async function getRoom() {
-  const url = new URL("http://20.212.12.36/api/room")
+  const url = new URL("http://20.187.73.118/api/room")
   url.port = 3000 
   const res = await fetch(url, {
     method: "GET",
@@ -42,7 +42,7 @@ async function getRoom() {
 
 //Get บิล
 async function getBill() {
-  const url = new URL("http://20.212.12.36/api/getbill")
+  const url = new URL("http://20.187.73.118/api/getbill")
   url.port = 3000 
   const res = await fetch(url, {
     method: "GET",
