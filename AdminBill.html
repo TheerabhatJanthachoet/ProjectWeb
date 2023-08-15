@@ -166,11 +166,11 @@
                                     </div>
                     
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="ElectricityPriceperUnit" placeholder="ค่าไฟต่อหน่วย" style="text-align: right;">
+                                        <input type="text" class="form-control" id="ElectricityPriceperUnit" placeholder="ค่าไฟต่อหน่วย" style="text-align: right;" maxlength="4">
                                     </div>
                     
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="ElectricityUnit" placeholder="หน่วยใหม่" style="text-align: right;">
+                                        <input type="text" class="form-control" id="ElectricityUnit" placeholder="หน่วยใหม่" style="text-align: right;" maxlength="4">
                                     </div>
                     
                                     <div class="col-md-2" style="text-align: right;">
@@ -192,7 +192,7 @@
                                     </div>
                     
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="WaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย" style="text-align: right;">
+                                        <input type="text" class="form-control" id="WaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย" style="text-align: right;" maxlength="4">
                                     </div>
                     
                                     <div class="col-md-3">
@@ -237,7 +237,7 @@
                                     <div class="col-md-3"></div>
 
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" id="OtherPrice" value=0 style="text-align: right;">
+                                        <input type="text" class="form-control" id="OtherPrice" placeholder="0" style="text-align: right;" maxlength="4">
                                     </div>
                                     <div class="col-md-2" style="text-align: right;">
                                         <label class="form-label" id="totalmore">0</label>
@@ -264,6 +264,26 @@
                     
                                 </div>
                             </div>
+
+                            <script>
+                                // Add an input event listener
+                                document.getElementById("WaterPriceperUnit").addEventListener("input", restrictCharacters);
+                                document.getElementById("OtherPrice").addEventListener("input", restrictCharacters);
+                                document.getElementById("ElectricityPriceperUnit").addEventListener("input", restrictCharacters);
+                                document.getElementById("ElectricityUnit").addEventListener("input", restrictCharacters);
+
+                                function restrictCharacters(event) {
+                                  const input = event.target.value;
+                                  const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input
+                              
+                                  if (!validInput) {
+                                    // If the input contains characters other than numbers prevent
+                                    event.preventDefault();
+                                    const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                                    event.target.value = validCharacters;
+                                  }
+                                }
+                            </script>
                             
                             <div class="d-flex justify-content-end gap-2">
                                 <button type="button" class="btn btn-warning">สถานะ</button>
@@ -389,11 +409,11 @@
                                             </div>
                             
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="editElectricityPriceperUnit" placeholder="ค่าไฟต่อหน่วย" style="text-align: right;">
+                                                <input type="text" class="form-control" id="editElectricityPriceperUnit" placeholder="ค่าไฟต่อหน่วย" style="text-align: right;" maxlength="4">
                                             </div>
                             
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="editElectricityUnit" placeholder="หน่วยใหม่" style="text-align: right;">
+                                                <input type="text" class="form-control" id="editElectricityUnit" placeholder="หน่วยใหม่" style="text-align: right;" maxlength="4">
                                             </div>
                             
                                             <div class="col-md-1" style="text-align: right;">
@@ -415,7 +435,7 @@
                                             </div>
                             
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="editWaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย" style="text-align: right;">
+                                                <input type="text" class="form-control" id="editWaterPriceperUnit" placeholder="ค่าน้ำต่อหน่วย" style="text-align: right;" maxlength="4">
                                             </div>
                             
                                             <div class="col-md-3">
@@ -460,7 +480,7 @@
                                             <div class="col-md-3"></div>
         
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="editOtherPrice" value=0 style="text-align: right;">
+                                                <input type="text" class="form-control" id="editOtherPrice" placeholder="0" style="text-align: right;" maxlength="4">
                                             </div>
                                             <div class="col-md-1" style="text-align: right;">
                                                 <label class="form-label" id="edittotalmore">0</label>
@@ -495,6 +515,27 @@
                                             <button type="button" class="btn btn-success" id ="saveBill">บันทึก</button>
                                         </div>    
                                     </div>
+
+                                    <script>
+                                        // Add an input event listener
+                                        document.getElementById("editElectricityPriceperUnit").addEventListener("input", restrictCharacters);
+                                        document.getElementById("editWaterPriceperUnit").addEventListener("input", restrictCharacters);
+                                        document.getElementById("editElectricityUnit").addEventListener("input", restrictCharacters);
+                                        document.getElementById("editOtherPrice").addEventListener("input", restrictCharacters);
+
+                                        function restrictCharacters(event) {
+                                          const input = event.target.value;
+                                          const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input
+                                      
+                                          if (!validInput) {
+                                            // If the input contains characters other than numbers prevent
+                                            event.preventDefault();
+                                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                                            event.target.value = validCharacters;
+                                          }
+                                        }
+                                    </script>
+                                    
                                 </form>
                                 
                             </div>

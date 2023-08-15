@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     
     <!-- เมนู -->
-    <nav class="navbar navbar-expand-sm navbar-light fixed-top shadow p-3 mb-5 bg-body rounded" style="background-color:white ;">
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top shadow p-3 bg-body rounded" style="background-color:white ;">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold">
                 <img src="Picture/WasinLogo.png" width="40%" height="40%" class=" d-inline-block align-text-center">
@@ -49,182 +49,40 @@
     <!-- จบเมนู -->
     
     
-    <section id="Home" class="vh-100" style="background-color: #ff8c00; margin-top: 100px;">
+    <section id="Home" class="vh-100" style="background-color: #ff8c00 ;margin-top: 100px;">
         <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center h-100">
-                <div class="col col-xxl-12 h-75 " style="border-radius: 1rem; background-color: white;">
-                    <div class="row" >
-                        <div class="col-md-12 col-lg-5 " >
-                            <form class="d-flex p-2">
-                                <input class="form-control me-2" type="search" placeholder="*เลขห้อง*" aria-label="Search">
-                                <button class="btn btn-outline-warning" type="submit">ค้นหา</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-md-12 col-lg-5 " >
-                            <button class="btn btn-danger btn-lg " data-bs-toggle="modal" data-bs-target="#Bill"type="submit" >ออกบิล</button>
-                            <button class="btn btn-success btn-lg " data-bs-toggle="modal" data-bs-target="#addcontract"type="submit">ตรวจสอบการชำระ</button>
-                        </div>
-                    </div>
+          <div class="row d-flex justify-content-center h-100">
+            <div class="col col-xxl-12 p-2" >
+              <div class="h-100 text-nowrap">
+                <div class="container p-4" style="border-radius: 1rem; background-color: white">
+                    <div>
+                        <form class="d-flex flex-column gap-1">
+                            <div class="row justify-content-center">
 
-                    <!-- Modal Add -->
-                        <div class="modal fade" id="addcontract" tabindex="-1" aria-labelledby="addcontractLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="addcontractLabel">เพิ่มสัญญา</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
+                                <div class="col-md-2">
+                                    <label for="selectYear" class="form-label">ปี</label>
+                                    <select name="years" class="form-select" id="selectYear" required>
+                                        <option value=""></option>                                                
+                                     </select>
                                     
-                                    <div class="modal-body">
-                                        <form class="row g-3">
-                                            <div class="col-md-3">
-                                            <label for="Room" class="form-label">ห้อง</label>
-                                                <select class="form-select" id="Room" required>
-                                                    <option value="1">101</option>
-                                                    <option value="2">102</option>
-                                                    <option value="3">103</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <label for="ID" class="form-label">ไอดี</label>
-                                                <input type="text" class="form-control" id="ID">
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <label for="Password" class="form-label">พาสเวิร์ด</label>
-                                                <input type="text" class="form-control" id="Password" required>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <label for="ComfirmPassword" class="form-label">ยืนยันพาสเวิร์ด</label>
-                                                <input type="text" class="form-control" id="ComfirmPassword" required>
-                                            </div> 
-
-                                            
-                                            
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                                                <button type="submit" class="btn btn-success" >บันทึก</button>
-                                            </div>.
-
-                                        </form>
-                                    
-                                            
-                                    </div>
-
                                 </div>
+
+                                <div class="col-md-2">
+                                    <label for="selectMonth" class="form-label">เดือน</label>
+                                    <select name="months" class="form-select" id="selectMonth" required>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                        
                             </div>
-                        </div>
-                    <!-- Modal Add-->
-
-                    <!-- Modal Out -->
-                    <div class="modal fade" id="Bill" tabindex="-1" aria-labelledby="Bill" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="Bill">ออกบิล</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                
-                                <div class="modal-body">
-                                    <form class="row g-3">
-                                        
-                                        <div class="col-md-4">
-                                            <label for="DateBill" class="form-label">รอบเดือน</label>
-                                            <input name="dates" type="date" class="form-control" id="DateBill" required>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <label for="Room" class="form-label">ห้อง</label>
-                                            <select class="form-select" id="Room" required>
-                                                <option value="1">101</option>
-                                                <option value="2">102</option>
-                                                <option value="3">103</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label for="ElecBill" class="form-label">ค่าไฟ</label>
-                                            <input type="text" class="form-control" id="ElecBill" placeholder="40691.00" required>
-                                        </div>
-                                        
-                                        
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                                            <button type="submit" class="btn btn-success" >บันทึก</button>
-                                        </div>        
-                                    </form>
-       
-                                </div>
-
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <!-- Modal Out-->
-
-                    <div class="table-responsive-sm">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>รอบบิล</th>
-                                    <th>ห้อง</th>
-                                    <th>สถานะ</th>
-                                    <th>ผู้เข้าพัก</th>
-                                    <th>เบอร์โทรศัพท์</th>
-                                    <th>ค่าห้อง</th>
-                                    <th>ค่าไฟ</th>
-                                    <th>ค่าน้ำ</th>
-                                    <th>อื่น</th>
-                                    <th>ยอดรวม</th>
-                                    <th>หลักฐานการชำระ</th>
-                                    
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <th scope="row">22/06/2566</th>
-                                    <td>101</td>
-                                    <td>ยังไม่ชำระ</td>
-                                    <td>ธีรภัทร์</td>
-                                    <td>0927017337</td>
-                                    <td>1800</td>
-                                    <td>700</td>
-                                    <td>150</td>
-                                    <td>20</td>
-                                    <td>2670</td>
-                                    <td></td>
-
-                                </tr>
-                                
-                                <tr>
-                                    <th scope="row">22/06/2566</th>
-                                    <td>102</td>
-                                    <td>ชำระแล้ว</td>
-                                    <td>วศิน</td>
-                                    <td>0863219650</td>
-                                    <td>1800</td>
-                                    <td>1000</td>
-                                    <td>150</td>
-                                    <td>20</td>
-                                    <td>2970</td>
-                                    <td>102220666.jpg</td>                                
-                                </tr>
-                                
-                                
-                            </tbody>
-                        </table>
-                      </div>   
-                    
                 </div>
             </div>
+          </div>
         </div>
-      </section>
+    </section>
 
-
+    <script src="AdminReport.js"></script>
   </body>
 </html>
