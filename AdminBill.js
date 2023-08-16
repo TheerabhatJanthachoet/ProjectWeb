@@ -589,7 +589,7 @@ document.getElementById("saveeditBill").addEventListener("click", function () {
 });
 
 async function sendedit(data) {
-  const response = await fetch("http://localhost:3000/api/editBill", {
+  const response = await fetch("http://20.187.73.118:3000/api/editBill", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify(data),
@@ -599,3 +599,62 @@ async function sendedit(data) {
   alert("แก้ไขบิลเรียบร้อย");
   getBill();
 }
+
+
+
+
+
+// // function test(){
+// //   window.jsPDF.html(document.getElementById("Home"), {
+// //    callback: function (doc) {
+// //      doc.save();
+// //    },
+// //    x: 10,
+// //    y: 10
+// // });
+// // }
+
+// // test()
+
+// // import { font } from "./Kanit-Regular-normal.mjs";
+// // const font = new FontFace("Kanit", "url(https://fonts.googleapis.com/css2?family=Kanit&display=swap)");
+// function test() {
+//   // Create a new jsPDF instance
+//   window.jsPDF = window.jspdf.jsPDF({orientation:"landscape"});
+
+//   // html2canvas(document.getElementById("Home")).then(function (canvas) {
+//   //   const pdf = new window.jspdf.jsPDF("landscape", "mm", "a4");
+//   //   const pdfWidth = 1920;
+//   //   const pdfHeight = 297;
+    
+//   //   // Add the captured content to the PDF
+//   //   pdf.addImage(canvas, "PNG", 0, 0, pdfWidth, pdfHeight);
+    
+//   //   // Save the PDF
+//   //   pdf.save("landscape_pdf.pdf");
+//   //   });
+
+//   // add the font to jsPDF
+//   // window.jsPDF.addFileToVFS("Kanit-Regular.ttf", font);
+  
+//   // window.jsPDF.addFont("Kanit-Regular.ttf", "Kanit", "normal");
+//   // window.jsPDF.setFont("Kanit");
+
+//   // Add content to the PDF
+//   window.jsPDF.html(document.getElementById("Home"),{
+//     callback: function (doc) {
+      
+//       doc.save();
+//     },
+//     width: 297 ,
+//     windowWidth: 1920 ,
+    
+    
+//   });
+
+//   // Save the PDF
+//   // window.jsPDF.save("example.pdf");
+// };
+
+// test();
+
