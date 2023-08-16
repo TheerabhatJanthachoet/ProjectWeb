@@ -117,13 +117,16 @@ app.post("/api/statusBill", async (req, res) => {
   res.json(JSON.stringify(bill));
 });
 
-
-
-
 app.get("/api/getbill", async (req, res) => {
   const bills = await getBill();
 
   res.json(JSON.stringify(bills));
+});
+
+app.get("/api/getreport", async (req, res) => {
+  const reports = await getReport();
+
+  res.json(JSON.stringify(reports));
 });
 
 app.listen(port, () => {
@@ -322,8 +325,40 @@ async function editstatusBill(bill) {
   }
 }
 
+async function getReport() {
+  try {
+    await sql.connect(config);
+    const query = `
+    SELECT 
+      Bill.RoomID,
+      Rooms.NameGuest,
+      Rooms.LNameGuest,
+      Bill.Watertotalprice,
+      Bill.ElectricitytotalPrice,
+      Rooms.RoomPrice,
+      Bill.Other,
+      Bill.TotalPrice,
+      Bill.Billstatus,
+      Bill.BillYear,
+      Bill.BillMonth
+    FROM
+      Bill
+    JOIN
+      Rooms ON Bill.RoomID = Rooms.RoomID;
+    
+        `;
+    const result = await sql.query(query);
+    const reports = result.recordset;
 
-
+    return reports;
+  } catch (error) {
+    console.error("เกิดข้อผิดพลาดในการดึงข้อมูลบิล:", error);
+  } finally {
+    if (sql) {
+      sql.close();
+    }
+  }
+}
 
 //เพิ่มสัญญา + แก้ไขข้อมูลห้อง//
 

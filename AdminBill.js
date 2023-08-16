@@ -397,7 +397,13 @@ function setdataedit() {
     RoomPrice.value = "";
     waterUnit.value = "";
     elecold.value = "";
-
+    elecnew.value = "";
+    elecper.value = "";
+    waterper.value = "";
+    electotal.value = "";
+    watertotal.value = "";
+    roomtotal.value = "";
+    calPriceedit()
     return;
   }
 
@@ -642,6 +648,9 @@ document.getElementById("saveBill").addEventListener("click", function () {
 
 
   senddata(data);
+  room.value = "";
+  ElectricityUnit.value = "";
+
 });
 
 async function senddata(data) {
