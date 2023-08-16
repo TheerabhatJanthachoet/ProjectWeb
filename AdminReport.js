@@ -3,22 +3,20 @@ var reportJson = {};
 
 function SelectYearReport() {
     const reportYear = document.getElementById("selectYear").value;
-    const reportMonth = document.getElementById("selectMonth").value;
-    const reportFilterYear = reportJson.filter((reportJson) => reportJson.BillYear == reportYear);
-
-    while (reportMonth.hasChildNodes()) {
-        reportMonth.removeChild(reportMonth.firstChild);
+    const selectMonth = document.getElementById("selectMonth");
+    while (selectMonth.options.length > 1) {
+        selectMonth.remove(1);
     }
     
-    reportFilterYear.map((month) => {
-        // สร้างตัวเลือก
-        // GuestFirstname.appendChild(month)
-        const row = document.createElement("option");
-        row.value = month.reportYear;
-        row.innerText = month.reportYear;
-        getRoomnotNullfilter.appendChild(row);
+    const reportFilterYear = reportJson.filter((report) => report.BillYear === reportYear);
+    
+    reportFilterYear.forEach((report) => {
+        const option = document.createElement("option");
+        option.value = report.BillMonth;
+        option.text = report.BillMonth;
+        selectMonth.appendChild(option);
     });
-
+    
     setdatabill(reportJson, reportYear);
 }
 
@@ -30,6 +28,16 @@ async function getReport() {
     });
     const bill = await res.json();
     reportJson = JSON.parse(bill);
+    
+    const selectYear = document.getElementById("selectYear");
+    const years = [...new Set(reportJson.map((report) => report.BillYear))];
+    years.forEach((year) => {
+        const option = document.createElement("option");
+        option.value = year;
+        option.text = year;
+        selectYear.appendChild(option);
+    });
+    
     setdata(reportJson);
 }
 
