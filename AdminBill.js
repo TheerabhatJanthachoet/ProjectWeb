@@ -118,6 +118,7 @@ function setdatabillcheck(data) {
   const edityear = data;
 
   const getBillYear = document.getElementById("editBillYear");
+  const getstatusYear = document.getElementById("yearSelect");
 
   while (getBillYear.hasChildNodes()) {
     getBillYear.removeChild(getBillYear.firstChild);
@@ -130,16 +131,29 @@ function setdatabillcheck(data) {
     row.innerText = year.BillYear;
     getBillYear.appendChild(row);
   });
+
+  while (getstatusYear.hasChildNodes()) {
+    getstatusYear.removeChild(getstatusYear.firstChild);
+  }
+  edityear.map((year) => {
+    // สร้างตัวเลือก
+    // GuestFirstname.appendChild(roomout)
+    const row = document.createElement("option");
+    row.value = year.BillYear;
+    row.innerText = year.BillYear;
+    getstatusYear.appendChild(row);
+  });
+
   if (getBillYear.hasChildNodes()) {
     getBillYear.firstChild.setAttribute("selected", true);
   }
 
   // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
   const selectElement = document.getElementById("editBillYear");
-
+  const selectElement2 = document.getElementById("yearSelect");
   // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
   const uniqueValues = [];
-
+  const uniqueValues2 = [];
   // วิธีการกรอง
   for (let i = 0; i < selectElement.options.length; i++) {
     const optionValue = selectElement.options[i].value;
@@ -150,8 +164,18 @@ function setdatabillcheck(data) {
     }
   }
 
+  for (let i = 0; i < selectElement2.options.length; i++) {
+    const optionValue2 = selectElement2.options[i].value;
+
+    // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+    if (uniqueValues2.indexOf(optionValue2) === -1) {
+      uniqueValues2.push(optionValue2);
+    }
+  }
+
   // ลบตัวเลือกทั้งหมดใน select
   selectElement.innerHTML = "";
+  selectElement2.innerHTML = "";
 
   // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
   uniqueValues.forEach((value) => {
@@ -160,13 +184,23 @@ function setdatabillcheck(data) {
     optionElement.textContent = value;
     selectElement.appendChild(optionElement);
   });
+
+  uniqueValues2.forEach((value) => {
+    const optionElement2 = document.createElement("option");
+    optionElement2.value = value;
+    optionElement2.textContent = value;
+    selectElement2.appendChild(optionElement2);
+  });
+
   SelectYearOption();
 }
+
 
 function setdatabill(data, checkyear) {
   const monthdata = data.filter((data) => data.BillYear == checkyear);
 
   const getRoomnotNullfilter = document.getElementById("editBillMonth");
+  const getRoomnotNullfilter2 = document.getElementById("monthSelect");
 
   while (getRoomnotNullfilter.hasChildNodes()) {
     getRoomnotNullfilter.removeChild(getRoomnotNullfilter.firstChild);
@@ -182,11 +216,28 @@ function setdatabill(data, checkyear) {
   if (getRoomnotNullfilter.hasChildNodes()) {
     getRoomnotNullfilter.firstChild.setAttribute("selected", true);
   }
+
+  while (getRoomnotNullfilter2.hasChildNodes()) {
+    getRoomnotNullfilter2.removeChild(getRoomnotNullfilter2.firstChild);
+  }
+  monthdata.map((month) => {
+    // สร้างตัวเลือก
+    // GuestFirstname.appendChild(month)
+    const row = document.createElement("option");
+    row.value = month.BillMonth;
+    row.innerText = month.BillMonth;
+    getRoomnotNullfilter2.appendChild(row);
+  });
+  if (getRoomnotNullfilter2.hasChildNodes()) {
+    getRoomnotNullfilter2.firstChild.setAttribute("selected", true);
+  }
+
   // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
   const selectElement = document.getElementById("editBillMonth");
-
+  const selectElement2 = document.getElementById("monthSelect");
   // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
   const uniqueValues = [];
+  const uniqueValues2 = [];
 
   // วิธีการกรอง
   for (let i = 0; i < selectElement.options.length; i++) {
@@ -198,8 +249,17 @@ function setdatabill(data, checkyear) {
     }
   }
 
+  for (let i = 0; i < selectElement2.options.length; i++) {
+    const optionValue2 = selectElement2.options[i].value;
+
+    // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+    if (uniqueValues2.indexOf(optionValue2) === -1) {
+      uniqueValues2.push(optionValue2);
+    }
+  }
   // ลบตัวเลือกทั้งหมดใน select
   selectElement.innerHTML = "";
+  selectElement2.innerHTML = "";
 
   // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
   uniqueValues.forEach((value) => {
@@ -208,6 +268,14 @@ function setdatabill(data, checkyear) {
     optionElement.textContent = value;
     selectElement.appendChild(optionElement);
   });
+
+  uniqueValues2.forEach((value) => {
+    const optionElement2 = document.createElement("option");
+    optionElement2.value = value;
+    optionElement2.textContent = value;
+    selectElement2.appendChild(optionElement2);
+  });
+  setroomstatusbill()
 }
 //
 
@@ -220,6 +288,48 @@ function setroomeditbill() {
   setroombill(billJson, checkFloor, checkyear, checkmonth);
   setdataedit();
 }
+
+function setroomstatusbill() {
+  
+  const checkyear = document.getElementById("yearSelect").value;
+  const checkmonth = document.getElementById("monthSelect").value;
+
+  setroomstatus(billJson,checkyear, checkmonth);
+  
+}
+
+function setroomstatus(data,checkyear, checkmonth) {
+  editroombill = data.filter(
+    (data) =>
+      data.BillYear == checkyear &&
+      data.BillMonth == checkmonth );
+  // console.log(editroombill)
+  // console.log(typeof editroombill[0].RoomID)
+
+  const editroomfilter = document.getElementById("roomSelect");
+
+  while (editroomfilter.hasChildNodes()) {
+    editroomfilter.removeChild(editroomfilter.firstChild);
+  }
+
+  editroombill.map((room) => {
+    // สร้างตัวเลือก
+    // GuestFirstname.appendChild(month)
+    const row = document.createElement("option");
+    row.value = room.RoomID;
+    row.innerText = room.RoomID;
+    editroomfilter.appendChild(row);
+  });
+  if (editroomfilter.hasChildNodes()) {
+    editroomfilter.firstChild.setAttribute("selected", true);
+  }
+}
+
+
+
+
+
+
 
 function setroombill(data, checkFloor, checkyear, checkmonth) {
   editroombill = data.filter(
@@ -600,7 +710,42 @@ async function sendedit(data) {
   getBill();
 }
 
+document.getElementById("savestatus").addEventListener("click", function () {
+  const month = document.getElementById("monthSelect").value;
+  const year = document.getElementById("yearSelect").value;
+  const room = document.getElementById("roomSelect").value;
+  const status = document.getElementById("Status").value;
 
+  const checkfilter = billJson.filter(
+    (bill) =>
+      bill.RoomID == room && bill.BillYear == year && bill.BillMonth == month
+  );
+
+  const checkUUID = checkfilter[0].UnitID;
+
+
+
+  const data = {
+    billID: checkUUID,
+    status: status
+  };
+
+  sendstatus(data);
+
+});
+
+
+async function sendstatus(data) {
+  const response = await fetch("http://20.187.73.118:3000/api/statusBill", {
+    headers: { "Content-Type": "application/json" },
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+  console.log(JSON.stringify(data));
+  const json = await response.json();
+  alert("แก้ไขสเตตัสบิลเรียบร้อย");
+  getBill();
+}
 
 
 

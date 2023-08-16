@@ -288,7 +288,7 @@
                             </script>
                             
                             <div class="d-flex justify-content-end gap-2">
-                                <button type="button" class="btn btn-warning">สถานะ</button>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">สถานะ</button>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editbill">แก้ไขบิล</button>
                                 <button type="button" class="btn btn-success" id ="saveBill">บันทึก</button>
                             </div>    
@@ -546,8 +546,55 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- END Modal Add -->
+
+                <!-- Modalstatus -->
+                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="editModalLabel">แก้ไขสถานะ</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="mb-3">
+                            <label for="yearSelect" class="form-label">ปี</label>
+                            <select class="form-select" id="yearSelect">
+                              <!-- Options for years -->
+                            </select>
+                          </div>
+                          <div class="mb-3">
+                            <label for="monthSelect" class="form-label" onchange="setroomstatusbill()">เดือน</label>
+                            <select class="form-select" id="monthSelect">
+                              <!-- Options for months -->
+                            </select>
+                          </div>
+                          <div class="mb-3">
+                            <label for="roomSelect" class="form-label">เลือกห้อง</label>
+                            <select class="form-select" id="roomSelect">
+                              <!-- Options for rooms -->
+                            </select>
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label">สถานะ</label>
+                            <div class="col-md">
+                                <select class="form-select" id="Status" required >
+                                    
+                                    <option value="ยังไม่ชำระ">ยังไม่ชำระ</option>
+                                    <option value="ชำระแล้ว">ชำระแล้ว</option>
+                                </select>
+                            </div>
+                           
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                          <button type="button" class="btn btn-primary" id="savestatus">บันทึก</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Modalstatus -->
 
             </div>
           </div>

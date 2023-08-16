@@ -109,6 +109,17 @@ app.post("/api/editBill", async (req, res) => {
   res.json(JSON.stringify(bill));
 });
 
+app.post("/api/statusBill", async (req, res) => {
+  const bill = req.body;
+
+  await editstatusBill(bill);
+
+  res.json(JSON.stringify(bill));
+});
+
+
+
+
 app.get("/api/getbill", async (req, res) => {
   const bills = await getBill();
 
@@ -290,6 +301,30 @@ async function editBill(bill) {
     console.error("เกิดข้อผิดพลาดในการบันทึกบิล:", error);
   }
 }
+
+async function editstatusBill(bill) {
+  try {
+    await sql.connect(config);
+    const query = `
+    UPDATE Bill
+    SET 
+        Billstatus = '${bill.status}'
+        WHERE UnitID = '${bill.billID}'    
+        `;
+    await sql.query(query);
+
+    console.log("บันทึกข้อมูลบิลเรียบร้อยแล้ว");
+
+    // ปิดการเชื่อมต่อ
+    sql.close();
+  } catch (error) {
+    console.error("เกิดข้อผิดพลาดในการบันทึกบิล:", error);
+  }
+}
+
+
+
+
 //เพิ่มสัญญา + แก้ไขข้อมูลห้อง//
 
 const { v4: uuidv4,validate:uuidValidate} = require("uuid");
