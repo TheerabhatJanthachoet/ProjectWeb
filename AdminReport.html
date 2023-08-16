@@ -62,15 +62,15 @@
                                 <div class="col-md-2">
                                     <label for="selectYear" class="form-label">ปี</label>
                                     <select name="years" class="form-select" id="selectYear" required onchange="SelectYearReport()">
-                                        <option value=""></option>                                                
+                                        <option value="">ทั้งหมด</option>                                                
                                      </select>
                                     
                                 </div>
 
                                 <div class="col-md-2">
                                     <label for="selectMonth" class="form-label">เดือน</label>
-                                    <select name="months" class="form-select" id="selectMonth" required>
-                                        <option value=""></option>
+                                    <select name="months" class="form-select" id="selectMonth" required onchange="sortYearMonth()">
+                                        <option value="">ทั้งหมด</option>
                                     </select>
                                 </div>
                         
