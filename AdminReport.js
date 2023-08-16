@@ -1,13 +1,26 @@
 var reportJson = {};
 
 
-// function SelectYearReport() {
-//     const reportYear = document.getElementById("selectYear").value;
-  
-//     setdatabill(reportJson, reportYear);
-// }
+function SelectYearReport() {
+    const reportYear = document.getElementById("selectYear").value;
+    const reportMonth = document.getElementById("selectMonth").value;
+    const reportFilterYear = reportJson.filter((reportJson) => reportJson.BillYear == reportYear);
 
-//Get report
+    while (reportMonth.hasChildNodes()) {
+        reportMonth.removeChild(reportMonth.firstChild);
+    }
+    
+    reportFilterYear.map((month) => {
+        // สร้างตัวเลือก
+        // GuestFirstname.appendChild(month)
+        const row = document.createElement("option");
+        row.value = month.reportYear;
+        row.innerText = month.reportYear;
+        getRoomnotNullfilter.appendChild(row);
+    });
+
+    setdatabill(reportJson, reportYear);
+}
 
 async function getReport() {
     const url = new URL("http://20.187.73.118:3000/api/getreport");
