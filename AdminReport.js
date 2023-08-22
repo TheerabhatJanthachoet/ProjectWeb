@@ -53,6 +53,110 @@ function SelectYearReport() {
   
 }
 
+function setdatamonth() {
+  
+  const getyearstatus = document.getElementById("yearSelect").value;
+  
+
+  const monthdata = reportJson.filter((reportJson) => reportJson.BillYear == getyearstatus);
+
+  
+
+  const monthstatus = document.getElementById("monthSelect");
+
+  while (monthstatus.hasChildNodes()) {
+    monthstatus.removeChild(monthstatus.firstChild);
+  }
+  monthdata.map((month) => {
+    // สร้างตัวเลือก
+    // GuestFirstname.appendChild(month)
+    const row = document.createElement("option");
+    row.value = month.BillMonth;
+    row.innerText = month.BillMonth;
+    monthstatus.appendChild(row);
+  });
+  if (monthstatus.hasChildNodes()) {
+    monthstatus.firstChild.setAttribute("selected", true);
+  }
+
+  // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
+  const selectElement2 = document.getElementById("monthSelect");
+  // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
+  const uniqueValues2 = [];
+
+  // วิธีการกรอง
+  for (let i = 0; i < selectElement2.options.length; i++) {
+    const optionValue2 = selectElement2.options[i].value;
+
+    // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+    if (uniqueValues2.indexOf(optionValue2) === -1) {
+      uniqueValues2.push(optionValue2);
+    }
+  }
+  // ลบตัวเลือกทั้งหมดใน select
+  selectElement2.innerHTML = "";
+
+  // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
+  uniqueValues2.forEach((value) => {
+    const optionElement2 = document.createElement("option");
+    optionElement2.value = value;
+    optionElement2.textContent = value;
+    selectElement2.appendChild(optionElement2);
+  });
+  setroomstatus()
+}
+
+
+function setroomstatus(){
+
+  const getyearstatus = document.getElementById("yearSelect").value;
+  const monthstatus = document.getElementById("monthSelect").value;
+  const roomstatus = document.getElementById("roomSelect");
+
+  const roomdata = reportJson.filter((reportJson) => reportJson.BillYear == getyearstatus && reportJson.BillMonth == monthstatus);
+
+  while (roomstatus.hasChildNodes()) {
+    roomstatus.removeChild(roomstatus.firstChild);
+  }
+  roomdata.map((room) => {
+    // สร้างตัวเลือก
+    // GuestFirstname.appendChild(room)
+    const row = document.createElement("option");
+    row.value = room.RoomID;
+    row.innerText = room.RoomID;
+    roomstatus.appendChild(row);
+  });
+  if (roomstatus.hasChildNodes()) {
+    roomstatus.firstChild.setAttribute("selected", true);
+  }
+
+  // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
+  const selectElement2 = document.getElementById("roomSelect");
+  // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
+  const uniqueValues2 = [];
+
+  // วิธีการกรอง
+  for (let i = 0; i < selectElement2.options.length; i++) {
+    const optionValue2 = selectElement2.options[i].value;
+
+    // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+    if (uniqueValues2.indexOf(optionValue2) === -1) {
+      uniqueValues2.push(optionValue2);
+    }
+  }
+  // ลบตัวเลือกทั้งหมดใน select
+  selectElement2.innerHTML = "";
+
+  // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
+  uniqueValues2.forEach((value) => {
+    const optionElement2 = document.createElement("option");
+    optionElement2.value = value;
+    optionElement2.textContent = value;
+    selectElement2.appendChild(optionElement2);
+  });
+}
+
+
 async function getReport() {
   const url = new URL("http://20.187.73.118:3000/api/getreport");
   url.port = 3000;
@@ -70,6 +174,17 @@ async function getReport() {
     option.text = year;
     selectYear.appendChild(option);
   });
+
+  const selectYear2 = document.getElementById("yearSelect");
+  const years2 = [...new Set(reportJson.map((report) => report.BillYear))];
+  years2.forEach((year2) => {
+    const option = document.createElement("option");
+    option.value = year2;
+    option.text = year2;
+    selectYear2.appendChild(option);
+  });
+
+
 
   setdata(reportJson);
 }
@@ -124,6 +239,7 @@ function sortYearMonth() {
 function setdata(data) {
   const tableList = document.getElementById("tableList");
 
+
   data.map((report) => {
     // สร้างแถวของตาราง
 
@@ -148,3 +264,42 @@ function setdata(data) {
 }
 
 getReport();
+
+
+document.getElementById("savestatus").addEventListener("click", function () {
+  const month = document.getElementById("monthSelect").value;
+  const year = document.getElementById("yearSelect").value;
+  const room = document.getElementById("roomSelect").value;
+  const status = document.getElementById("Status").value;
+
+  const checkfilter = reportJson.filter(
+    (bill) =>
+      bill.RoomID == room && bill.BillYear == year && bill.BillMonth == month
+  );
+  
+
+  const checkUUID = checkfilter[0].UnitID;
+  
+
+
+  const data = {
+    billID: checkUUID,
+    status: status
+  };
+
+  sendstatus(data);
+
+});
+
+
+async function sendstatus(data) {
+  const response = await fetch("http://20.187.73.118:3000/api/statusBill", {
+    headers: { "Content-Type": "application/json" },
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+  console.log(JSON.stringify(data));
+  const json = await response.json();
+  alert("แก้ไขสเตตัสบิลเรียบร้อย");
+  location.reload();
+}

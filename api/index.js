@@ -330,6 +330,7 @@ async function getReport() {
     await sql.connect(config);
     const query = `
     SELECT 
+      Bill.UnitID,
       Bill.RoomID,
       Rooms.NameGuest,
       Rooms.LNameGuest,

@@ -288,7 +288,7 @@
                             </script>
                             
                             <div class="d-flex justify-content-end gap-2">
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">สถานะ</button>
+                                <!-- <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">สถานะ</button> -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editbill">แก้ไขบิล</button>
                                 <button type="button" class="btn btn-success" id ="saveBill">บันทึก</button>
                             </div>    
@@ -564,8 +564,8 @@
                             </select>
                           </div>
                           <div class="mb-3">
-                            <label for="monthSelect" class="form-label" onchange="setroomstatusbill()">เดือน</label>
-                            <select class="form-select" id="monthSelect">
+                            <label for="monthSelect" class="form-label" >เดือน</label>
+                            <select class="form-select" id="monthSelect" onchange="setroomstatus()">
                               <!-- Options for months -->
                             </select>
                           </div>
