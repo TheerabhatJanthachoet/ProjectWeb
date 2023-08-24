@@ -303,3 +303,30 @@ async function sendstatus(data) {
   alert("แก้ไขสเตตัสบิลเรียบร้อย");
   location.reload();
 }
+
+$(document).ready(function() {
+  // เรียกใช้ฟังก์ชันเมื่อคลิกที่หัวข้อเรียงข้อมูล
+  $('th.sortable').click(function() {
+    const table = $(this).parents('table').eq(0);
+    const rows = table.find('tbody tr').toArray().sort(comparator($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc) {
+      rows.reverse();
+    }
+    for (let i = 0; i < rows.length; i++) {
+      table.find('tbody').append(rows[i]);
+    }
+  });
+
+  function comparator(index) {
+    return function(a, b) {
+      const valA = getCellValue(a, index);
+      const valB = getCellValue(b, index);
+      return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+    };
+  }
+
+  function getCellValue(row, index) {
+    return $(row).children('td').eq(index).text();
+  }
+});
