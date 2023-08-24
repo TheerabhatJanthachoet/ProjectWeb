@@ -19,6 +19,16 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/mssql"></script>
+
+    <title>Sortable Table Example</title>
+    <!-- เพิ่มลิงก์ไปยังไฟล์ jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      /* เพิ่มสไตล์เพื่อเน้นหัวข้อที่เป็นหัวเรื่อง */
+      th {
+        cursor: pointer;
+      }
+    </style>
   </head>
 
   <body style="font-family: 'Kanit', sans-serif">
@@ -59,7 +69,9 @@
               <a href="Admin.html" class="nav-link">ข้อมูลผู้พัก</a>
             </li>
             <li class="nav-item nav-link">
-              <a href="AdminRoom.html" class="nav-link" style="color: #ff8c00;">ข้อมูลห้อง</a>
+              <a href="AdminRoom.html" class="nav-link" style="color: #ff8c00"
+                >ข้อมูลห้อง</a
+              >
             </li>
             <li class="nav-item nav-link">
               <a href="AdminBill.html" class="nav-link">ออกบิล</a>
@@ -76,11 +88,18 @@
     </nav>
     <!-- จบเมนู -->
 
-    <section id="Home" class="vh-100" style="background-color: #ff8c00 ;margin-top: 100px;">
+    <section
+      id="Home"
+      class="vh-100"
+      style="background-color: #ff8c00; margin-top: 100px"
+    >
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center h-100">
-          <div class="col col-xxl-12 h-75" >
-            <div class="d-flex flex-column p-4 gap-1" style="border-radius: 1rem; background-color: white">
+          <div class="col col-xxl-12 h-75">
+            <div
+              class="d-flex flex-column p-4 gap-1"
+              style="border-radius: 1rem; background-color: white"
+            >
               <div class="row">
                 <div class="col-md-12 col-lg-5">
                   <form class="d-flex p-2">
@@ -141,7 +160,9 @@
                     </div>
                     <div class="modal-body">
                       <div class="mb-3">
-                        <label for="roomNumber" class="form-label">เลขห้อง</label>
+                        <label for="roomNumber" class="form-label"
+                          >เลขห้อง</label
+                        >
                         <input
                           type="text"
                           class="form-control"
@@ -151,19 +172,24 @@
                           required
                         />
                       </div>
-                      
+
                       <script>
                         // Add an input event listener to the "roomNumber" input field
-                        document.getElementById("roomNumber").addEventListener("input", restrictCharacters);
-                      
+                        document
+                          .getElementById("roomNumber")
+                          .addEventListener("input", restrictCharacters);
+
                         function restrictCharacters(event) {
                           const input = event.target.value;
                           const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                      
+
                           if (!validInput) {
                             // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
                             event.preventDefault();
-                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            const validCharacters = input.replace(
+                              /[^0-9]/g,
+                              ""
+                            ); // Remove any characters that are not numbers
                             event.target.value = validCharacters;
                           }
                         }
@@ -190,48 +216,32 @@
 
                       <div class="mb-3">
                         <label for="price" class="form-label">ราคา</label>
-                        <input type="text" class="form-control" id="price" placeholder="1800" maxlength="4" />
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="price"
+                          placeholder="1800"
+                          maxlength="4"
+                        />
                       </div>
 
                       <script>
                         // Add an input event listener to the "roomNumber" input field
-                        document.getElementById("price").addEventListener("input", restrictCharacters);
-                      
+                        document
+                          .getElementById("price")
+                          .addEventListener("input", restrictCharacters);
+
                         function restrictCharacters(event) {
                           const input = event.target.value;
                           const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                      
+
                           if (!validInput) {
                             // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
                             event.preventDefault();
-                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
-                            event.target.value = validCharacters;
-                          }
-                        }
-                      </script>
-
-                      <div class="mb-3">
-                        <label for="guestName" class="form-label">ชื่อผู้พัก</label>
-                        <input type="text" class="form-control" id="guestName" placeholder="ชื่อจริง" maxlength="50" />
-                      </div>
-                      <div class="mb-3">
-                        <label for="guestLastName" class="form-label">นามสกุล</label>
-                        <input type="text" class="form-control" id="guestLastName" placeholder="นามสกุล" maxlength="50" />
-                      </div>
-
-                      <script>
-                        // Add input event listeners to the "guestName" and "guestLastName" input fields
-                        document.getElementById("guestName").addEventListener("input", restrictCharacters);
-                        document.getElementById("guestLastName").addEventListener("input", restrictCharacters);
-
-                        function restrictCharacters(event) {
-                          const input = event.target.value;
-                          const validInput = /^[a-zA-Zก-๙ ]*$/.test(input); // Use regex to check if the input contains only Thai characters or English letters
-
-                          if (!validInput) {
-                            // If the input contains numbers or special characters, prevent the default behavior and set the input value to the valid characters only
-                            event.preventDefault();
-                            const validCharacters = input.replace(/[^a-zA-Zก-๙ ]/g, ''); // Remove any characters that are not Thai characters or English letters
+                            const validCharacters = input.replace(
+                              /[^0-9]/g,
+                              ""
+                            ); // Remove any characters that are not numbers
                             event.target.value = validCharacters;
                           }
                         }
@@ -253,7 +263,7 @@
 
                       <div class="mb-3">
                         <label for="electricityUnit" class="form-label"
-                          >หน่วยไฟ</label
+                          >เลขที่มิเตอร์ไฟ</label
                         >
                         <input
                           type="text"
@@ -267,17 +277,24 @@
 
                       <script>
                         // Add an input event listener to the "roomNumber" input field
-                        document.getElementById("guestCount").addEventListener("input", restrictCharacters);
-                        document.getElementById("electricityUnit").addEventListener("input", restrictCharacters);
-                      
+                        document
+                          .getElementById("guestCount")
+                          .addEventListener("input", restrictCharacters);
+                        document
+                          .getElementById("electricityUnit")
+                          .addEventListener("input", restrictCharacters);
+
                         function restrictCharacters(event) {
                           const input = event.target.value;
                           const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                      
+
                           if (!validInput) {
                             // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
                             event.preventDefault();
-                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            const validCharacters = input.replace(
+                              /[^0-9]/g,
+                              ""
+                            ); // Remove any characters that are not numbers
                             event.target.value = validCharacters;
                           }
                         }
@@ -338,7 +355,9 @@
                     <div class="modal-body">
                       <!-- แก้ไขเนื้อหาภายใน Modal ตามที่ต้องการ -->
                       <div class="mb-3">
-                        <label for="editroomFloor" class="form-label">ชั้น</label>
+                        <label for="editroomFloor" class="form-label"
+                          >ชั้น</label
+                        >
                         <select
                           class="form-select"
                           id="editroomFloor"
@@ -406,8 +425,12 @@
 
                       <script>
                         // Add input event listeners to the "guestName" and "guestLastName" input fields
-                        document.getElementById("editguestName").addEventListener("input", restrictCharacters);
-                        document.getElementById("editguestLastName").addEventListener("input", restrictCharacters);
+                        document
+                          .getElementById("editguestName")
+                          .addEventListener("input", restrictCharacters);
+                        document
+                          .getElementById("editguestLastName")
+                          .addEventListener("input", restrictCharacters);
 
                         function restrictCharacters(event) {
                           const input = event.target.value;
@@ -416,7 +439,10 @@
                           if (!validInput) {
                             // If the input contains numbers or special characters, prevent the default behavior and set the input value to the valid characters only
                             event.preventDefault();
-                            const validCharacters = input.replace(/[^a-zA-Zก-๙ ]/g, ''); // Remove any characters that are not Thai characters or English letters
+                            const validCharacters = input.replace(
+                              /[^a-zA-Zก-๙ ]/g,
+                              ""
+                            ); // Remove any characters that are not Thai characters or English letters
                             event.target.value = validCharacters;
                           }
                         }
@@ -438,7 +464,7 @@
 
                       <div class="mb-3">
                         <label for="editelectricityUnit" class="form-label"
-                          >หน่วยไฟ</label
+                          >เลขเลขที่มิเตอร์ไฟ</label
                         >
                         <input
                           type="text"
@@ -452,17 +478,24 @@
 
                       <script>
                         // Add an input event listener to the "roomNumber" input field
-                        document.getElementById("editguestCount").addEventListener("input", restrictCharacters);
-                        document.getElementById("editelectricityUnit").addEventListener("input", restrictCharacters);
+                        document
+                          .getElementById("editguestCount")
+                          .addEventListener("input", restrictCharacters);
+                        document
+                          .getElementById("editelectricityUnit")
+                          .addEventListener("input", restrictCharacters);
 
                         function restrictCharacters(event) {
                           const input = event.target.value;
                           const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                      
+
                           if (!validInput) {
                             // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
                             event.preventDefault();
-                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            const validCharacters = input.replace(
+                              /[^0-9]/g,
+                              ""
+                            ); // Remove any characters that are not numbers
                             event.target.value = validCharacters;
                           }
                         }
@@ -498,23 +531,25 @@
               </div>
               <!-- END Modal Edit -->
 
-              <table id="roomList" class="table">
-                <thead>
-                  <tr>
-                    <th>เลขห้อง</th>
-                    <th>ชั้น</th>
-                    <th>ประเภทห้อง</th>
-                    <th>ราคา</th>
-                    <th>ชื่อผู้เช่า</th>
-                    <th>นามสกุลผู้เช่า</th>
-                    <th>จำนวนผู้เช่า</th>
-                    <th>สถานะ</th>
-                  </tr>
-                </thead>
-                <tbody id="tableList">
-                  <!-- แถวของตาราง -->
-                </tbody>
-              </table>
+              <div class="table-responsive overflow-auto text-nowrap">
+                <table id="roomList" class="table">
+                  <thead>
+                    <tr>
+                      <th class="sortable">เลขห้อง</th>
+                      <th class="sortable">ชั้น</th>
+                      <th class="sortable">ประเภทห้อง</th>
+                      <th class="sortable">ราคา</th>
+                      <th class="sortable">ชื่อผู้เช่า</th>
+                      <th class="sortable">นามสกุลผู้เช่า</th>
+                      <th class="sortable">จำนวนผู้เช่า</th>
+                      <th class="sortable">สถานะ</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableList">
+                    <!-- แถวของตาราง -->
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

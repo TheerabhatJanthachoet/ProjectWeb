@@ -6,8 +6,6 @@ document.getElementById("saveButton").addEventListener("click", async function (
   const roomFloor = document.getElementById("roomFloor").value;
   const roomType = document.getElementById("roomType").value;
   const price = document.getElementById("price").value;
-  const guestName = document.getElementById("guestName").value;
-  const guestLastName = document.getElementById("guestLastName").value;
   const guestCount = document.getElementById("guestCount").value;
   const electricityUnit = document.getElementById("electricityUnit").value;
   const status = document.getElementById("status").value;
@@ -17,8 +15,6 @@ document.getElementById("saveButton").addEventListener("click", async function (
     roomFloor: roomFloor,
     roomType: roomType,
     price: price,
-    guestName: guestName,
-    guestLastName: guestLastName,
     guestCount: guestCount,
     electricityUnit: electricityUnit,
     status: status,
@@ -36,8 +32,6 @@ async function sendroom(dataadd){
       roomFloor:  dataadd.roomFloor,
       roomType:  dataadd.roomType,
       price:  dataadd.price,
-      guestName:  dataadd.guestName,
-      guestLastName:  dataadd.guestLastName,
       guestCount:  dataadd.guestCount,
       electricityUnit: dataadd.electricityUnit,
       status:  dataadd.status,
@@ -157,3 +151,30 @@ async function senddata(data){
   const json = await response.json()  
   location.reload()
 }
+
+$(document).ready(function() {
+  // เรียกใช้ฟังก์ชันเมื่อคลิกที่หัวข้อเรียงข้อมูล
+  $('th.sortable').click(function() {
+    const table = $(this).parents('table').eq(0);
+    const rows = table.find('tbody tr').toArray().sort(comparator($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc) {
+      rows.reverse();
+    }
+    for (let i = 0; i < rows.length; i++) {
+      table.find('tbody').append(rows[i]);
+    }
+  });
+
+  function comparator(index) {
+    return function(a, b) {
+      const valA = getCellValue(a, index);
+      const valB = getCellValue(b, index);
+      return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+    };
+  }
+
+  function getCellValue(row, index) {
+    return $(row).children('td').eq(index).text();
+  }
+});

@@ -18,6 +18,13 @@
       href="https://fonts.googleapis.com/css2?family=Kanit&display=swap"
       rel="stylesheet"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* เพิ่มสไตล์เพื่อเน้นหัวข้อที่เป็นหัวเรื่อง */
+    th.sortable {
+      cursor: pointer;
+    }
+  </style>
   </head>
   <body style="font-family: 'Kanit', sans-serif">
     <script
@@ -54,7 +61,9 @@
         >
           <ul class="nav navbar-nav fw-bolder fs-5">
             <li class="nav-item nav-link">
-              <a href="Admin.html" class="nav-link" style="color: #ff8c00;">ข้อมูลผู้พัก</a>
+              <a href="Admin.html" class="nav-link" style="color: #ff8c00"
+                >ข้อมูลผู้พัก</a
+              >
             </li>
             <li class="nav-item nav-link">
               <a href="AdminRoom.html" class="nav-link">ข้อมูลห้อง</a>
@@ -74,15 +83,22 @@
     </nav>
     <!-- จบเมนู -->
 
-    <section id="Home" class="vh-100" style="background-color: #ff8c00 ;margin-top: 100px;">
-      <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center h-100">
-          <div class="" >
-            <div style="border-radius: 1rem; background-color: white" class="d-flex flex-column gap-3 p-4">
-              <div class="" >
-              <div class="row h-50">
-                <div class="col-md-12 col-lg-5">
-                  <form class="d-flex p-2">
+    <section
+      id="Home"
+      class="vh-100"
+      style="background-color: #ff8c00; margin-top: 100px"
+    >
+      <div class="py-5 p-5">
+        <div class="row d-flex justify-content-center">
+          <div class="">
+            <div
+              style="border-radius: 1rem; background-color: white"
+              class="d-flex flex-column gap-3 p-4"
+            >
+              <div class="">
+                <div class="row h-50">
+                  <div class="col-md-12 col-lg-5">
+                    <!-- <form class="d-flex p-2">
                     <input class="form-control me-2"
                       type="search"
                       placeholder="*เลขสัญญา*"
@@ -91,53 +107,52 @@
                     <button class="btn btn-outline-warning" type="submit">
                       ค้นหา
                     </button>
-                  </form>
+                  </form> -->
+                  </div>
                 </div>
-              </div>
-              <div class="row h-50">
-                <div class="col-md-12 col-lg-5">
-                  <button
-                    class="btn btn-danger btn-lg"
-                    data-bs-toggle="modal"
-                    data-bs-target="#checkoutcontract"
-                    type="submit"
-                  >
-                    แจ้งย้ายออก
-                  </button>
-                  <button
-                    class="btn btn-success btn-lg"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addcontract"
-                    type="submit"
-                  >
-                    เพิ่มสัญญา
-                  </button>
+                <div class="row h-50">
+                  <div class="col-md-12 col-lg-5">
+                    <button
+                      class="btn btn-danger btn-lg"
+                      data-bs-toggle="modal"
+                      data-bs-target="#checkoutcontract"
+                      type="submit"
+                    >
+                      แจ้งย้ายออก
+                    </button>
+                    <button
+                      class="btn btn-success btn-lg"
+                      data-bs-toggle="modal"
+                      data-bs-target="#addcontract"
+                      type="submit"
+                    >
+                      เพิ่มสัญญา
+                    </button>
+                  </div>
                 </div>
-              </div>
               </div>
               <div class="table-responsive overflow-auto text-nowrap">
-                <table class="table">
+                <table id="tableList" class="table">
                   <thead>
                     <tr>
-                      <th class="text-center">ห้อง</th>
-                      <th class="text-center">ชื่อ</th>
-                      <th class="text-center">นามสกุล</th>
-                      <th class="text-center">จำนวนผู้เข้าพัก</th>
-                      <th class="text-center">เบอร์โทร</th>
-                      <th class="text-center">ว/ด/ป เกิด</th>
-                      <th class="text-center">เลขบัตรประชาชน</th>
-                      <th class="text-center">ที่อยู่</th>
-                      <th class="text-center">วันที่ทำสัญญา</th>
-                      <th class="text-center">เช็คอิน</th>
-                      <th class="text-center">เช็คเอาท์</th>
-                      <th class="text-center">ยานพหนะ</th>
-                      <th class="text-center">ทะเบียน</th>
-                      <th class="text-center">ใบสัญญา</th>
+                      <th class="text-center sortable">ห้อง</th>
+                      <th class="text-center sortable">ชื่อ</th>
+                      <th class="text-center sortable">นามสกุล</th>
+                      <th class="text-center sortable">จำนวนผู้เข้าพัก</th>
+                      <th class="text-center sortable">เบอร์โทร</th>
+                      <th class="text-center sortable">ว/ด/ป เกิด</th>
+                      <th class="text-center sortable">เลขบัตรประชาชน</th>
+                      <th class="text-center sortable">ที่อยู่</th>
+                      <th class="text-center sortable">วันที่ทำสัญญา</th>
+                      <th class="text-center sortable">เช็คอิน</th>
+                      <th class="text-center sortable">เช็คเอาท์</th>
+                      <th class="text-center sortable">ยานพหนะ</th>
+                      <th class="text-center sortable">ทะเบียน</th>
+                      <th class="text-center sortable">ใบสัญญา</th>
                     </tr>
                   </thead>
-
-                  <tbody id="tableList">
-                      
+                  <tbody id="tableListBody">
+                    <!-- ข้อมูลแถวตามต้องการ -->
                   </tbody>
                 </table>
               </div>
@@ -176,7 +191,9 @@
                       </div>
 
                       <div class="col-md-4">
-                        <label for="GuestFirstname" class="form-label">ชื่อ</label>
+                        <label for="GuestFirstname" class="form-label"
+                          >ชื่อ</label
+                        >
                         <input
                           type="text"
                           class="form-control"
@@ -186,7 +203,7 @@
                           required
                         />
                       </div>
-                      
+
                       <div class="col-md-4">
                         <label for="Lastname" class="form-label">นามสกุล</label>
                         <input
@@ -198,27 +215,36 @@
                           required
                         />
                       </div>
-                      
+
                       <script>
                         // Add input event listeners to the "GuestFirstname" and "Lastname" input fields
-                        document.getElementById("GuestFirstname").addEventListener("input", restrictSpecialCharacters);
-                        document.getElementById("Lastname").addEventListener("input", restrictSpecialCharacters);
-                      
+                        document
+                          .getElementById("GuestFirstname")
+                          .addEventListener("input", restrictSpecialCharacters);
+                        document
+                          .getElementById("Lastname")
+                          .addEventListener("input", restrictSpecialCharacters);
+
                         function restrictSpecialCharacters(event) {
                           const input = event.target.value;
                           const validInput = /^[a-zA-Zก-๙ ]*$/.test(input); // Use regex to check if the input contains only letters and spaces (including Thai characters)
-                      
+
                           if (!validInput) {
                             // If the input contains numbers or special characters, prevent the default behavior and set the input value to the valid characters only
                             event.preventDefault();
-                            const validCharacters = input.replace(/[^a-zA-Zก-๙ ]/g, ''); // Remove any characters that are not letters or spaces
+                            const validCharacters = input.replace(
+                              /[^a-zA-Zก-๙ ]/g,
+                              ""
+                            ); // Remove any characters that are not letters or spaces
                             event.target.value = validCharacters;
                           }
                         }
                       </script>
 
                       <div class="col-md-3">
-                        <label for="Amount" class="form-label">จำนวนผู้พัก</label>
+                        <label for="Amount" class="form-label"
+                          >จำนวนผู้พัก</label
+                        >
                         <input
                           type="text"
                           class="form-control"
@@ -231,20 +257,25 @@
 
                       <script>
                         // Add an input event listener to the "Amount" input field
-                        document.getElementById("Amount").addEventListener("input", function (event) {
-                          const input = event.target.value;
-                          const validNumber = /^[1-9]$/.test(input); // Use regex to check if the input is a number between 1 and 9
+                        document
+                          .getElementById("Amount")
+                          .addEventListener("input", function (event) {
+                            const input = event.target.value;
+                            const validNumber = /^[1-9]$/.test(input); // Use regex to check if the input is a number between 1 and 9
 
-                          if (!validNumber) {
-                            // If the input is not a valid number (1-9), prevent the default behavior and set the input value to the nearest valid value (either 1 or 9)
-                            event.preventDefault();
-                            event.target.value = Math.max(1, Math.min(9, parseInt(input))) || ''; // Use Math.min and Math.max to limit the value to the desired range
-                          }
-                        });
+                            if (!validNumber) {
+                              // If the input is not a valid number (1-9), prevent the default behavior and set the input value to the nearest valid value (either 1 or 9)
+                              event.preventDefault();
+                              event.target.value =
+                                Math.max(1, Math.min(9, parseInt(input))) || ""; // Use Math.min and Math.max to limit the value to the desired range
+                            }
+                          });
                       </script>
 
                       <div class="col-md-4">
-                        <label for="Phone" class="form-label">เบอร์โทรศัพท์</label>
+                        <label for="Phone" class="form-label"
+                          >เบอร์โทรศัพท์</label
+                        >
                         <input
                           type="text"
                           class="form-control"
@@ -255,10 +286,11 @@
                         />
                       </div>
 
-
                       <script>
                         // Add an input event listener to the "Phone" input field
-                        document.getElementById("Phone").addEventListener("input", restrictCharacters);
+                        document
+                          .getElementById("Phone")
+                          .addEventListener("input", restrictCharacters);
 
                         function restrictCharacters(event) {
                           const input = event.target.value;
@@ -267,7 +299,10 @@
                           if (!validInput) {
                             // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
                             event.preventDefault();
-                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            const validCharacters = input.replace(
+                              /[^0-9]/g,
+                              ""
+                            ); // Remove any characters that are not numbers
                             event.target.value = validCharacters;
                           }
                         }
@@ -285,7 +320,9 @@
                       </div>
 
                       <div class="col-md-5">
-                        <label for="IDcard" class="form-label">เลขบัตรประชาชน</label>
+                        <label for="IDcard" class="form-label"
+                          >เลขบัตรประชาชน</label
+                        >
                         <input
                           type="text"
                           class="form-control"
@@ -295,19 +332,24 @@
                           required
                         />
                       </div>
-                      
+
                       <script>
                         // Add an input event listener to the "IDcard" input field
-                        document.getElementById("IDcard").addEventListener("input", restrictCharacters);
-                      
+                        document
+                          .getElementById("IDcard")
+                          .addEventListener("input", restrictCharacters);
+
                         function restrictCharacters(event) {
                           const input = event.target.value;
                           const validInput = /^[0-9]*$/.test(input); // Use regex to check if the input contains only numbers
-                      
+
                           if (!validInput) {
                             // If the input contains characters other than numbers, prevent the default behavior and set the input value to the valid characters only
                             event.preventDefault();
-                            const validCharacters = input.replace(/[^0-9]/g, ''); // Remove any characters that are not numbers
+                            const validCharacters = input.replace(
+                              /[^0-9]/g,
+                              ""
+                            ); // Remove any characters that are not numbers
                             event.target.value = validCharacters;
                           }
                         }
@@ -361,15 +403,23 @@
 
                       <div class="col-md-4">
                         <label for="CarID" class="form-label">ทะเบียน</label>
-                        <input type="text" class="form-control" id="CarID" maxlength="10" placeholder="ป้ายทะเบียน" />
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="CarID"
+                          maxlength="10"
+                          placeholder="ป้ายทะเบียน"
+                        />
                       </div>
 
                       <div class="mb-3">
-                        <label for="contactpic" class="form-label">ใบสัญญา</label>
+                        <label for="contactpic" class="form-label"
+                          >ใบสัญญา</label
+                        >
                         <input
                           class="form-control"
                           type="file"
-                          id="contactpic" 
+                          id="contactpic"
                           required
                         />
                       </div>
@@ -420,9 +470,10 @@
 
                   <div class="modal-body">
                     <form class="row g-3">
-
                       <div class="col-md-4">
-                        <label for="checkoutFloor" class="form-label">ชั้น</label>
+                        <label for="checkoutFloor" class="form-label"
+                          >ชั้น</label
+                        >
                         <select
                           class="form-select"
                           id="checkoutFloor"
@@ -436,8 +487,14 @@
                       </div>
 
                       <div class="col-md-4">
-                        <label for="Roomcheckout" class="form-label">ห้อง</label>
-                        <select class="form-select" id="Roomcheckout" required></select>
+                        <label for="Roomcheckout" class="form-label"
+                          >ห้อง</label
+                        >
+                        <select
+                          class="form-select"
+                          id="Roomcheckout"
+                          required
+                        ></select>
                       </div>
 
                       <div class="col-md-4">
@@ -460,7 +517,11 @@
                         >
                           ยกเลิก
                         </button>
-                        <button type="button" class="btn btn-success" id="Checkoutsave">
+                        <button
+                          type="button"
+                          class="btn btn-success"
+                          id="Checkoutsave"
+                        >
                           บันทึก
                         </button>
                       </div>
@@ -470,12 +531,10 @@
               </div>
             </div>
             <!-- Modal Out-->
-
           </div>
         </div>
       </div>
     </section>
-
     <script src="Admin.js"></script>
   </body>
 </html>

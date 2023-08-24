@@ -163,8 +163,6 @@ async function addRoom(
   roomFloor,
   roomType,
   price,
-  guestName,
-  guestLastName,
   guestCount,
   electricityUnit,
   status
@@ -173,13 +171,11 @@ async function addRoom(
     await sql.connect(config);
 
     const query = `
-        INSERT INTO Rooms (RoomID, RoomFloor, RoomType, RoomPrice, NameGuest, LNameGuest, RoomCount, ElecUnit, Status)
+        INSERT INTO Rooms (RoomID, RoomFloor, RoomType, RoomPrice, RoomCount, ElecUnit, Status)
         VALUES ('${parseInt(roomNumber)}', 
         '${parseInt(roomFloor)}', 
         '${roomType}', 
         '${parseFloat(price)}', 
-        '${guestName}', 
-        '${guestLastName}', 
         '${parseInt(guestCount)}',
         '${parseFloat(electricityUnit)}',
         '${status}')
