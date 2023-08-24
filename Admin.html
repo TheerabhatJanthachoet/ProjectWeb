@@ -12,6 +12,7 @@
     />
     <link href="index.css" rel="stylesheet" />
     <link href="Login.html" />
+    <link href="bootstrap-datepicker.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,12 +20,13 @@
       rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <style>
-    /* เพิ่มสไตล์เพื่อเน้นหัวข้อที่เป็นหัวเรื่อง */
-    th.sortable {
-      cursor: pointer;
-    }
-  </style>
+    <style>
+      /* เพิ่มสไตล์เพื่อเน้นหัวข้อที่เป็นหัวเรื่อง */
+      th.sortable {
+        cursor: pointer;
+      }
+    </style>
+    <link href="jquery-ui.css" rel="stylesheet" />
   </head>
   <body style="font-family: 'Kanit', sans-serif">
     <script
@@ -132,7 +134,7 @@
                 </div>
               </div>
               <div class="table-responsive overflow-auto text-nowrap">
-                <table id="tableList" class="table">
+                <table id="tableList" class="table table-striped">
                   <thead>
                     <tr>
                       <th class="text-center sortable">ห้อง</th>
@@ -144,8 +146,9 @@
                       <th class="text-center sortable">เลขบัตรประชาชน</th>
                       <th class="text-center sortable">ที่อยู่</th>
                       <th class="text-center sortable">วันที่ทำสัญญา</th>
-                      <th class="text-center sortable">เช็คอิน</th>
-                      <th class="text-center sortable">เช็คเอาท์</th>
+                      <th class="text-center sortable">เวลาสัญญาที่เหลือ</th>
+                      <th class="text-center sortable">วันที่เข้าพัก</th>
+                      <th class="text-center sortable">วันที่ย้ายออก</th>
                       <th class="text-center sortable">ยานพหนะ</th>
                       <th class="text-center sortable">ทะเบียน</th>
                       <th class="text-center sortable">ใบสัญญา</th>
@@ -308,14 +311,15 @@
                         }
                       </script>
 
-                      <div class="col-md-4">
+                      <div id="datepicker" class="date col-md-4">
                         <label for="DobDate" class="form-label">วันเกิด</label>
                         <input
-                          name="dates"
-                          type="date"
+                          type="text" id="DobDate"
+                          data-provide="datepicker"
+                          data-date-format="dd/mm/yyyy"
+                          data-date-autoclose="true"
                           class="form-control"
-                          id="DobDate"
-                          required
+                          placeholder="dd/mm/yyyy"
                         />
                       </div>
 
@@ -372,44 +376,53 @@
                         >
                         <input
                           name="dates"
-                          type="date"
+                          type="text"
                           class="form-control"
                           id="Contactdate"
+                          data-provide="datepicker"
+                          data-date-format="dd/mm/yyyy"
+                          data-date-autoclose="true"
+                          placeholder="dd/mm/yyyy"
                           required
                         />
                       </div>
 
-                      <div class="col-md-4">
+                      <div id="datepicker" class="col-md-4">
                         <label for="Checkin" class="form-label">เช็คอิน</label>
                         <input
                           name="dates"
-                          type="date"
+                          type="text"
                           class="form-control"
                           id="Checkin"
+                          data-provide="datepicker"
+                          data-date-format="dd/mm/yyyy"
+                          data-date-autoclose="true"
+                          placeholder="dd/mm/yyyy"
                           required
                         />
                       </div>
+                      <div class="row p-3">
+                        <div class="col-md-4">
+                          <label for="CarType" class="form-label"
+                            >ประเภทยานพาหนะ</label
+                          >
+                          <select class="form-select" id="CarType">
+                            <option value="-">-</option>
+                            <option value="รถยนต์">รถยนต์</option>
+                            <option value="จักรยานยนต์">จักรยานยนต์</option>
+                          </select>
+                        </div>
 
-                      <div class="col-md-4">
-                        <label for="CarType" class="form-label"
-                          >ประเภทยานพาหนะ</label
-                        >
-                        <select class="form-select" id="CarType">
-                          <option value="-">-</option>
-                          <option value="รถยนต์">รถยนต์</option>
-                          <option value="จักรยานยนต์">จักรยานยนต์</option>
-                        </select>
-                      </div>
-
-                      <div class="col-md-4">
-                        <label for="CarID" class="form-label">ทะเบียน</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="CarID"
-                          maxlength="10"
-                          placeholder="ป้ายทะเบียน"
-                        />
+                        <div class="col-md-4">
+                          <label for="CarID" class="form-label">ทะเบียน</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="CarID"
+                            maxlength="10"
+                            placeholder="ป้ายทะเบียน"
+                          />
+                        </div>
                       </div>
 
                       <div class="mb-3">
@@ -420,6 +433,7 @@
                           class="form-control"
                           type="file"
                           id="contactpic"
+                          accept=".pdf"
                           required
                         />
                       </div>
@@ -535,6 +549,8 @@
         </div>
       </div>
     </section>
+    
+    <script src="bootstrap-datepicker.js"></script>
     <script src="Admin.js"></script>
   </body>
 </html>

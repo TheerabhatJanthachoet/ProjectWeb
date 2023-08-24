@@ -71,22 +71,57 @@ document.getElementById("savecontact").addEventListener("click", function () {
   const guestCount = document.getElementById("Amount").value;
   const phone = document.getElementById("Phone").value;
   const dobdate = document.getElementById("DobDate").value;
+  const dobsplit = dobdate.split("/");
+  var dobformat = ""
+
+  for(let i = dobsplit.length-1; i >=0 ; i-- ){
+    dobformat+= dobsplit[i] + "-"
+
+  }
+  dobformat = dobformat.slice(0,dobformat.length-1)
+
+
+  
   const idcard = document.getElementById("IDcard").value;
   const address = document.getElementById("Address").value;
   const contactdate = document.getElementById("Contactdate").value;
+  const contactsplit = dobdate.split("/");
+  var contactformat = ""
+
+  for(let i = contactsplit.length-1; i >=0 ; i-- ){
+    contactformat+= contactsplit[i] + "-"
+
+  }
+  contactformat = contactformat.slice(0,contactformat.length-1)
+  
   const checkin = document.getElementById("Checkin").value;
+  const checkinsplite = checkin.split("/")
+  
+  var checkinformat = ""
+
+  for(let i = checkinsplite.length-1; i >=0 ; i-- ){
+    checkinformat+= checkinsplite[i] + "-"
+
+  }
+  checkinformat = checkinformat.slice(0,checkinformat.length-1)
+
   const cartype = document.getElementById("CarType").value;
   const carid = document.getElementById("CarID").value;
   const contactpicInput = document.getElementById("contactpic");
   const contactpicFile = contactpicInput.files[0]; // เลือกไฟล์ที่ผู้ใช้เลือก (แนบมา)
   //เช็คว่ากรอกครบหรือยัง ไม่มีทะเบียนรถเพราะถ้าไม่มีรถไม่ต้องใส่
+
+
+  console.log(dobformat);
+  
+
   if (
     !roomNumber ||
     !guestName ||
     !guestLastName ||
     !guestCount ||
     !phone ||
-    !dobdate ||
+    !dobformat ||
     !idcard ||
     !address ||
     !contactdate ||
@@ -107,11 +142,11 @@ document.getElementById("savecontact").addEventListener("click", function () {
   formData.append("guestLastName", guestLastName);
   formData.append("guestCount", guestCount);
   formData.append("phone", phone);
-  formData.append("dobdate", dobdate);
+  formData.append("dobdate", dobformat);
   formData.append("idcard", idcard);
   formData.append("address", address);
-  formData.append("contactdate", contactdate);
-  formData.append("checkin", checkin);
+  formData.append("contactdate", contactformat);
+  formData.append("checkin", checkinformat);
   formData.append("cartype", cartype);
   formData.append("carid", carid);
   formData.append("contactpic", contactpicFile); // แนบไฟล์รูปภาพ
@@ -148,7 +183,7 @@ function setContact(data) {
 
   data.map((contact) => {
     // สร้างแถวของตาราง
-    console.log(contact.Guestdob)
+    
     const row = document.createElement("tr");
     const dobdate = new Date(contact.Guestdob);
     const dobdateformat = dobdate.toLocaleString("en-GB", {
@@ -173,7 +208,13 @@ function setContact(data) {
         dateStyle: "short",
       });  
     }
-    console.log(contact.ContactPicture)
+    
+
+    const nowdate = new Date()
+    const mildate = contactdate.getTime()
+    const milnow = nowdate.getTime()
+    const difTime = (mildate + 15778800000) - milnow 
+    const diftotal = Math.floor((((difTime / 1000) / 60**2) / 24) / 30)
 
     
     row.innerHTML = `
@@ -186,6 +227,7 @@ function setContact(data) {
       <td class="text-center">${contact.IDCard}</td>
       <td class="text-center">${contact.GuestAddress}</td>
       <td class="text-center">${contactdateformat}</td>
+      <td class="text-center">${diftotal + " เดือน"}</td>
       <td class="text-center">${CheckIndateformat}</td>
       <td class="text-center">${CheckOutdateformat}</td>
       <td class="text-center">${contact.VehicleType}</td>
