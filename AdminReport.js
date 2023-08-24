@@ -1,5 +1,10 @@
 var reportJson = {};
 
+function openBillForm() {
+  window.open("bill.html", "_blank");
+}
+
+
 function SelectYearReport() {
   const reportYear = document.getElementById("selectYear").value;
   const selectMonth = document.getElementById("selectMonth");
