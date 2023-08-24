@@ -225,14 +225,14 @@ function setContact(data) {
       <td class="text-center">${contact.GuestTel}</td>
       <td class="text-center">${dobdateformat}</td>
       <td class="text-center">${contact.IDCard}</td>
-      <td class="text-center">${contact.GuestAddress}</td>
+      <td class="text-left">${contact.GuestAddress}</td>
       <td class="text-center">${contactdateformat}</td>
       <td class="text-center">${diftotal + " เดือน"}</td>
       <td class="text-center">${CheckIndateformat}</td>
       <td class="text-center">${CheckOutdateformat}</td>
       <td class="text-center">${contact.VehicleType}</td>
       <td class="text-center">${contact.VehicleRegis}</td>
-      <td class="text-center"><a href="${"http://20.187.73.118:3000/"+contact.ContactPicture}">${contact.ContactPicture.split("/")[1]}</a></td>    
+      <td class="text-left"><a href="${"http://20.187.73.118:3000/"+contact.ContactPicture}">${contact.ContactPicture.split("/")[1]}</a></td>    
       
       `;
     // เพิ่มแถวลงในตาราง
