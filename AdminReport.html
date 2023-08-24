@@ -10,6 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+    <title>Sortable Table Example</title>
+    <!-- เพิ่มลิงก์ไปยังไฟล์ jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      /* เพิ่มสไตล์เพื่อเน้นหัวข้อที่เป็นหัวเรื่อง */
+      th {
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body style="font-family: 'Kanit', sans-serif;">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -130,20 +139,20 @@
 
                             
                             <div class="table-responsive overflow-auto text-nowrap">
-                                <table class="table">
+                                <table id="BillList" class="table table-striped">
                                   <thead>
                                     <tr>
-                                      <th class="text-center">ห้อง</th>
-                                      <th class="text-center">ปี</th>
-                                      <th class="text-center">เดือน</th>
-                                      <th class="text-center">ชื่อ</th>
-                                      <th class="text-center">นามสกุล</th>
-                                      <th class="text-center">ค่าน้ำ</th>
-                                      <th class="text-center">ค่าไฟ</th>
-                                      <th class="text-center">ค่าเช่า</th>
-                                      <th class="text-center">อื่นๆ</th>
-                                      <th class="text-center">รวม</th>
-                                      <th class="text-center">สถานะ</th>
+                                      <th class="text-center sortable">ห้อง</th>
+                                      <th class="text-center sortable">ปี</th>
+                                      <th class="text-center sortable">เดือน</th>
+                                      <th class="text-center sortable">ชื่อ</th>
+                                      <th class="text-center sortable">นามสกุล</th>
+                                      <th class="text-center sortable">ค่าน้ำ</th>
+                                      <th class="text-center sortable">ค่าไฟ</th>
+                                      <th class="text-center sortable">ค่าเช่า</th>
+                                      <th class="text-center sortable">อื่นๆ</th>
+                                      <th class="text-center sortable">รวม</th>
+                                      <th class="text-center sortable">สถานะ</th>
                                       
                                     </tr>
                                   </thead>
