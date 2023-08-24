@@ -24,7 +24,7 @@ document.getElementById("saveButton").addEventListener("click", async function (
 });
 
 async function sendroom(dataadd){
-  const response2 =  await fetch("http://20.187.73.118:3000/api/room", {
+  const response2 =  await fetch("http://localhost:3000/api/room", {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({

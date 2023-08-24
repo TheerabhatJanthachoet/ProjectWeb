@@ -62,8 +62,6 @@ app.post("/api/room", async (req, res) => {
     data.roomFloor,
     data.roomType,
     data.price,
-    data.guestName,
-    data.guestLastName,
     data.guestCount,
     data.electricityUnit,
     data.status
@@ -171,11 +169,13 @@ async function addRoom(
     await sql.connect(config);
 
     const query = `
-        INSERT INTO Rooms (RoomID, RoomFloor, RoomType, RoomPrice, RoomCount, ElecUnit, Status)
+        INSERT INTO Rooms (RoomID, RoomFloor, RoomType, RoomPrice, NameGuest, LNameGuest, RoomCount, ElecUnit, Status)
         VALUES ('${parseInt(roomNumber)}', 
         '${parseInt(roomFloor)}', 
         '${roomType}', 
-        '${parseFloat(price)}', 
+        '${parseFloat(price)}',
+        '',
+        '', 
         '${parseInt(guestCount)}',
         '${parseFloat(electricityUnit)}',
         '${status}')
