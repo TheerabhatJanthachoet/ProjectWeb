@@ -115,20 +115,20 @@
                 <div class="row h-50">
                   <div class="col-md-12 col-lg-5">
                     <button
-                      class="btn btn-danger btn-lg"
-                      data-bs-toggle="modal"
-                      data-bs-target="#checkoutcontract"
-                      type="submit"
-                    >
-                      แจ้งย้ายออก
-                    </button>
-                    <button
                       class="btn btn-success btn-lg"
                       data-bs-toggle="modal"
                       data-bs-target="#addcontract"
                       type="submit"
                     >
                       เพิ่มสัญญา
+                    </button>
+                    <button
+                      class="btn btn-danger btn-lg"
+                      data-bs-toggle="modal"
+                      data-bs-target="#checkoutcontract"
+                      type="submit"
+                    >
+                      แจ้งย้ายออก
                     </button>
                   </div>
                 </div>
@@ -141,8 +141,8 @@
                       <th class="text-center sortable">ชื่อ</th>
                       <th class="text-center sortable">นามสกุล</th>
                       <th class="text-center sortable">จำนวนผู้เข้าพัก</th>
-                      <th class="text-center sortable">เบอร์โทร</th>
-                      <th class="text-center sortable">ว/ด/ป เกิด</th>
+                      <th class="text-center sortable">เบอร์โทรศัพท์</th>
+                      <th class="text-center sortable">วัน/เดือน/ปี เกิด</th>
                       <th class="text-center sortable">เลขบัตรประชาชน</th>
                       <th class="text-center sortable">ที่อยู่</th>
                       <th class="text-center sortable">วันที่ทำสัญญา</th>
@@ -151,7 +151,7 @@
                       <th class="text-center sortable">วันที่ย้ายออก</th>
                       <th class="text-center sortable">ยานพหนะ</th>
                       <th class="text-center sortable">ทะเบียน</th>
-                      <th class="text-center sortable">ใบสัญญา</th>
+                      <th class="text-left sortable">ใบสัญญา</th>
                     </tr>
                   </thead>
                   <tbody id="tableListBody">
@@ -331,13 +331,13 @@
                           type="text"
                           class="form-control"
                           id="IDcard"
-                          maxlength="13"
+                          maxlength="20"
                           placeholder="เลขบัตรประชาชน"
                           required
                         />
                       </div>
 
-                      <script>
+                      <!-- <script>
                         // Add an input event listener to the "IDcard" input field
                         document
                           .getElementById("IDcard")
@@ -357,7 +357,7 @@
                             event.target.value = validCharacters;
                           }
                         }
-                      </script>
+                      </script> -->
 
                       <div class="col-md-12">
                         <label for="Address" class="form-label">ที่อยู่</label>
@@ -365,7 +365,7 @@
                           type="text"
                           class="form-control"
                           id="Address"
-                          placeholder="บ้านเลขที่ จังหวัด ตำบล อำเภอ"
+                          placeholder="ที่อยู่ผู้ทำสัญญา"
                           required
                         />
                       </div>
@@ -388,7 +388,7 @@
                       </div>
 
                       <div id="datepicker" class="col-md-4">
-                        <label for="Checkin" class="form-label">เช็คอิน</label>
+                        <label for="Checkin" class="form-label">วันที่เข้าพัก</label>
                         <input
                           name="dates"
                           type="text"
@@ -426,8 +426,8 @@
                       </div>
 
                       <div class="mb-3">
-                        <label for="contactpic" class="form-label"
-                          >ใบสัญญา</label
+                        <label for="contactpic" class="form-label" style="color: red;"
+                          >ไฟล์ข้อมูลสัญญาเช่า (*รับเฉพาะไฟล์ PDF ภาษาอังกฤษเท่านั้น)</label
                         >
                         <input
                           class="form-control"

@@ -105,7 +105,7 @@
               class="d-flex flex-column p-4 gap-1"
               style="border-radius: 1rem; background-color: white"
             >
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-12 col-lg-5">
                   <form class="d-flex p-2">
                     <input
@@ -119,7 +119,7 @@
                     </button>
                   </form>
                 </div>
-              </div>
+              </div> -->
 
               <div class="row">
                 <div class="col-md-12 col-lg-5">
@@ -129,7 +129,7 @@
                     data-bs-toggle="modal"
                     data-bs-target="#addRoomModal"
                   >
-                    เพิ่มห้องพัก
+                    เพิ่มห้องพักใหม่
                   </button>
                   <button
                     type="button"
@@ -137,7 +137,7 @@
                     data-bs-toggle="modal"
                     data-bs-target="#editRoomModal"
                   >
-                    เพิ่ม/แก้ไขข้อมูลห้องพัก
+                    แก้ไขข้อมูลห้องพัก
                   </button>
                 </div>
               </div>
@@ -166,13 +166,13 @@
                     <div class="modal-body">
                       <div class="mb-3">
                         <label for="roomNumber" class="form-label"
-                          >เลขห้อง</label
+                          >เลขห้องพัก</label
                         >
                         <input
                           type="text"
                           class="form-control"
                           id="roomNumber"
-                          placeholder="101-112, 201-212, 301-312"
+                          placeholder="หมายเลขห้องพัก"
                           maxlength="3"
                           required
                         />
@@ -220,12 +220,12 @@
                       </div>
 
                       <div class="mb-3">
-                        <label for="price" class="form-label">ราคา</label>
+                        <label for="price" class="form-label">ค่าเช่า</label>
                         <input
                           type="text"
                           class="form-control"
                           id="price"
-                          placeholder="1800"
+                          placeholder="ค่าห้องพักต่อเดือน"
                           maxlength="4"
                         />
                       </div>
@@ -260,15 +260,17 @@
                           type="text"
                           class="form-control"
                           id="guestCount"
+                          value="0"
                           placeholder="0"
                           maxlength="1"
+                          
                           required
                         />
                       </div>
 
                       <div class="mb-3">
                         <label for="electricityUnit" class="form-label"
-                          >เลขที่มิเตอร์ไฟ</label
+                          >เลขมิเตอร์ไฟเดิม</label
                         >
                         <input
                           type="text"
@@ -306,7 +308,7 @@
                       </script>
 
                       <div class="mb-3">
-                        <label for="status" class="form-label">สถานะ</label>
+                        <label for="status" class="form-label">สถานะการเช่า</label>
                         <select class="form-select" id="status">
                           <option value="ว่าง">ว่าง</option>
                           <option value="ไม่ว่าง">ไม่ว่าง</option>
@@ -394,7 +396,7 @@
                       </div>
 
                       <div class="mb-3">
-                        <label for="editprice" class="form-label">ราคา</label>
+                        <label for="editprice" class="form-label">ค่าเช่าห้อง</label>
                         <input
                           type="text"
                           class="form-control"
@@ -469,7 +471,7 @@
 
                       <div class="mb-3">
                         <label for="editelectricityUnit" class="form-label"
-                          >เลขเลขที่มิเตอร์ไฟ</label
+                          >เลขมิเตอร์ไฟเดิม</label
                         >
                         <input
                           type="text"
@@ -507,7 +509,7 @@
                       </script>
 
                       <div class="mb-3">
-                        <label for="editstatus" class="form-label">สถานะ</label>
+                        <label for="editstatus" class="form-label">สถานะการเช่า</label>
                         <select class="form-select" id="editstatus">
                           <option value="ว่าง">ว่าง</option>
                           <option value="ไม่ว่าง">ไม่ว่าง</option>
@@ -540,14 +542,14 @@
                 <table id="roomList" class="table">
                   <thead>
                     <tr>
-                      <th class="sortable">เลขห้อง</th>
-                      <th class="sortable">ชั้น</th>
-                      <th class="sortable">ประเภทห้อง</th>
-                      <th class="sortable">ราคา</th>
-                      <th class="sortable">ชื่อผู้เช่า</th>
-                      <th class="sortable">นามสกุลผู้เช่า</th>
-                      <th class="sortable">จำนวนผู้เช่า</th>
-                      <th class="sortable">สถานะ</th>
+                      <th class="text-center sortable">เลขห้อง</th>
+                      <th class="text-center sortable">ชั้น</th>
+                      <th class="text-center sortable">ประเภทห้องพัก</th>
+                      <th class="text-center sortable">ค่าเช่าห้องพัก</th>
+                      <th class="text-center sortable">ชื่อ</th>
+                      <th class="text-center sortable">นามสกุล</th>
+                      <th class="text-center sortable">จำนวนผู้พักอาศัย</th>
+                      <th class="text-center sortable">สถานะห้องพัก</th>
                     </tr>
                   </thead>
                   <tbody id="tableList">

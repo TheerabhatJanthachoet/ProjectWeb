@@ -91,14 +91,14 @@ function setdata(data) {
 
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${room.RoomID}</td>
-      <td>${room.RoomFloor}</td>
-      <td>${room.RoomType}</td>
-      <td>${room.RoomPrice}</td>
-      <td>${room.NameGuest}</td>
-      <td>${room.LNameGuest}</td>
-      <td>${room.RoomCount}</td>
-      <td class="status">${room.Status}</td>
+      <td class="text-center">${room.RoomID}</td>
+      <td class="text-center">${room.RoomFloor}</td>
+      <td class="text-center">${room.RoomType}</td>
+      <td class="text-center">${room.RoomPrice}</td>
+      <td class="text-center">${room.NameGuest}</td>
+      <td class="text-center">${room.LNameGuest}</td>
+      <td class="text-center">${room.RoomCount}</td>
+      <td class="text-center status">${room.Status}</td>
       `;
     // เพิ่มแถวลงในตาราง
     tableList.appendChild(row);
