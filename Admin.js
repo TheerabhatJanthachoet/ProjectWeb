@@ -133,6 +133,12 @@ document.getElementById("savecontact").addEventListener("click", function () {
     alert("กรุณากรอกข้อมูลให้ครบยกเว้นทะเบียนรถ.");
     return;
   }
+  // Check the file size (in bytes)
+  const maxFileSize = 5 * 1024 * 1024; // 5MB
+  if (contactpicFile.size > maxFileSize) {
+    alert("ไฟล์ต้องมีขนาดไม่เกิน 5MB");
+    return;
+  }
 
 
   // ส่งไฟล์รูปภาพที่เลือกไปยัง Backend ผ่าน FormData
