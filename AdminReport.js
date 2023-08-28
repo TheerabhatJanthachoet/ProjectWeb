@@ -6,105 +6,105 @@ function openBillForm() {
 
 
 function SelectYearReport() {
-  const reportYear = document.getElementById("selectYear").value;
-  const selectMonth = document.getElementById("selectMonth");
-  while (selectMonth.options.length > 1) {
-    selectMonth.remove(1);
-  }
-  var reportFilterYear = reportJson;
-  if (reportYear != "") {
-    reportFilterYear = reportJson.filter(
-      (report) => report.BillYear === reportYear
-    );
-  }
+  // const reportYear = document.getElementById("selectYear").value;
+  // const selectMonth = document.getElementById("selectMonth");
+  // while (selectMonth.options.length > 1) {
+  //   selectMonth.remove(1);
+  // }
+  // var reportFilterYear = reportJson;
+  // if (reportYear != "") {
+  //   reportFilterYear = reportJson.filter(
+  //     (report) => report.BillYear === reportYear
+  //   );
+  // }
 
-  reportFilterYear.forEach((report) => {
-    const option = document.createElement("option");
-    option.value = report.BillMonth;
-    option.text = report.BillMonth;
-    selectMonth.appendChild(option);
-  });
+  // reportFilterYear.forEach((report) => {
+  //   const option = document.createElement("option");
+  //   option.value = report.BillMonth;
+  //   option.text = report.BillMonth;
+  //   selectMonth.appendChild(option);
+  // });
 
-  // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
-  const selectElement = document.getElementById("selectMonth");
+  // // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
+  // const selectElement = document.getElementById("selectMonth");
 
-  // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
-  const uniqueValues = [];
-  // วิธีการกรอง
-  for (let i = 0; i < selectElement.options.length; i++) {
-    const optionValue = selectElement.options[i].value;
+  // // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
+  // const uniqueValues = [];
+  // // วิธีการกรอง
+  // for (let i = 0; i < selectElement.options.length; i++) {
+  //   const optionValue = selectElement.options[i].value;
 
-    // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
-    if (uniqueValues.indexOf(optionValue) === -1) {
-      uniqueValues.push(optionValue);
-    }
-  }
+  //   // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+  //   if (uniqueValues.indexOf(optionValue) === -1) {
+  //     uniqueValues.push(optionValue);
+  //   }
+  // }
 
-  // ลบตัวเลือกทั้งหมดใน select
-  selectElement.innerHTML = "";
-  // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
-  uniqueValues.forEach((value) => {
-    const optionElement = document.createElement("option");
-    optionElement.value = value;
-    if (value != "") {
-      optionElement.textContent = value;
-    } else {
-      optionElement.textContent = "ทั้งหมด";
-    }
+  // // ลบตัวเลือกทั้งหมดใน select
+  // selectElement.innerHTML = "";
+  // // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
+  // uniqueValues.forEach((value) => {
+  //   const optionElement = document.createElement("option");
+  //   optionElement.value = value;
+  //   if (value != "") {
+  //     optionElement.textContent = value;
+  //   } else {
+  //     optionElement.textContent = "ทั้งหมด";
+  //   }
 
-    selectElement.appendChild(optionElement);
-  });
+  //   selectElement.appendChild(optionElement);
+  // });
   sortYearMonth();
 }
 
 function setdatamonth() {
-  const getyearstatus = document.getElementById("yearSelect").value;
+  // const getyearstatus = document.getElementById("yearSelect").value;
 
-  const monthdata = reportJson.filter(
-    (reportJson) => reportJson.BillYear == getyearstatus
-  );
+  // const monthdata = reportJson.filter(
+  //   (reportJson) => reportJson.BillYear == getyearstatus
+  // );
 
-  const monthstatus = document.getElementById("monthSelect");
+  // const monthstatus = document.getElementById("monthSelect");
 
-  while (monthstatus.hasChildNodes()) {
-    monthstatus.removeChild(monthstatus.firstChild);
-  }
-  monthdata.map((month) => {
-    // สร้างตัวเลือก
-    // GuestFirstname.appendChild(month)
-    const row = document.createElement("option");
-    row.value = month.BillMonth;
-    row.innerText = month.BillMonth;
-    monthstatus.appendChild(row);
-  });
-  if (monthstatus.hasChildNodes()) {
-    monthstatus.firstChild.setAttribute("selected", true);
-  }
+  // while (monthstatus.hasChildNodes()) {
+  //   monthstatus.removeChild(monthstatus.firstChild);
+  // }
+  // monthdata.map((month) => {
+  //   // สร้างตัวเลือก
+  //   // GuestFirstname.appendChild(month)
+  //   const row = document.createElement("option");
+  //   row.value = month.BillMonth;
+  //   row.innerText = month.BillMonth;
+  //   monthstatus.appendChild(row);
+  // });
+  // if (monthstatus.hasChildNodes()) {
+  //   monthstatus.firstChild.setAttribute("selected", true);
+  // }
 
-  // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
-  const selectElement2 = document.getElementById("monthSelect");
-  // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
-  const uniqueValues2 = [];
+  // // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
+  // const selectElement2 = document.getElementById("monthSelect");
+  // // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
+  // const uniqueValues2 = [];
 
-  // วิธีการกรอง
-  for (let i = 0; i < selectElement2.options.length; i++) {
-    const optionValue2 = selectElement2.options[i].value;
+  // // วิธีการกรอง
+  // for (let i = 0; i < selectElement2.options.length; i++) {
+  //   const optionValue2 = selectElement2.options[i].value;
 
-    // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
-    if (uniqueValues2.indexOf(optionValue2) === -1) {
-      uniqueValues2.push(optionValue2);
-    }
-  }
-  // ลบตัวเลือกทั้งหมดใน select
-  selectElement2.innerHTML = "";
+  //   // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+  //   if (uniqueValues2.indexOf(optionValue2) === -1) {
+  //     uniqueValues2.push(optionValue2);
+  //   }
+  // }
+  // // ลบตัวเลือกทั้งหมดใน select
+  // selectElement2.innerHTML = "";
 
-  // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
-  uniqueValues2.forEach((value) => {
-    const optionElement2 = document.createElement("option");
-    optionElement2.value = value;
-    optionElement2.textContent = value;
-    selectElement2.appendChild(optionElement2);
-  });
+  // // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
+  // uniqueValues2.forEach((value) => {
+  //   const optionElement2 = document.createElement("option");
+  //   optionElement2.value = value;
+  //   optionElement2.textContent = value;
+  //   selectElement2.appendChild(optionElement2);
+  // });
   setroomstatus();
 }
 
