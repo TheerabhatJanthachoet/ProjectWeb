@@ -21,6 +21,30 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
+
+app.get("/api/getreportYM",async (req, res) => {
+
+  const year = req.query.year
+  const month = req.query.month
+  const YMBill = await getreportbyYM(year,month);
+
+  res.json(JSON.stringify(YMBill));
+});
+
+
+app.get("/api/getreportID",async (req, res) => {
+
+  const reportID = req.query.id
+  console.log(reportID);
+  const reportbyid = await getreportbyID(reportID);
+
+  res.json(JSON.stringify(reportbyid));
+});
+
+
+
+
+
 app.post("/api/contact", upload.single("contactpic"), async (req, res) => {
   const contact = req.body;
   // เรียกใช้ฟังก์ชัน addContact โดยแนบชื่อไฟล์รูปภาพที่อยู่ใน req.file.filename ที่เป็นส่วนของ multer
@@ -361,6 +385,7 @@ async function getReport() {
 
 const { v4: uuidv4,validate:uuidValidate} = require("uuid");
 const fs = require("fs");
+const { months } = require("moment");
 
 async function addContact(
   roomNumber,
@@ -505,4 +530,47 @@ async function addBill(bill) {
     console.error("เกิดข้อผิดพลาดในการบันทึกบิล:", error);
   }
 }
+
+async function getreportbyYM(year,month) {
+  try {
+    await sql.connect(config);
+
+    const query = `SELECT * FROM Bill WHERE BillYear = '${year}' AND BillMonth = '${month}'`;
+
+    const result = await sql.query(query);
+    const bills = result.recordset;
+
+    return bills;
+  } catch (error) {
+    console.error("เกิดข้อผิดพลาดในการดึงข้อมูลบิล:", error);
+  } finally {
+    if (sql) {
+      sql.close();
+    }
+  }
+}
+
+
+async function getreportbyID(reportID) {
+  try {
+    await sql.connect(config);
+
+    const query = `SELECT * FROM Bill WHERE UnitID = '${reportID}'`;
+
+    const result = await sql.query(query);
+    const bills = result.recordset;
+
+    return bills;
+
+  } catch (error) {
+    console.error("เกิดข้อผิดพลาดในการดึงข้อมูลบิล:", error);
+  } finally {
+    if (sql) {
+      sql.close();
+    }
+  }
+}
+
 module.exports = app;
+
+
