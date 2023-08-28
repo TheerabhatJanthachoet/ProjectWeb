@@ -19,72 +19,78 @@
   </head>
   <body style="font-family: 'Kanit', sans-serif">
     <main id="form" class="container p-4">
-      <div class="row p-4">
-        <div class="col-12 text-center">ใบเสร็จรับเงิน</div>
-        <div class="col-2"></div>
-        <div class="col-4">เลขที่บิล ...</div>
-        <div class="col-6 text-center">เลขทีออกบิล วัน/เดือน/ปี</div>
-        <div class="col-2"></div>
-        <div class="col-4">ห้อง ...</div>
+      <div class="row p-1 pb-2">
+        <div class="col-6 text-left" style="font-weight:bold;">
+          วศินอพาร์ทเม้นท์
+        </div>
+        <div class="col-6 text-right" style="font-weight:bold;">
+          ใบแจ้งหนี้
+        </div>
+        <div class="col-6">46/14 หมู่ 9 ต.คานหาม อ.อุทัย จ.อยุธยา 13210</div>
+        <div class="col-6 text-right">เลขที่บิล ...</div>
         <div class="col-6"></div>
-        <div class="col-2"></div>
-        <div class="col-4">ชื่อ... นามสกุล...</div>
+        <div class="col-6 text-right">ห้อง ...</div>
+        <div class="col-6">ชื่อผู้พัก</div>
+        <div class="col-6 text-right">
+          <label id="billdate">วันที่ วัน/เดือน/ปี</label>
+          <script src="Getdate.js"> </script>
+        </div>
       </div>
 
       <div class="row border">
         <div class="col-3 text-center border p-2">รายละเอียด</div>
         <div class="col-3 text-center border p-2">จำนวนหน่วย/Units</div>
         <div class="col-3 text-center border p-2">ราคาต่อหน่วย</div>
-        <div class="col-3 text-center border p-2">จำนวนเงิน</div>
+        <div class="col-3 text-right border p-2">จำนวนเงิน</div>
 
         <div class="col-3 text-center border d-flex flex-column p-2">
-          <div>ค่าน้ำ</div>
-          <div>ค่าไฟ (240-260)</div>
+          <div class="text-left">ค่าน้ำประปา</div>
+          <div class="text-left">ค่าไฟ (240-260)</div>
         </div>
         <div class="col-3 text-center border d-flex flex-column p-2">
-          <div>1</div>
-          <div>20</div>
+          <div class="text-right">1</div>
+          <div class="text-right">20</div>
         </div>
         <div class="col-3 text-center border d-flex flex-column p-2">
-          <div>80</div>
-          <div>8</div>
+          <div class="text-right">80.00</div>
+          <div class="text-right">8.00</div>
         </div>
         <div class="col-3 text-right border d-flex flex-column p-2">
           <div class="row">
-            <div class="col-8">80.00</div>
             <div class="col-4"></div>
+            <div class="col-8 text-right">80.00</div>
           </div>
           <div class="row">
-            <div class="col-8">160.00</div>
             <div class="col-4"></div>
+            <div class="col-8 text-right">160.00</div>
           </div>
         </div>
 
-        <div class="col-3 border"></div>
-        <div class="col-6 border d-flex flex-column p-2">
+        <div class="col-6 border"></div>
+        <div class="col-3 border d-flex flex-column p-2">
           <div>ค่าเช่าห้อง</div>
-          <div>ค่าอื่นๆ</div>
+          <div>ค่าใช้จ่ายอื่นๆ</div>
           <div>รวมเงินทั้งสิ้น</div>
         </div>
         <div class="col-3 text-right border d-flex flex-column p-2">
           <div class="row">
-            <div class="col-8">1800.00</div>
             <div class="col-4"></div>
+            <div class="col-8 text-right">1800.00</div>
           </div>
           <div class="row">
-            <div class="col-8">20.00</div>
             <div class="col-4"></div>
+            <div class="col-8 text-right">20.00</div>
           </div>
           <div class="row">
-            <div class="col-8">2060.00</div>
             <div class="col-4"></div>
+            <div class="col-8 text-right" style="font-weight:bold; text-decoration: underline;">2060.00</div>
           </div>
         </div>
       </div>
 
-      <div class="row p-4">
-        <div class="col-9">กำหนดชำระเงินภายในวันที่ 3 ของทุกเดือน</div>
-        <div class="col-3">ผู้รับเงิน ...</div>
+      <div class="row pt-4">
+        <div class="col-6 text-left">* หมายเหตุ กำหนดชำระเงินภายในวันที่ 3 ของทุกเดือน หากชำระเกินระยะเวลาทางหอพักขอปรับเงินตามจำนวนวันที่เกิน วันละ 50 บาท</div>
+        <div class="col-6 text-center">ผู้รับเงิน ..........................................</div>
       </div>
     </main>
 
@@ -141,9 +147,10 @@
         // window.jsPDF.save("example.pdf");
       }
 
-      
-      test();
+      // เรียกใช้ฟังก์ชั่นปริ้นเป็น PDF ให้เอาคอมเม้นออก
+      // test();
       
     </script>
+    
   </body>
 </html>
