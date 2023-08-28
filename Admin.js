@@ -214,8 +214,16 @@ function setContact(data) {
     const mildate = contactdate.getTime()
     const milnow = nowdate.getTime()
     const difTime = (mildate + 15778800000) - milnow 
-    const diftotal = Math.floor((((difTime / 1000) / 60**2) / 24) / 30)
+    let diftotal = Math.floor((((difTime / 1000) / 60**2) / 24) / 30)
 
+   
+    if(diftotal <= 0){
+      diftotal = "อยู่ครบสัญญาเช่า"
+    }
+    else{
+       diftotal = diftotal.toString() + " เดือน"
+    }
+    
     
     row.innerHTML = `
       <td class="text-center">${contact.RoomID}</td>
@@ -227,7 +235,7 @@ function setContact(data) {
       <td class="text-center">${contact.IDCard}</td>
       <td class="text-left">${contact.GuestAddress}</td>
       <td class="text-center">${contactdateformat}</td>
-      <td class="text-center">${diftotal + " เดือน"}</td>
+      <td class="text-center">${diftotal}</td>
       <td class="text-center">${CheckIndateformat}</td>
       <td class="text-center">${CheckOutdateformat}</td>
       <td class="text-center">${contact.VehicleType}</td>

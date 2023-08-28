@@ -55,17 +55,14 @@ function SelectYearReport() {
     selectElement.appendChild(optionElement);
   });
   sortYearMonth();
-  
 }
 
 function setdatamonth() {
-  
   const getyearstatus = document.getElementById("yearSelect").value;
-  
 
-  const monthdata = reportJson.filter((reportJson) => reportJson.BillYear == getyearstatus);
-
-  
+  const monthdata = reportJson.filter(
+    (reportJson) => reportJson.BillYear == getyearstatus
+  );
 
   const monthstatus = document.getElementById("monthSelect");
 
@@ -108,17 +105,19 @@ function setdatamonth() {
     optionElement2.textContent = value;
     selectElement2.appendChild(optionElement2);
   });
-  setroomstatus()
+  setroomstatus();
 }
 
-
-function setroomstatus(){
-
+function setroomstatus() {
   const getyearstatus = document.getElementById("yearSelect").value;
   const monthstatus = document.getElementById("monthSelect").value;
   const roomstatus = document.getElementById("roomSelect");
 
-  const roomdata = reportJson.filter((reportJson) => reportJson.BillYear == getyearstatus && reportJson.BillMonth == monthstatus);
+  const roomdata = reportJson.filter(
+    (reportJson) =>
+      reportJson.BillYear == getyearstatus &&
+      reportJson.BillMonth == monthstatus
+  );
 
   while (roomstatus.hasChildNodes()) {
     roomstatus.removeChild(roomstatus.firstChild);
@@ -161,7 +160,6 @@ function setroomstatus(){
   });
 }
 
-
 async function getReport() {
   const url = new URL("http://20.187.73.118:3000/api/getreport");
   url.port = 3000;
@@ -189,8 +187,6 @@ async function getReport() {
     selectYear2.appendChild(option);
   });
 
-
-
   setdata(reportJson);
 }
 
@@ -207,19 +203,16 @@ function sortYearMonth() {
       (reportJson) =>
         reportJson.BillYear == getYear && reportJson.BillMonth == getMonth
     );
-  } else if (getYear != "" ) {
-        reportSortYearMonth = reportJson.filter(
-            (reportJson) =>
-                reportJson.BillYear == getYear
-        );
+  } else if (getYear != "") {
+    reportSortYearMonth = reportJson.filter(
+      (reportJson) => reportJson.BillYear == getYear
+    );
   } else if (getMonth != "") {
-        reportSortYearMonth = reportJson.filter(
-            (reportJson) =>
-                reportJson.BillMonth == getMonth
-        );
+    reportSortYearMonth = reportJson.filter(
+      (reportJson) => reportJson.BillMonth == getMonth
+    );
   }
 
-  
   reportSortYearMonth.map((report) => {
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -261,7 +254,7 @@ function setdata(data) {
         <td class="text-center">${report.Other}</td>
         <td class="text-center">${report.TotalPrice}</td>
         <td class="text-center">${report.Billstatus}</td>
-        
+
         `;
     // เพิ่มแถวลงในตาราง
     tableList.appendChild(row);
@@ -269,7 +262,6 @@ function setdata(data) {
 }
 
 getReport();
-
 
 document.getElementById("savestatus").addEventListener("click", function () {
   const month = document.getElementById("monthSelect").value;
@@ -282,20 +274,25 @@ document.getElementById("savestatus").addEventListener("click", function () {
       bill.RoomID == room && bill.BillYear == year && bill.BillMonth == month
   );
   
+  
+
+
 
   const checkUUID = checkfilter[0].UnitID;
   
+  
+
+
+
 
 
   const data = {
     billID: checkUUID,
-    status: status
+    status: status,
   };
 
   sendstatus(data);
-
 });
-
 
 async function sendstatus(data) {
   const response = await fetch("http://20.187.73.118:3000/api/statusBill", {
@@ -309,29 +306,34 @@ async function sendstatus(data) {
   location.reload();
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   // เรียกใช้ฟังก์ชันเมื่อคลิกที่หัวข้อเรียงข้อมูล
-  $('th.sortable').click(function() {
-    const table = $(this).parents('table').eq(0);
-    const rows = table.find('tbody tr').toArray().sort(comparator($(this).index()));
+  $("th.sortable").click(function () {
+    const table = $(this).parents("table").eq(0);
+    const rows = table
+      .find("tbody tr")
+      .toArray()
+      .sort(comparator($(this).index()));
     this.asc = !this.asc;
     if (!this.asc) {
       rows.reverse();
     }
     for (let i = 0; i < rows.length; i++) {
-      table.find('tbody').append(rows[i]);
+      table.find("tbody").append(rows[i]);
     }
   });
 
   function comparator(index) {
-    return function(a, b) {
+    return function (a, b) {
       const valA = getCellValue(a, index);
       const valB = getCellValue(b, index);
-      return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+      return $.isNumeric(valA) && $.isNumeric(valB)
+        ? valA - valB
+        : valA.localeCompare(valB);
     };
   }
 
   function getCellValue(row, index) {
-    return $(row).children('td').eq(index).text();
+    return $(row).children("td").eq(index).text();
   }
 });
