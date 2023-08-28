@@ -197,84 +197,84 @@ function setdatabillcheck(data) {
 
 
 function setdatabill(data, checkyear) {
-  const monthdata = data.filter((data) => data.BillYear == checkyear);
+  // const monthdata = data.filter((data) => data.BillYear == checkyear);
 
-  const getRoomnotNullfilter = document.getElementById("editBillMonth");
-  const getRoomnotNullfilter2 = document.getElementById("monthSelect");
+  // const getRoomnotNullfilter = document.getElementById("editBillMonth");
+  // const getRoomnotNullfilter2 = document.getElementById("monthSelect");
 
-  while (getRoomnotNullfilter.hasChildNodes()) {
-    getRoomnotNullfilter.removeChild(getRoomnotNullfilter.firstChild);
-  }
-  monthdata.map((month) => {
-    // สร้างตัวเลือก
-    // GuestFirstname.appendChild(month)
-    const row = document.createElement("option");
-    row.value = month.BillMonth;
-    row.innerText = month.BillMonth;
-    getRoomnotNullfilter.appendChild(row);
-  });
-  if (getRoomnotNullfilter.hasChildNodes()) {
-    getRoomnotNullfilter.firstChild.setAttribute("selected", true);
-  }
+  // while (getRoomnotNullfilter.hasChildNodes()) {
+  //   getRoomnotNullfilter.removeChild(getRoomnotNullfilter.firstChild);
+  // }
+  // monthdata.map((month) => {
+  //   // สร้างตัวเลือก
+  //   // GuestFirstname.appendChild(month)
+  //   const row = document.createElement("option");
+  //   row.value = month.BillMonth;
+  //   row.innerText = month.BillMonth;
+  //   getRoomnotNullfilter.appendChild(row);
+  // });
+  // if (getRoomnotNullfilter.hasChildNodes()) {
+  //   getRoomnotNullfilter.firstChild.setAttribute("selected", true);
+  // }
 
-  while (getRoomnotNullfilter2.hasChildNodes()) {
-    getRoomnotNullfilter2.removeChild(getRoomnotNullfilter2.firstChild);
-  }
-  monthdata.map((month) => {
-    // สร้างตัวเลือก
-    // GuestFirstname.appendChild(month)
-    const row = document.createElement("option");
-    row.value = month.BillMonth;
-    row.innerText = month.BillMonth;
-    getRoomnotNullfilter2.appendChild(row);
-  });
-  if (getRoomnotNullfilter2.hasChildNodes()) {
-    getRoomnotNullfilter2.firstChild.setAttribute("selected", true);
-  }
+  // while (getRoomnotNullfilter2.hasChildNodes()) {
+  //   getRoomnotNullfilter2.removeChild(getRoomnotNullfilter2.firstChild);
+  // }
+  // monthdata.map((month) => {
+  //   // สร้างตัวเลือก
+  //   // GuestFirstname.appendChild(month)
+  //   const row = document.createElement("option");
+  //   row.value = month.BillMonth;
+  //   row.innerText = month.BillMonth;
+  //   getRoomnotNullfilter2.appendChild(row);
+  // });
+  // if (getRoomnotNullfilter2.hasChildNodes()) {
+  //   getRoomnotNullfilter2.firstChild.setAttribute("selected", true);
+  // }
 
-  // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
-  const selectElement = document.getElementById("editBillMonth");
-  const selectElement2 = document.getElementById("monthSelect");
-  // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
-  const uniqueValues = [];
-  const uniqueValues2 = [];
+  // // เริ่มต้นด้วยการรับ element ของ select ที่ต้องการกรอง
+  // const selectElement = document.getElementById("editBillMonth");
+  // const selectElement2 = document.getElementById("monthSelect");
+  // // สร้างอาร์เรย์เพื่อเก็บค่าตัวเลือกที่ไม่ซ้ำกัน
+  // const uniqueValues = [];
+  // const uniqueValues2 = [];
 
-  // วิธีการกรอง
-  for (let i = 0; i < selectElement.options.length; i++) {
-    const optionValue = selectElement.options[i].value;
+  // // วิธีการกรอง
+  // for (let i = 0; i < selectElement.options.length; i++) {
+  //   const optionValue = selectElement.options[i].value;
 
-    // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
-    if (uniqueValues.indexOf(optionValue) === -1) {
-      uniqueValues.push(optionValue);
-    }
-  }
+  //   // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+  //   if (uniqueValues.indexOf(optionValue) === -1) {
+  //     uniqueValues.push(optionValue);
+  //   }
+  // }
 
-  for (let i = 0; i < selectElement2.options.length; i++) {
-    const optionValue2 = selectElement2.options[i].value;
+  // for (let i = 0; i < selectElement2.options.length; i++) {
+  //   const optionValue2 = selectElement2.options[i].value;
 
-    // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
-    if (uniqueValues2.indexOf(optionValue2) === -1) {
-      uniqueValues2.push(optionValue2);
-    }
-  }
-  // ลบตัวเลือกทั้งหมดใน select
-  selectElement.innerHTML = "";
-  selectElement2.innerHTML = "";
+  //   // ถ้ายังไม่มีค่าในอาร์เรย์ uniqueValues
+  //   if (uniqueValues2.indexOf(optionValue2) === -1) {
+  //     uniqueValues2.push(optionValue2);
+  //   }
+  // }
+  // // ลบตัวเลือกทั้งหมดใน select
+  // selectElement.innerHTML = "";
+  // selectElement2.innerHTML = "";
 
-  // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
-  uniqueValues.forEach((value) => {
-    const optionElement = document.createElement("option");
-    optionElement.value = value;
-    optionElement.textContent = value;
-    selectElement.appendChild(optionElement);
-  });
+  // // เพิ่มตัวเลือกที่ไม่ซ้ำกันลงใน select ใหม่
+  // uniqueValues.forEach((value) => {
+  //   const optionElement = document.createElement("option");
+  //   optionElement.value = value;
+  //   optionElement.textContent = value;
+  //   selectElement.appendChild(optionElement);
+  // });
 
-  uniqueValues2.forEach((value) => {
-    const optionElement2 = document.createElement("option");
-    optionElement2.value = value;
-    optionElement2.textContent = value;
-    selectElement2.appendChild(optionElement2);
-  });
+  // uniqueValues2.forEach((value) => {
+  //   const optionElement2 = document.createElement("option");
+  //   optionElement2.value = value;
+  //   optionElement2.textContent = value;
+  //   selectElement2.appendChild(optionElement2);
+  // });
   setroomstatusbill()
 }
 //
