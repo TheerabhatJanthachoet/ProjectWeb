@@ -13,8 +13,32 @@
     <title>Sortable Table Example</title>
     <!-- เพิ่มลิงก์ไปยังไฟล์ jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.0.4/css/bootstrap5-toggle.min.css" rel="stylesheet">
     <style>
       /* เพิ่มสไตล์เพื่อเน้นหัวข้อที่เป็นหัวเรื่อง */
+    @media print {
+        body {
+            visibility: hidden;
+        }
+
+        #section-to-print {
+            visibility: visible;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #Home {
+            margin-top: 0 !important;
+        }
+    }
+
+    @media screen {
+        #section-to-print {
+            display: none;
+        }
+    }
+
       th {
         cursor: pointer;
       }
@@ -22,7 +46,7 @@
   </head>
   <body style="font-family: 'Kanit', sans-serif;">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.0.4/js/bootstrap5-toggle.ecmas.min.js"></script>
     <!-- เมนู -->
     <nav class="navbar navbar-expand-sm navbar-light fixed-top shadow p-3 bg-body rounded" style="background-color:white ;">
         <div class="container-fluid">
@@ -58,7 +82,7 @@
     <!-- จบเมนู -->
     
     
-    <section id="Home" class="vh-100" style="background-color: #ff8c00 ;margin-top: 100px;">
+    <section id="Home" class="h-100 min-vh-100" style="background-color: #ff8c00 ;margin-top: 100px;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center h-100">
             <div class="col col-xxl-12 p-2" >
@@ -100,7 +124,7 @@
                                 </div> -->
                                 <div class="d-flex justify-content-end">
                                     <button type="button" class="btn btn-primary me-3" id="printBillButton" onclick="openBillForm()">
-                                        พิมพ์ใบเสร็จ
+                                        พิมพ์ใบเสร็จทั้งหมด
                                     </button>
                                     <button type="button" class=" btn btn-warning " data-bs-toggle="modal" data-bs-target="#editModal">แก้ไขสถานะ</button>
                                 </div>
@@ -184,6 +208,8 @@
                                       <th class="text-center sortable">ค่าอื่นๆ</th>
                                       <th class="text-center sortable">รวมทั้งสิ้น</th>
                                       <th class="text-center sortable">สถานะการชำระ</th>
+                                      <th class="text-center" style="cursor: default;"></th>
+                                      <th class="text-center" style="cursor: default;"></th>
                                       
                                     </tr>
                                   </thead>
@@ -199,6 +225,10 @@
             </div>
           </div>
         </div>
+    </section>
+
+    <section id="section-to-print">
+        <div id="billReceipt" class="container"></div>
     </section>
 
     <script src="AdminReport.js"></script>
