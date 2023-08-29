@@ -1,9 +1,51 @@
 var reportJson = {};
+var reportFilter = [];
+
+// reportJson = [];
+
+// for (var i = 0; i < 5; i++) {
+//   reportJson.push({
+//     UnitID: i,
+//     RoomID: 101 + i,
+//     BillYear: 2023,
+//     BillMonth: "สิงหาคม",
+//     NameGuest: "Thanapat",
+//     LNameGuest: "Nacharoenkul",
+//     Watertotalprice: 500,
+//     ElectricitytotalPrice: 500,
+//     RoomPrice: 1000,
+//     Other: 100,
+//     TotalPrice: 2100,
+//     Billstatus: "pay",
+//   });
+// }
+
+// for (var i = 0; i < 100; i++) {
+//   reportJson.push({
+//     UnitID: i,
+//     RoomID: 201 + i,
+//     BillYear: 2023,
+//     BillMonth: "มกราคม",
+//     NameGuest: "Test",
+//     LNameGuest: "TestLastName",
+//     Watertotalprice: 250,
+//     ElectricitytotalPrice: 800,
+//     RoomPrice: 1200,
+//     Other: 150,
+//     TotalPrice: 2400,
+//     Billstatus: "not pay",
+//   });
+// }
 
 function openBillForm() {
-  window.open("bill.html", "_blank");
+  // const urlParams = new URLSearchParams();
+  // const year = document.getElementById("selectYear").value;
+  // const month = document.getElementById("selectMonth").value;
+  // urlParams.set("year", year);
+  // urlParams.set("month", month);
+  // window.open("bill.html?" + urlParams.toString(), "_blank");
+  printBillReceipt(reportFilter);
 }
-
 
 function SelectYearReport() {
   // const reportYear = document.getElementById("selectYear").value;
@@ -168,6 +210,8 @@ async function getReport() {
   });
   const bill = await res.json();
   reportJson = JSON.parse(bill);
+  reportFilter = reportJson;
+  // console.log(reportJson);
 
   const selectYear = document.getElementById("selectYear");
   const years = [...new Set(reportJson.map((report) => report.BillYear))];
@@ -213,22 +257,63 @@ function sortYearMonth() {
     );
   }
 
+  reportFilter = reportSortYearMonth;
+
   reportSortYearMonth.map((report) => {
     const row = document.createElement("tr");
     row.innerHTML = `
         <td class="text-center">${report.RoomID}</td>
         <td class="text-center">${report.BillYear}</td>
         <td class="text-center">${report.BillMonth}</td>
-        <td class="text-center">${report.NameGuest}</td>
-        <td class="text-center">${report.LNameGuest}</td>
+        <td class="text-center">${report.GuestFirstname}</td>
+        <td class="text-center">${report.GuestLastname}</td>
         <td class="text-center">${report.Watertotalprice}</td>
         <td class="text-center">${report.ElectricitytotalPrice}</td>
         <td class="text-center">${report.RoomPrice}</td>
         <td class="text-center">${report.Other}</td>
         <td class="text-center">${report.TotalPrice}</td>
-        <td class="text-center">${report.Billstatus}</td>
-        
+        <td id="status" class="text-center">${report.Billstatus}</td>
+        <td class="text-center"><button type="button" class="btn btn-primary me-3">พิมพ์ใบเสร็จ</button></td>
+        <td class="text-center">
+        <input id="${report.UnitID}" type="checkbox" data-toggle="toggle" data-onlabel="ชำระแล้ว" data-offlabel="ยังไม่ชำระ" data-onstyle="success" data-offstyle="danger" data-width="100">
+        </td>
         `;
+
+    row.querySelector("button").addEventListener("click", (e) => {
+      // const urlParams = new URLSearchParams();
+      // urlParams.set("id", e.target.id);
+
+      // window.open("bill.html?" + urlParams.toString(), "_blank");
+
+      printBillReceipt([report]);
+    });
+
+    const toggle = row.querySelector("input");
+    const status = row.querySelector("#status");
+
+    if (report.Billstatus == "ชำระแล้ว") {
+      toggle.checked = true;
+    }
+
+    toggle.bootstrapToggle();
+
+    toggle.addEventListener("change", () => {
+      const data = {
+        billID: e.target.id,
+        status: "",
+      };
+
+      if (e.target.checked == true) {
+        status.innerText = "ชำระแล้ว";
+        data.status = "ชำระแล้ว";
+      } else {
+        status.innerText = "ยังไม่ชำระ";
+        data.status = "ยังไม่ชำระ";
+      }
+
+      sendstatus(data);
+    });
+
     // เพิ่มแถวลงในตาราง
     tableselect.appendChild(row);
   });
@@ -236,7 +321,6 @@ function sortYearMonth() {
 
 function setdata(data) {
   const tableList = document.getElementById("tableList");
-
 
   data.map((report) => {
     // สร้างแถวของตาราง
@@ -246,16 +330,55 @@ function setdata(data) {
         <td class="text-center">${report.RoomID}</td>
         <td class="text-center">${report.BillYear}</td>
         <td class="text-center">${report.BillMonth}</td>
-        <td class="text-center">${report.NameGuest}</td>
-        <td class="text-center">${report.LNameGuest}</td>
+        <td class="text-center">${report.GuestFirstname}</td>
+        <td class="text-center">${report.GuestLastname}</td>
         <td class="text-center">${report.Watertotalprice}</td>
         <td class="text-center">${report.ElectricitytotalPrice}</td>
         <td class="text-center">${report.RoomPrice}</td>
         <td class="text-center">${report.Other}</td>
         <td class="text-center">${report.TotalPrice}</td>
-        <td class="text-center">${report.Billstatus}</td>
-
+        <td id="status" class="text-center">${report.Billstatus}</td>
+        <td class="text-center"><button type="button" class="btn btn-primary me-3">พิมพ์ใบเสร็จ</button></td>
+        <td class="text-center">
+        <input id="${report.UnitID}" type="checkbox" data-toggle="toggle" data-onlabel="ชำระแล้ว" data-offlabel="ยังไม่ชำระ" data-onstyle="success" data-offstyle="danger" data-width="100">
+        </td>
         `;
+
+    row.querySelector("button").addEventListener("click", (e) => {
+      // const urlParams = new URLSearchParams();
+      // urlParams.set("id", e.target.id);
+
+      // window.open("bill.html?" + urlParams.toString(), "_blank");
+
+      printBillReceipt([report]);
+    });
+
+    const toggle = row.querySelector("input");
+    const status = row.querySelector("#status");
+
+    if (report.Billstatus == "ชำระแล้ว") {
+      toggle.checked = true;
+    }
+
+    toggle.bootstrapToggle();
+
+    toggle.addEventListener("change", (e) => {
+      const data = {
+        billID: e.target.id,
+        status: "",
+      };
+
+      if (e.target.checked == true) {
+        status.innerText = "ชำระแล้ว";
+        data.status = "ชำระแล้ว";
+      } else {
+        status.innerText = "ยังไม่ชำระ";
+        data.status = "ยังไม่ชำระ";
+      }
+
+      sendstatus(data);
+    });
+
     // เพิ่มแถวลงในตาราง
     tableList.appendChild(row);
   });
@@ -273,18 +396,8 @@ document.getElementById("savestatus").addEventListener("click", function () {
     (bill) =>
       bill.RoomID == room && bill.BillYear == year && bill.BillMonth == month
   );
-  
-  
-
-
 
   const checkUUID = checkfilter[0].UnitID;
-  
-  
-
-
-
-
 
   const data = {
     billID: checkUUID,
@@ -300,10 +413,10 @@ async function sendstatus(data) {
     method: "POST",
     body: JSON.stringify(data),
   });
-  console.log(JSON.stringify(data));
+  // console.log(JSON.stringify(data));
   const json = await response.json();
-  alert("แก้ไขสเตตัสบิลเรียบร้อย");
-  location.reload();
+  // alert("แก้ไขสเตตัสบิลเรียบร้อย");
+  // location.reload();
 }
 
 $(document).ready(function () {
@@ -337,3 +450,124 @@ $(document).ready(function () {
     return $(row).children("td").eq(index).text();
   }
 });
+
+function printBillReceipt(bills) {
+  // const res = await fetch(
+  //   "http://20.187.73.118:3000/api/getreportID?" + urlParams.get("id")
+  // );
+
+  // const json = await res.json();
+
+  // console.log(bills);
+
+  const currentDate = new Date();
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  };
+
+  const formattedDate = currentDate.toLocaleString("th-TH", options);
+
+  const main = document.getElementById("billReceipt");
+
+  bills.map((bill) => {
+    const elecUnit = bill.NowElecUnit - bill.OldElecUnit;
+
+    const div = document.createElement("div");
+    div.innerHTML = `<div class="row p-1 pb-2">
+    <div class="col-6 text-left" style="font-weight: bold">
+      วศินอพาร์ทเม้นท์
+    </div>
+    <div class="col-6 text-right" style="font-weight: bold">ใบแจ้งหนี้</div>
+    <div class="col-6">46/14 หมู่ 9 ต.คานหาม อ.อุทัย จ.อยุธยา 13210</div>
+    <div class="col-6 text-right">เลขที่บิล ${bill.UnitID}</div>
+    <div class="col-6"></div>
+    <div class="col-6 text-right">ห้อง ${bill.RoomID}</div>
+    <div class="col-6">ชื่อผู้พัก ${bill.GuestFirstname} ${bill.GuestLastname}</div>
+    <div class="col-6 text-right">
+      <label id="billdate">วันที่ ${formattedDate}</label>
+    </div>
+  </div>
+
+  <div class="row border">
+    <div class="col-3 text-center border p-2">รายละเอียด</div>
+    <div class="col-3 text-center border p-2">จำนวนหน่วย/Units</div>
+    <div class="col-3 text-center border p-2">ราคาต่อหน่วย</div>
+    <div class="col-3 text-right border p-2">จำนวนเงิน</div>
+
+    <div class="col-3 text-center border d-flex flex-column p-2">
+      <div class="text-left">ค่าน้ำประปา</div>
+      <div class="text-left">ค่าไฟ (${bill.OldElecUnit}-${bill.NowElecUnit})</div>
+    </div>
+    <div class="col-3 text-center border d-flex flex-column p-2">
+      <div class="text-right">${bill.WaterUnit}</div>
+      <div class="text-right">${elecUnit}</div>
+    </div>
+    <div class="col-3 text-center border d-flex flex-column p-2">
+      <div class="text-right">${bill.WaterPrice}</div>
+      <div class="text-right">${bill.ElectricPriceperUnit}</div>
+    </div>
+    <div class="col-3 text-right border d-flex flex-column p-2">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8 text-right">${bill.Watertotalprice}</div>
+      </div>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8 text-right">${bill.ElectricitytotalPrice}</div>
+      </div>
+    </div>
+
+    <div class="col-6 border"></div>
+    <div class="col-3 border d-flex flex-column p-2">
+      <div>ค่าเช่าห้อง</div>
+      <div>ค่าใช้จ่ายอื่นๆ</div>
+      <div>รวมเงินทั้งสิ้น</div>
+    </div>
+    <div class="col-3 text-right border d-flex flex-column p-2">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8 text-right">${bill.RoomPrice}</div>
+      </div>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8 text-right">${bill.Other}</div>
+      </div>
+      <div class="row">
+        <div class="col-4"></div>
+        <div
+          class="col-8 text-right"
+          style="font-weight: bold; text-decoration: underline"
+        >
+        ${bill.TotalPrice}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pt-4">
+    <div class="col-6 text-left">
+      * หมายเหตุ กำหนดชำระเงินภายในวันที่ 3 ของทุกเดือน
+      หากชำระเกินระยะเวลาทางหอพักขอปรับเงินตามจำนวนวันที่เกิน วันละ 50 บาท
+    </div>
+    <div class="col-6 text-center">
+      ผู้รับเงิน ..........................................
+    </div>
+  </div>`;
+
+    div.classList.add("vh-100");
+    div.classList.add("p-4");
+
+    main.appendChild(div);
+  });
+
+  window.print();
+
+  while (main.hasChildNodes()) {
+    main.removeChild(main.firstChild);
+  }
+}
