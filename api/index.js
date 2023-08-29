@@ -21,29 +21,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-
-app.get("/api/getreportYM",async (req, res) => {
-
-  const year = req.query.year
-  const month = req.query.month
-  const YMBill = await getreportbyYM(year,month);
+app.get("/api/getreportYM", async (req, res) => {
+  const year = req.query.year;
+  const month = req.query.month;
+  const YMBill = await getreportbyYM(year, month);
 
   res.json(JSON.stringify(YMBill));
 });
 
-
-app.get("/api/getreportID",async (req, res) => {
-
-  const reportID = req.query.id
+app.get("/api/getreportID", async (req, res) => {
+  const reportID = req.query.id;
   console.log(reportID);
   const reportbyid = await getreportbyID(reportID);
 
   res.json(JSON.stringify(reportbyid));
 });
-
-
-
-
 
 app.post("/api/contact", upload.single("contactpic"), async (req, res) => {
   const contact = req.body;
@@ -349,11 +341,11 @@ async function getReport() {
   try {
     await sql.connect(config);
     const query = `
-    SELECT 
+        SELECT 
       Bill.UnitID,
       Bill.RoomID,
-      Rooms.NameGuest,
-      Rooms.LNameGuest,
+      Contact.GuestFirstname,
+      Contact.GuestLastname,
       Bill.Watertotalprice,
       Bill.ElectricitytotalPrice,
       Rooms.RoomPrice,
@@ -361,13 +353,19 @@ async function getReport() {
       Bill.TotalPrice,
       Bill.Billstatus,
       Bill.BillYear,
-      Bill.BillMonth
+      Bill.BillMonth,
+      Bill.ContactID,
+      Bill.NowElecUnit,
+      Bill.OldElecUnit,
+      Bill.ElectricPriceperUnit,
+      Bill.WaterUnit,
+      Bill.WaterPrice
     FROM
       Bill
     JOIN
-      Rooms ON Bill.RoomID = Rooms.RoomID;
-    
-        `;
+      Rooms ON Bill.RoomID = Rooms.RoomID
+    JOIN
+      Contact ON Bill.ContactID = Contact.ContactID;`;
     const result = await sql.query(query);
     const reports = result.recordset;
 
@@ -383,7 +381,7 @@ async function getReport() {
 
 //เพิ่มสัญญา + แก้ไขข้อมูลห้อง//
 
-const { v4: uuidv4,validate:uuidValidate} = require("uuid");
+const { v4: uuidv4, validate: uuidValidate } = require("uuid");
 const fs = require("fs");
 const { months } = require("moment");
 
@@ -531,7 +529,7 @@ async function addBill(bill) {
   }
 }
 
-async function getreportbyYM(year,month) {
+async function getreportbyYM(year, month) {
   try {
     await sql.connect(config);
 
@@ -550,7 +548,6 @@ async function getreportbyYM(year,month) {
   }
 }
 
-
 async function getreportbyID(reportID) {
   try {
     await sql.connect(config);
@@ -561,7 +558,6 @@ async function getreportbyID(reportID) {
     const bills = result.recordset;
 
     return bills;
-
   } catch (error) {
     console.error("เกิดข้อผิดพลาดในการดึงข้อมูลบิล:", error);
   } finally {
@@ -572,5 +568,3 @@ async function getreportbyID(reportID) {
 }
 
 module.exports = app;
-
-
