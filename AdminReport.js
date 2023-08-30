@@ -273,13 +273,13 @@ function sortYearMonth() {
         <td class="text-center">${report.Other}</td>
         <td class="text-center">${report.TotalPrice}</td>
         <td id="status" class="text-center">${report.Billstatus}</td>
-        <td class="text-center"><button type="button" class="btn btn-primary me-3">พิมพ์ใบเสร็จ</button></td>
+        <td class="text-center"><button type="button" class="btn btn-primary me-3">พิมพ์</button></td>
         <td class="text-center">
         <input id="${report.UnitID}" type="checkbox" data-toggle="toggle" data-onlabel="ชำระแล้ว" data-offlabel="ยังไม่ชำระ" data-onstyle="success" data-offstyle="danger" data-width="100">
         </td>
         `;
 
-    row.querySelector("button").addEventListener("click", (e) => {
+    row.querySelector("button").addEventListener("click", (easybutton) => {
       // const urlParams = new URLSearchParams();
       // urlParams.set("id", e.target.id);
 
@@ -299,7 +299,7 @@ function sortYearMonth() {
 
     toggle.addEventListener("change", () => {
       const data = {
-        billID: e.target.id,
+        billID: easybutton.target.id,
         status: "",
       };
 
@@ -338,7 +338,7 @@ function setdata(data) {
         <td class="text-center">${report.Other}</td>
         <td class="text-center">${report.TotalPrice}</td>
         <td id="status" class="text-center">${report.Billstatus}</td>
-        <td class="text-center"><button type="button" class="btn btn-primary me-3">พิมพ์ใบเสร็จ</button></td>
+        <td class="text-center"><button type="button" class="btn btn-primary me-3">พิมพ์</button></td>
         <td class="text-center">
         <input id="${report.UnitID}" type="checkbox" data-toggle="toggle" data-onlabel="ชำระแล้ว" data-offlabel="ยังไม่ชำระ" data-onstyle="success" data-offstyle="danger" data-width="100">
         </td>
