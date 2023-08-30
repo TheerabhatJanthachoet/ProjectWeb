@@ -485,7 +485,9 @@ function printBillReceipt(bills) {
     </div>
     <div class="col-6 text-right" style="font-weight: bold">ใบแจ้งหนี้</div>
     <div class="col-6">46/14 หมู่ 9 ต.คานหาม อ.อุทัย จ.อยุธยา 13210</div>
-    <div class="col-6 text-right">เลขที่บิล ${bill.UnitID}</div>
+    <div class="col-6 text-right">เลขที่บิล</div>
+    <div class="col-6"></div>
+    <div class="col-6 text-right">${bill.UnitID}</div>
     <div class="col-6"></div>
     <div class="col-6 text-right">ห้อง ${bill.RoomID}</div>
     <div class="col-6">ชื่อผู้พัก ${bill.GuestFirstname} ${bill.GuestLastname}</div>
@@ -505,21 +507,21 @@ function printBillReceipt(bills) {
       <div class="text-left">ค่าไฟ (${bill.OldElecUnit}-${bill.NowElecUnit})</div>
     </div>
     <div class="col-3 border d-flex flex-column p-2">
-      <div class="text-center">${bill.WaterUnit}</div>
-      <div class="text-center">${elecUnit}</div>
+      <div class="text-right" style="text-align:right;">${bill.WaterUnit}</div>
+      <div class="text-right" style="text-align:right;">${elecUnit}</div>
     </div>
     <div class="col-3 border d-flex flex-column p-2">
-      <div class="text-center">${bill.WaterPrice}</div>
-      <div class="text-center">${bill.ElectricPriceperUnit}</div>
+      <div class="text-right" style="text-align:right;">${bill.WaterPrice}</div>
+      <div class="text-right" style="text-align:right;">${bill.ElectricPriceperUnit}</div>
     </div>
     <div class="col-3 border d-flex flex-column p-2">
       <div class="row">
-        <div class="col-7"></div>
-        <div class="col-5 text-right">${bill.Watertotalprice.toLocaleString("en-US")}</div>
+        <div class="col-4"></div>
+        <div class="col-8"text-right" style="text-align:right;">${bill.Watertotalprice.toLocaleString("en-US")}</div>
       </div>
       <div class="row">
-        <div class="col-7"></div>
-        <div class="col-5 text-right">${bill.ElectricitytotalPrice.toLocaleString("en-US")}</div>
+        <div class="col-4"></div>
+        <div class="col-8 text-right" style="text-align:right;">${bill.ElectricitytotalPrice.toLocaleString("en-US")}</div>
       </div>
     </div>
 
@@ -531,16 +533,16 @@ function printBillReceipt(bills) {
     </div>
     <div class="col-3 text-right border d-flex flex-column p-2">
       <div class="row">
-        <div class="col-7"></div>
-        <div class="col-5 text-right">${bill.RoomPrice.toLocaleString("en-US")}</div>
+        <div class="col-4"></div>
+        <div class="col-8 text-right" style="text-align:right;">${bill.RoomPrice.toLocaleString("en-US")}</div>
       </div>
       <div class="row">
-        <div class="col-7"></div>
-        <div class="col-5 text-right">${bill.Other.toLocaleString("en-US")}</div>
+        <div class="col-4"></div>
+        <div class="col-8 text-right" style="text-align:right;">${bill.Other.toLocaleString("en-US")}</div>
       </div>
       <div class="row">
-        <div class="col-7"></div>
-        <div class="col-5 text-right" style="font-weight: bold; text-decoration: underline">
+        <div class="col-4"></div>
+        <div class="col-8 text-right" style="font-weight: bold; text-decoration: underline ;text-align:right;">
           ${bill.TotalPrice.toLocaleString("en-US")}
         </div>
       </div>

@@ -12,7 +12,7 @@ document.getElementById("saveButton").addEventListener("click", async function (
 
   const roomExists = await checkRoomExists(roomNumber);
   if (roomExists) {
-    alert("หมายเลขห้องพักนี้มีอยู่ในระบบแล้ว");
+    alert("ห้องพักนี้มีอยู่ในระบบแล้ว");
     return; // Prevent sending the data to the server
   }
 
