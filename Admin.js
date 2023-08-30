@@ -85,8 +85,8 @@ document.getElementById("savecontact").addEventListener("click", function () {
   const idcard = document.getElementById("IDcard").value;
   const address = document.getElementById("Address").value;
   const contactdate = document.getElementById("Contactdate").value;
-  const contactsplit = dobdate.split("/");
-  var contactformat = ""
+  const contactsplit = contactdate.split("/");
+  var contactformat = "";
 
   for(let i = contactsplit.length-1; i >=0 ; i-- ){
     contactformat+= contactsplit[i] + "-"
@@ -124,8 +124,8 @@ document.getElementById("savecontact").addEventListener("click", function () {
     !dobformat ||
     !idcard ||
     !address ||
-    !contactdate ||
-    !checkin ||
+    !contactformat ||
+    !checkinformat ||
     !cartype ||
     !contactpicFile
   ) {
