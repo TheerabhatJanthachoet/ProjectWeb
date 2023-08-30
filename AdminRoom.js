@@ -10,12 +10,6 @@ document.getElementById("saveButton").addEventListener("click", async function (
   const electricityUnit = document.getElementById("electricityUnit").value;
   const status = document.getElementById("status").value;
 
-  const roomExists = await checkRoomExists(roomNumber);
-  if (roomExists) {
-    alert("ห้องพักนี้มีอยู่ในระบบแล้ว");
-    return; // Prevent sending the data to the server
-  }
-
   const dataadd = {
     roomNumber: roomNumber,
     roomFloor: roomFloor,
