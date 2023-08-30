@@ -498,28 +498,28 @@ function printBillReceipt(bills) {
     <div class="col-3 text-center border p-2">รายละเอียด</div>
     <div class="col-3 text-center border p-2">จำนวนหน่วย/Units</div>
     <div class="col-3 text-center border p-2">ราคาต่อหน่วย</div>
-    <div class="col-3 text-right border p-2">จำนวนเงิน</div>
+    <div class="col-3 text-center border p-2">จำนวนเงิน</div>
 
-    <div class="col-3 text-center border d-flex flex-column p-2">
+    <div class="col-3 border d-flex flex-column p-2">
       <div class="text-left">ค่าน้ำประปา</div>
       <div class="text-left">ค่าไฟ (${bill.OldElecUnit}-${bill.NowElecUnit})</div>
     </div>
-    <div class="col-3 text-center border d-flex flex-column p-2">
-      <div class="text-right">${bill.WaterUnit}</div>
-      <div class="text-right">${elecUnit}</div>
+    <div class="col-3 border d-flex flex-column p-2">
+      <div class="text-center">${bill.WaterUnit}</div>
+      <div class="text-center">${elecUnit}</div>
     </div>
-    <div class="col-3 text-center border d-flex flex-column p-2">
-      <div class="text-right">${bill.WaterPrice}</div>
-      <div class="text-right">${bill.ElectricPriceperUnit}</div>
+    <div class="col-3 border d-flex flex-column p-2">
+      <div class="text-center">${bill.WaterPrice}</div>
+      <div class="text-center">${bill.ElectricPriceperUnit}</div>
     </div>
-    <div class="col-3 text-right border d-flex flex-column p-2">
+    <div class="col-3 border d-flex flex-column p-2">
       <div class="row">
-        <div class="col-4"></div>
-        <div class="col-8 text-right">${bill.Watertotalprice}</div>
+        <div class="col-7"></div>
+        <div class="col-5 text-right">${bill.Watertotalprice.toLocaleString("en-US")}</div>
       </div>
       <div class="row">
-        <div class="col-4"></div>
-        <div class="col-8 text-right">${bill.ElectricitytotalPrice}</div>
+        <div class="col-7"></div>
+        <div class="col-5 text-right">${bill.ElectricitytotalPrice.toLocaleString("en-US")}</div>
       </div>
     </div>
 
@@ -531,20 +531,17 @@ function printBillReceipt(bills) {
     </div>
     <div class="col-3 text-right border d-flex flex-column p-2">
       <div class="row">
-        <div class="col-4"></div>
-        <div class="col-8 text-right">${bill.RoomPrice}</div>
+        <div class="col-7"></div>
+        <div class="col-5 text-right">${bill.RoomPrice.toLocaleString("en-US")}</div>
       </div>
       <div class="row">
-        <div class="col-4"></div>
-        <div class="col-8 text-right">${bill.Other}</div>
+        <div class="col-7"></div>
+        <div class="col-5 text-right">${bill.Other.toLocaleString("en-US")}</div>
       </div>
       <div class="row">
-        <div class="col-4"></div>
-        <div
-          class="col-8 text-right"
-          style="font-weight: bold; text-decoration: underline"
-        >
-        ${bill.TotalPrice}
+        <div class="col-7"></div>
+        <div class="col-5 text-right" style="font-weight: bold; text-decoration: underline">
+          ${bill.TotalPrice.toLocaleString("en-US")}
         </div>
       </div>
     </div>
