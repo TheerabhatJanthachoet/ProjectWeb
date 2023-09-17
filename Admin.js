@@ -169,6 +169,7 @@ async function sendcontact(formData){
     body: formData,
   })
   const json = await responsecontact.json()  
+  alert("เพิ่มสัญญาเช่าห้องพักเรียบร้อย");
   location.reload()
 }
   
@@ -281,6 +282,7 @@ async function sendcheckout(checkoutdata){
     }),
   });
   const json = await responsecheckout.json()
+  alert("แจ้งย้ายออกเรียบร้อย");
   location.reload()
 }
 //จบเพิ่มสัญญา//

@@ -37,7 +37,8 @@ async function sendroom(dataadd){
       status:  dataadd.status,
       }),
     });
-  const json = await response2.json()  
+  const json = await response2.json() 
+  alert("สร้างห้องพักเรียบร้อย");
   location.reload()
 }
 
@@ -148,7 +149,8 @@ async function senddata(data){
         status: data.status,
       }),
     });
-  const json = await response.json()  
+  const json = await response.json() 
+  alert("แก้ไขห้องพักเรียบร้อย");
   location.reload()
 }
 
