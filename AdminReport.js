@@ -285,7 +285,11 @@ function sortYearMonth() {
 
       // window.open("bill.html?" + urlParams.toString(), "_blank");
 
-      printBillReceipt([report]);
+      if(report.Billstatus == "ชำระแล้ว"){
+        printBillReceipt2([report]);
+      }
+      else{
+      printBillReceipt([report]);}
     });
 
     const toggle = row.querySelector("input");
@@ -349,8 +353,11 @@ function setdata(data) {
       // urlParams.set("id", e.target.id);
 
       // window.open("bill.html?" + urlParams.toString(), "_blank");
-
-      printBillReceipt([report]);
+      if(report.Billstatus == "ชำระแล้ว"){
+        printBillReceipt2([report]);
+      }
+      else{
+      printBillReceipt([report]);}
     });
 
     const toggle = row.querySelector("input");
@@ -484,6 +491,126 @@ function printBillReceipt(bills) {
       วศินอพาร์ทเม้นท์
     </div>
     <div class="col-6 text-right" style="font-weight: bold">ใบแจ้งหนี้</div>
+    <div class="col-6">46/14 หมู่ 9 ต.คานหาม อ.อุทัย จ.อยุธยา 13210</div>
+    <div class="col-6 text-right">เลขที่บิล</div>
+    <div class="col-6"></div>
+    <div class="col-6 text-right">${bill.UnitID}</div>
+    <div class="col-6"></div>
+    <div class="col-6 text-right">ห้อง ${bill.RoomID}</div>
+    <div class="col-6">ชื่อผู้พัก ${bill.GuestFirstname} ${bill.GuestLastname}</div>
+    <div class="col-6 text-right">
+      <label id="billdate">วันที่ ${formattedDate}</label>
+    </div>
+  </div>
+
+  <div class="row border">
+    <div class="col-3 text-center border p-2">รายละเอียด</div>
+    <div class="col-3 text-center border p-2">จำนวนหน่วย/Units</div>
+    <div class="col-3 text-center border p-2">ราคาต่อหน่วย</div>
+    <div class="col-3 text-center border p-2">จำนวนเงิน</div>
+
+    <div class="col-3 border d-flex flex-column p-2">
+      <div class="text-left">ค่าน้ำประปา</div>
+      <div class="text-left">ค่าไฟ (${bill.OldElecUnit}-${bill.NowElecUnit})</div>
+    </div>
+    <div class="col-3 border d-flex flex-column p-2">
+      <div class="text-right" style="text-align:right;">${bill.WaterUnit}</div>
+      <div class="text-right" style="text-align:right;">${elecUnit}</div>
+    </div>
+    <div class="col-3 border d-flex flex-column p-2">
+      <div class="text-right" style="text-align:right;">${bill.WaterPrice}</div>
+      <div class="text-right" style="text-align:right;">${bill.ElectricPriceperUnit}</div>
+    </div>
+    <div class="col-3 border d-flex flex-column p-2">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8"text-right" style="text-align:right;">${bill.Watertotalprice.toLocaleString("en-US")}</div>
+      </div>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8 text-right" style="text-align:right;">${bill.ElectricitytotalPrice.toLocaleString("en-US")}</div>
+      </div>
+    </div>
+
+    <div class="col-6 border"></div>
+    <div class="col-3 border d-flex flex-column p-2">
+      <div>ค่าเช่าห้อง</div>
+      <div>ค่าใช้จ่ายอื่นๆ</div>
+      <div>รวมเงินทั้งสิ้น</div>
+    </div>
+    <div class="col-3 text-right border d-flex flex-column p-2">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8 text-right" style="text-align:right;">${bill.RoomPrice.toLocaleString("en-US")}</div>
+      </div>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8 text-right" style="text-align:right;">${bill.Other.toLocaleString("en-US")}</div>
+      </div>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8 text-right" style="font-weight: bold; text-decoration: underline ;text-align:right;">
+          ${bill.TotalPrice.toLocaleString("en-US")}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pt-4">
+    <div class="col-6 text-left">
+      * หมายเหตุ กำหนดชำระเงินภายในวันที่ 3 ของทุกเดือน
+      หากชำระเกินระยะเวลาทางหอพักขอปรับเงินตามจำนวนวันที่เกิน วันละ 50 บาท
+    </div>
+    <div class="col-6 text-center">
+      ผู้รับเงิน ..........................................
+    </div>
+  </div>`;
+
+    div.classList.add("vh-100");
+    div.classList.add("p-4");
+
+    main.appendChild(div);
+  });
+
+  window.print();
+
+  while (main.hasChildNodes()) {
+    main.removeChild(main.firstChild);
+  }
+}
+
+function printBillReceipt2(bills) {
+  // const res = await fetch(
+  //   "http://20.187.73.118:3000/api/getreportID?" + urlParams.get("id")
+  // );
+
+  // const json = await res.json();
+
+  // console.log(bills);
+
+  const currentDate = new Date();
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  };
+
+  const formattedDate = currentDate.toLocaleString("th-TH", options);
+
+  const main = document.getElementById("billReceipt");
+
+  bills.map((bill) => {
+    const elecUnit = bill.NowElecUnit - bill.OldElecUnit;
+
+    const div = document.createElement("div");
+    div.innerHTML = `<div class="row p-1 pb-2">
+    <div class="col-6 text-left" style="font-weight: bold">
+      วศินอพาร์ทเม้นท์
+    </div>
+    <div class="col-6 text-right" style="font-weight: bold">ใบเสร็จรับเงิน</div>
     <div class="col-6">46/14 หมู่ 9 ต.คานหาม อ.อุทัย จ.อยุธยา 13210</div>
     <div class="col-6 text-right">เลขที่บิล</div>
     <div class="col-6"></div>
