@@ -441,7 +441,7 @@ async function getContact() {
   try {
     await sql.connect(config);
 
-    const query = "SELECT * FROM Contact";
+    const query = "SELECT * FROM Contact ORDER BY RoomID";
 
     const result = await sql.query(query);
     const contacts = result.recordset;
