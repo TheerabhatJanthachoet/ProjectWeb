@@ -568,6 +568,7 @@ function printBillReceipt(bills) {
 
     div.classList.add("vh-100");
     div.classList.add("p-4");
+    div.classList.add("vw-100");
 
     main.appendChild(div);
   });
@@ -688,6 +689,7 @@ function printBillReceipt2(bills) {
 
     div.classList.add("vh-100");
     div.classList.add("p-4");
+    div.classList.add("vw-100");
 
     main.appendChild(div);
   });
