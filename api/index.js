@@ -365,7 +365,9 @@ async function getReport() {
     JOIN
       Rooms ON Bill.RoomID = Rooms.RoomID
     JOIN
-      Contact ON Bill.ContactID = Contact.ContactID;`;
+      Contact ON Bill.ContactID = Contact.ContactID
+    ORDER BY
+      Bill.RoomID, Bill.Billstatus;`;
     const result = await sql.query(query);
     const reports = result.recordset;
 
