@@ -367,7 +367,7 @@ async function getReport() {
     JOIN
       Contact ON Bill.ContactID = Contact.ContactID
     ORDER BY
-      Bill.RoomID, Bill.Billstatus;`;
+      Bill.RoomID, Bill.Billstatus, Bill.BillYear, Bill.BillMonth; `;
     const result = await sql.query(query);
     const reports = result.recordset;
 
